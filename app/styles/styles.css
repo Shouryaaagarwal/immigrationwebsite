@@ -1,0 +1,39 @@
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+.step.active {
+  opacity: 1;
+  color: #155da9;
+}
+.step.inactive {
+  opacity: 0.4;
+}
+
+.icon {
+  font-size: 24px;
+  background-color: #f1f1f1;
+  padding: 12px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.step-text {
+  font-size: 16px;
+  margin-top: 8px;
+  color: gray;
+}
+
+.progress-bar {
+  transition: width 1s ease-in-out;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 24px;
+}

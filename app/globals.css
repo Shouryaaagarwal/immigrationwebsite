@@ -70,3 +70,13 @@ body {
     @apply bg-background text-foreground;
   }
 }
+.thin-separator {
+  font-weight: 50; /* or 'lighter' */
+  font-size: 2rem; /* Adjust size */
+  line-height: 0; /* Reduce line height */
+  color: gray; /* Adjust color */
+} 
+
+.back{
+  background-size: 40% 40%
+}
