@@ -1,0 +1,50 @@
+#app {
+  height: 100%;
+}
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 300px;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.03), -4px 4px 15px rgba(0, 0, 0, 0.03), 0 6px 15px rgba(0, 0, 0, 0.03); /* Shadow on left, right, and bottom only */
+  border-radius: 1rem; /* Optional: rounded corners for the Swiper */
+}
+
+/* Center slides' content */
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  background: white; /* Change slide background to white */
+  color: black; /* Text color within slides */
+  border-radius: 1rem; /* Round slide corners */
+  padding: 20px; /* Optional padding for content within slides */
+}
+
+/* Swiper navigation arrows styling */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #c30e16; /* This matches text-gray-500 */
+  font-weight: bold;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 1.5rem; /* Optional: Increase arrow size */
+}

@@ -1,18 +1,16 @@
-'use client'
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/store/store'
+"use client";
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation"; // Import useRouter from next/navigation
 
-const page = () => {
-  const user = useSelector((state:RootState)=>state.auth.user)
-  console.log('Redux user is ',user)
-  return (
-    <>
-       <div>
-        <h1>hello</h1>
-       </div>
-    </>
-  )
-}
+const Page: React.FC = () => {
+  const router = useRouter();
 
-export default page
+  useEffect(() => {
+    // Redirect to the About page as soon as the component is mounted
+    router.push("/home");
+  }, [router]); // Empty dependency array to run only once when the component mounts
+
+  return <div></div>; // The component does not render anything, as it redirects instantly
+};
+
+export default Page;
