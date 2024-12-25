@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
         const { name, email, password, passwordConfirm ,  nationality } = body;
-
+        console.log(body);
         if (!email || !password || !name || !nationality || !passwordConfirm) {
             return NextResponse.json({
                 error: "Please fill all the fields"
@@ -161,6 +161,8 @@ export async function POST(req: NextRequest) {
         if (user) {
             await User.findByIdAndDelete(user._id);
         }
+
+        console.log(error);
 
         console.error("Error during registration:", error.message);
         return NextResponse.json({
