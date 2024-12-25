@@ -138,7 +138,7 @@ const Page = () => {
             
             <div className="mb-4">
               <label htmlFor="password" className="block font-medium mb-2">
-                Password
+                Confirm Password
               </label>
               <input
                 type="password"
