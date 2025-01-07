@@ -71,7 +71,7 @@ export default function Navbar() {
         >
           Contact
         </Link>
-        <button
+        <Link href="/profile"
           className={`px-4 py-2 rounded transition-colors duration-300 ${
             isScrolled
               ? "text-black hover:bg-[#c30e16] hover:text-white"
@@ -79,7 +79,7 @@ export default function Navbar() {
           }`}
         >
           Profile
-        </button>
+        </Link>
       </div>
     </div>
     );
