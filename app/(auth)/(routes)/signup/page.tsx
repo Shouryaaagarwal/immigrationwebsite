@@ -164,6 +164,23 @@ const Page = () => {
                   />
                 </div>
 
+            
+            <div className="mb-4">
+              <label htmlFor="password" className="block font-medium mb-2">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                id="passwordConfirm"
+                name="passwordConfirm"
+                placeholder="Enter your password"
+                value={user.passwordConfirm}
+                onChange={(e) => setUser({...user, passwordConfirm: e.target.value})}
+                className="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2"
+              />
+            </div>
+
+
                 <div className="mb-4 w-full">
                   <label
                     htmlFor="email"
