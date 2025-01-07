@@ -1,10 +1,10 @@
 'use client'
 
 import React , {ReactNode} from 'react'
-import { Provider } from 'react-redux'
-import { PersistGate } from 'redux-persist/integration/react'
-import store from '@/store/store'
-import {persistStore} from 'redux-persist'
+  import { Provider } from 'react-redux'
+  import { PersistGate } from 'redux-persist/integration/react'
+  import store from '@/store/store'
+  import {persistStore} from 'redux-persist'
 
 const persistor = persistStore(store);
 
