@@ -20,7 +20,8 @@ const ForgotPassword = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setLoading(true);
 
     try {
