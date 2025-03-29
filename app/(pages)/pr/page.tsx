@@ -111,159 +111,151 @@ export default function Pr() {
             </ul>
           </div>
         </div>    
-        <div className="flex  w-full items-center justify-center"> 
-                    <span className="text-4xl mt-10 mb-10 text-[#155da9]">Other <span className="text-[#c30e16]">Services</span></span>
-        </div>
-        <div className="flex gap-5 flex-wrap h-[100vh] mb-20 items-center justify-center">
-  <div className="h-[300px] w-[400px] shadow-xl rounded-lg hover:-translate-y-2 transition-transform duration-500 bg-[#fff]">
-    <div className="flex flex-col items-center justify-center mt-5 gap-3">
-      <div className="flex flex-col items-center justify-center">
-        <div className="h-[100px] w-[100px] bg-[#000] rounded-full flex items-center justify-center">
-          <span className="text-white text-6xl">
-            <SiVisa />
-          </span>
-        </div>
-      </div>
-
-      <div className="mt-5 text-center">
-        <span className="text-3xl text-[#c30e16]">
-          <span className="text-[#155da9]">Express</span> Entry
-        </span>
-      </div>
-
-      <div className="w-[80%] text-sm text-center">
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
-          voluptatibus.
-        </span>
-      </div>
-    </div>
-  </div>
-
-  <div className="h-[300px] w-[400px] shadow-xl rounded-lg hover:-translate-y-2 transition-transform duration-500 border-2 border-[#c30e16]">
-    <div className="flex flex-col items-center justify-center mt-5 gap-3">
-      <div className="flex flex-col items-center justify-center">
-        <div className="h-[100px] w-[100px] bg-[#155da9] rounded-full flex items-center justify-center">
-          <span className="text-white text-6xl">
-            <SiVisa />
-          </span>
-        </div>
-      </div>
-
-      <div className="mt-5 text-center">
-        <span className="text-3xl text-[#c30e16]">
-          <span className="text-[#155da9]">Express</span> Entry
-        </span>
-      </div>
-
-      <div className="w-[80%] text-sm text-center">
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
-          voluptatibus.
-        </span>
-      </div>
-    </div>
-  </div>
-
-  <div className="h-[300px] w-[400px] shadow-xl rounded-lg hover:-translate-y-2 transition-transform duration-500 bg-[#fff]">
-    <div className="flex flex-col items-center justify-center mt-5 gap-3">
-      <div className="flex flex-col items-center justify-center">
-        <div className="h-[100px] w-[100px] bg-[#000] rounded-full flex items-center justify-center">
-          <span className="text-white text-6xl">
-            <SiVisa />
-          </span>
-        </div>
-      </div>
-
-      <div className="mt-5 text-center">
-        <span className="text-3xl text-[#c30e16]">
-          <span className="text-[#155da9]">Express</span> Entry
-        </span>
-      </div>
-
-      <div className="w-[80%] text-sm text-center">
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
-          voluptatibus.
-        </span>
-      </div>
-    </div>
-  </div>
-
-  <div className="h-[300px] w-[400px] shadow-xl rounded-lg border-[2px] hover:-translate-y-2 transition-transform duration-500 border-[#155da9]">
-    <div className="flex flex-col items-center justify-center mt-5 gap-3">
-      <div className="flex flex-col items-center justify-center">
-        <div className="h-[100px] w-[100px] bg-[#155da9] rounded-full flex items-center justify-center">
-          <span className="text-white text-6xl">
-            <SiVisa />
-          </span>
-        </div>
-      </div>
-
-      <div className="mt-5 text-center">
-        <span className="text-3xl text-[#c30e16]">
-          <span className="text-[#155da9]">Express</span> Entry
-        </span>
-      </div>
-
-      <div className="w-[80%] text-sm text-center">
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
-          voluptatibus.
-        </span>
-      </div>
-    </div>
-  </div>
-
-  <div className="h-[300px] w-[400px] shadow-xl rounded-lg hover:-translate-y-2 transition-transform duration-500 bg-[#fff]">
-    <div className="flex flex-col items-center justify-center mt-5 gap-3">
-      <div className="flex flex-col items-center justify-center">
-        <div className="h-[100px] w-[100px] bg-[#c30e16] rounded-full flex items-center justify-center">
-          <span className="text-white text-6xl">
-            <SiVisa />
-          </span>
-        </div>
-      </div>
-
-      <div className="mt-5 text-center">
-        <span className="text-3xl text-[#c30e16]">
-          <span className="text-[#155da9]">Express</span> Entry
-        </span>
-      </div>
-
-      <div className="w-[80%] text-sm text-center">
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
-          voluptatibus.
-        </span>
-      </div>
-    </div>
-  </div>   
-  <div className="h-[300px] w-[400px] shadow-xl rounded-lg border-[2px] hover:-translate-y-2 transition-transform duration-500 border-[#155da9]">
-    <div className="flex flex-col items-center justify-center mt-5 gap-3">
-      <div className="flex flex-col items-center justify-center">
-        <div className="h-[100px] w-[100px] bg-[#155da9] rounded-full flex items-center justify-center">
-          <span className="text-white text-6xl">
-            <SiVisa />
-          </span>
-        </div>
-      </div>
-
-      <div className="mt-5 text-center">
-        <span className="text-3xl text-[#c30e16]">
-          <span className="text-[#155da9]">Express</span> Entry
-        </span>
-      </div>
-
-      <div className="w-[80%] text-sm text-center">
-        <span>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
-          voluptatibus.
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
+        <div className="flex w-full items-center justify-center mt-16">
+                 <span className="text-4xl text-[#155da9]">
+                   Other <span className="text-[#c30e16]">Services</span>
+                 </span>
+               </div>
+       
+               <div className="flex gap-5 flex-wrap h-auto mb-20 items-center justify-center px-20 py-10">
+                 <div className="h-[300px] w-[400px] shadow-xl rounded-lg hover:-translate-y-2 transition-transform duration-500 bg-[#fff]">
+                   <div className="flex flex-col items-center justify-center mt-5 gap-3">
+                     <div className="flex flex-col items-center justify-center">
+                       <div className="h-[100px] w-[100px] bg-[#000] rounded-full flex items-center justify-center">
+                         <span className="text-white text-6xl">
+                           <SiVisa />
+                         </span>
+                       </div>
+                     </div>
+                     <div className="mt-5 text-center">
+                       <span className="text-3xl text-[#c30e16]">
+                         <span className="text-[#155da9]">Permanent</span> Residence
+                       </span>
+                     </div>
+                     <div className="w-[80%] text-sm text-center">
+                       <span>
+                         Family sponsorship and other pathways to Canadian permanent 
+                         residency status.
+                       </span>
+                     </div>
+                   </div>
+                 </div>
+       
+                 <div className="h-[300px] w-[400px] shadow-xl rounded-lg hover:-translate-y-2 transition-transform duration-500 border-2 border-[#c30e16]">
+                   <div className="flex flex-col items-center justify-center mt-5 gap-3">
+                     <div className="flex flex-col items-center justify-center">
+                       <div className="h-[100px] w-[100px] bg-[#155da9] rounded-full flex items-center justify-center">
+                         <span className="text-white text-6xl">
+                           <SiVisa />
+                         </span>
+                       </div>
+                     </div>
+                     <div className="mt-5 text-center">
+                       <span className="text-3xl text-[#c30e16]">
+                         <span className="text-[#155da9]">Study</span> Permits
+                       </span>
+                     </div>
+                     <div className="w-[80%] text-sm text-center">
+                       <span>
+                         Pursue world-class education at Canadian institutions with 
+                         pathways to work and residency.
+                       </span>
+                     </div>
+                   </div>
+                 </div>
+       
+                 <div className="h-[300px] w-[400px] shadow-xl rounded-lg hover:-translate-y-2 transition-transform duration-500 bg-[#fff]">
+                   <div className="flex flex-col items-center justify-center mt-5 gap-3">
+                     <div className="flex flex-col items-center justify-center">
+                       <div className="h-[100px] w-[100px] bg-[#000] rounded-full flex items-center justify-center">
+                         <span className="text-white text-6xl">
+                           <SiVisa />
+                         </span>
+                       </div>
+                     </div>
+                     <div className="mt-5 text-center">
+                       <span className="text-3xl text-[#c30e16]">
+                         <span className="text-[#155da9]">Work</span> Permits
+                       </span>
+                     </div>
+                     <div className="w-[80%] text-sm text-center">
+                       <span>
+                         Temporary and permanent work authorization solutions for 
+                         employers and foreign workers.
+                       </span>
+                     </div>
+                   </div>
+                 </div>
+       
+                 <div className="h-[300px] w-[400px] shadow-xl rounded-lg border-[2px] hover:-translate-y-2 transition-transform duration-500 border-[#155da9]">
+                   <div className="flex flex-col items-center justify-center mt-5 gap-3">
+                     <div className="flex flex-col items-center justify-center">
+                       <div className="h-[100px] w-[100px] bg-[#155da9] rounded-full flex items-center justify-center">
+                         <span className="text-white text-6xl">
+                           <SiVisa />
+                         </span>
+                       </div>
+                     </div>
+                     <div className="mt-5 text-center">
+                       <span className="text-3xl text-[#c30e16]">
+                         <span className="text-[#155da9]">Provincial</span> Nominee
+                       </span>
+                     </div>
+                     <div className="w-[80%] text-sm text-center">
+                       <span>
+                         Provincial immigration programs tailored to regional labor 
+                         market needs across Canada.
+                       </span>
+                     </div>
+                   </div>
+                 </div>
+       
+                 <div className="h-[300px] w-[400px] shadow-xl rounded-lg hover:-translate-y-2 transition-transform duration-500 bg-[#fff]">
+                   <div className="flex flex-col items-center justify-center mt-5 gap-3">
+                     <div className="flex flex-col items-center justify-center">
+                       <div className="h-[100px] w-[100px] bg-[#c30e16] rounded-full flex items-center justify-center">
+                         <span className="text-white text-6xl">
+                           <SiVisa />
+                         </span>
+                       </div>
+                     </div>
+                     <div className="mt-5 text-center">
+                       <span className="text-3xl text-[#c30e16]">
+                         <span className="text-[#155da9]">Citizenship</span> Services
+                       </span>
+                     </div>
+                     <div className="w-[80%] text-sm text-center">
+                       <span>
+                         Assistance with Canadian citizenship applications and 
+                         requirements.
+                       </span>
+                     </div>
+                   </div>
+                 </div>
+                 
+                 <div className="h-[300px] w-[400px] shadow-xl rounded-lg border-[2px] hover:-translate-y-2 transition-transform duration-500 border-[#155da9]">
+                   <div className="flex flex-col items-center justify-center mt-5 gap-3">
+                     <div className="flex flex-col items-center justify-center">
+                       <div className="h-[100px] w-[100px] bg-[#155da9] rounded-full flex items-center justify-center">
+                         <span className="text-white text-6xl">
+                           <SiVisa />
+                         </span>
+                       </div>
+                     </div>
+                     <div className="mt-5 text-center">
+                       <span className="text-3xl text-[#c30e16]">
+                         <span className="text-[#155da9]">Visitor</span> Visas
+                       </span>
+                     </div>
+                     <div className="w-[80%] text-sm text-center">
+                       <span>
+                         Temporary resident visas for tourism, business visits, and 
+                         family visits.
+                       </span>
+                     </div>
+                   </div>
+                 </div>
+               </div>
 
       <Footer/>
       </div>   

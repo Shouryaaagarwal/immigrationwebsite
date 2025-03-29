@@ -1,16 +1,14 @@
-
-
 "use client";
 
 import React, { useState } from "react";
 import Link from "next/link";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
-import { FaHome, FaPhoneAlt, FaTwitter, FaLinkedinIn } from "react-icons/fa";
+import { FaPhoneAlt, FaLinkedinIn } from "react-icons/fa";
 import { IoLocationSharp, IoLogoTiktok } from "react-icons/io5";
 import { MdOutlineMail } from "react-icons/md";
 import { RiInstagramFill } from "react-icons/ri";
-
+import { FaFacebookF } from "react-icons/fa";
 
 
 export default function Contact() {
@@ -22,12 +20,14 @@ export default function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e: any) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const submitHandler = async (e: any) => {
+  const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -54,138 +54,143 @@ export default function Contact() {
   };
 
   return (
-    <div
-      className="w-full bg-white"
-    >
+    <div className="w-full bg-white overflow-x-hidden">
       {/* Hero Section */}
       <div
-        className="h-[55vh] md:h-[70vh] bg-white flex flex-col gap-2 items-center justify-center w-full bg-cover bg-center z-10"
-        style={{ backgroundImage: "url('/contact15.jpg')" }}
+        className="min-h-[55vh] md:min-h-[70vh] flex flex-col gap-2 items-center justify-center w-full bg-cover bg-center relative"
+        style={{
+          backgroundImage: "url('/contact15.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       >
         <Navbar />
-        <h1 className="font-medium tracking-widest text-5xl md:text-6xl lg:text-6xl z-20 text-white">
-          Contact
-        </h1>
-        <h5 className="text-[#F1F1F1] mt-4 font-thin text-sm text-center md:text-lg z-20 tracking-widest">
-          Connecting Dreams to Destinations Let’s Build Your Path Together
-        </h5>
+        <div className="z-20 text-center px-4">
+          <h1 className="font-medium tracking-widest text-4xl md:text-5xl lg:text-6xl text-white">
+            Contact
+          </h1>
+          <h5 className="text-[#F1F1F1] mt-4 font-thin text-sm md:text-lg tracking-widest">
+            Connecting Dreams to Destinations Let's Build Your Path Together
+          </h5>
+        </div>
       </div>
 
       {/* Contact Form and Info Section */}
-      <div className="flex mb-10 flex-col lg:flex-row gap-10 p-5 sm:p-10 xl:px-20 xl:py-10 lg:h-auto">
-        {/* Contact Form */}
-        <div className="rounded-xl p-5 sm:p-10 flex flex-col gap-4 bg-[#f1f1f1] lg:w-2/5 w-full">
-          <span className="text-lg font-medium">Contact Us</span>
-          <span className="text-3xl sm:text-5xl text-gray-500">
-            Get <span className="text-[#155da9]">In</span>{" "}
-            <span className="text-[#c30e16]">Touch</span>
-          </span>
-
-          <form
-            onSubmit={submitHandler}
-            className="flex flex-col gap-6 mt-10 sm:mt-14"
-          >
-            <input
-              name="name"
-              placeholder="Name"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full h-[6vh] sm:h-[7vh] bg-[#e0e0e0] shadow-lg text-black focus:outline-none px-4 rounded-xl"
-              type="text"
-              required
-            />
-            <input
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full h-[6vh] sm:h-[7vh] bg-[#e0e0e0] border border-[#c30e16] shadow-lg text-black focus:outline-none px-4 rounded-xl"
-              type="email"
-              required
-            />
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              className="w-full bg-[#e0e0e0] shadow-lg focus:outline-none h-[12vh] sm:h-[15vh] rounded-xl px-4 py-2"
-              placeholder="Message"
-              required
-            ></textarea>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="border-[#155da9] border-2 mt-8 text-[#155da9] px-8 sm:px-10 py-3 sm:py-4 text-sm sm:text-base tracking-wide hover:bg-[#155da9] hover:text-white transition-transform duration-500 hover:-translate-y-2 rounded-full"
-            >
-              {isSubmitting ? "Sending..." : "Send Message"}
-            </button>
-          </form>
-        </div>
-
-        {/* Contact Information */}
-        <div className="bg-white lg:w-3/5 w-full">
-          <div className="flex flex-col">
-            <span className="px-5 sm:px-10 text-gray-500 text-sm sm:text-base">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Explicabo laborum delectus blanditiis quaerat natus vel cumque
-              nemo qui ducimus est! Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Commodi, deserunt.
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
+        <div className="flex flex-col lg:flex-row gap-8 xl:gap-12">
+          {/* Contact Form */}
+          <div className="rounded-xl p-6 sm:p-8 lg:p-10 flex flex-col gap-4 bg-[#f1f1f1] lg:w-1/2">
+            <span className="text-lg font-medium text-gray-500">
+              Contact Us
             </span>
+            <h2 className="text-3xl sm:text-4xl text-gray-500">
+              Get <span className="text-[#155da9]">In</span>{" "}
+              <span className="text-[#c30e16]">Touch</span>
+            </h2>
 
-            <div className="flex flex-wrap gap-6 xl:gap-8 xl:w-full xl:justify-between mt-10 px-5 xl:px-10">
-              <div className="flex flex-col w-full sm:w-[200px] items-center gap-3">
-                <span className="text-4xl xl:text-5xl text-[#155da9]">
-                  <FaPhoneAlt />
-                </span>
-                <span className="text-[#c30e16] mt-2 sm:mt-5 font-semibold">
-                  Phone Number
-                </span>
-                <span className="text-black text-center text-sm sm:text-base">
-                  +1443323432243
-                </span>
+            <form onSubmit={submitHandler} className="flex flex-col gap-6 mt-6">
+              <div className="space-y-6">
+                <input
+                  name="name"
+                  placeholder="Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full h-14 bg-[#e0e0e0] shadow-sm text-black focus:outline-none px-4 rounded-lg"
+                  type="text"
+                  required
+                />
+                <input
+                  name="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full h-14 border-[1px] border-[#c30e16] bg-[#e0e0e0] shadow-sm text-black focus:outline-none px-4 rounded-lg"
+                  type="email"
+                  required
+                />
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full bg-[#e0e0e0] shadow-sm focus:outline-none min-h-[150px] rounded-lg px-4 py-3"
+                  placeholder="Message"
+                  required
+                ></textarea>
               </div>
-              <div className="flex flex-col w-full sm:w-[200px] items-center gap-3">
-                <span className="text-4xl xl:text-5xl text-[#155da9]">
-                  <MdOutlineMail />
-                </span>
-                <span className="text-[#c30e16] mt-2 sm:mt-5 font-semibold">
-                  Email
-                </span>
-                <span className="text-black text-center text-sm sm:text-base">
-                  @seaviewimmigration
-                </span>
-              </div>
-              <div className="flex flex-col w-full sm:w-[200px] items-center gap-3">
-                <span className="text-4xl xl:text-5xl text-[#c30e16]">
-                  <IoLocationSharp />
-                </span>
-                <span className="text-[#155da9] mt-2 sm:mt-5 font-semibold">
-                  Location
-                </span>
-                <span className="text-black text-center text-sm sm:text-base">
-                  124 near wall street New York
-                </span>
-              </div>
-            </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="border-[1px] border-[#155da9] mt-4 text-[#155da9] px-8 py-3 text-sm sm:text-base font-normal hover:bg-[#155da9] hover:text-white transition-all duration-300 hover:-translate-y-1 rounded-full"
+              >
+                {isSubmitting ? "Sending..." : "Send Message"}
+              </button>
+            </form>
+          </div>
 
-            <div className="flex flex-col gap-3 sm:gap-5 mt-5">
-              <span className="px-5 text-center md:text-start mt-5 md:mt-7 sm:px-10 text-gray-500 text-xl sm:text-3xl">
-                Other Ways <span className="text-[#155da9]">To</span>{" "}
-                <span className="text-[#c30e16]">Connect</span>
-              </span>
-              <div className="flex flex-wrap justify-center sm:justify-start gap-5 sm:gap-10 mt-2 pb-10 px-5 sm:px-10">
-                <button className="h-[50px] sm:h-[60px] w-[50px] sm:w-[60px] transition-transform hover:-translate-y-2 duration-500 text-white text-xl flex items-center justify-center rounded-full bg-gray-500">
-                  <FaTwitter />
-                </button>
-                <button className="h-[50px] sm:h-[60px] w-[50px] sm:w-[60px] flex items-center justify-center text-xl text-white transition-transform hover:-translate-y-2 duration-500 rounded-full bg-[#155da9]">
-                  <RiInstagramFill />
-                </button>
-                <button className="h-[50px] sm:h-[60px] w-[50px] sm:w-[60px] flex items-center justify-center text-xl text-white transition-transform hover:-translate-y-2 duration-500 rounded-full bg-[#c30e16]">
-                  <FaLinkedinIn />
-                </button>
-                <button className="h-[50px] sm:h-[60px] w-[50px] sm:w-[60px] transition-transform hover:-translate-y-2 duration-500 flex items-center justify-center text-white text-xl rounded-full bg-gray-500">
-                  <IoLogoTiktok />
-                </button>
+          {/* Contact Information */}
+          <div className="lg:w-1/2">
+            <div className="flex flex-col h-full">
+            <p className="text-gray-600 text-sm sm:text-base">
+  At Seaview Immigration, we're committed to providing personalized guidance for your journey. 
+  Whether you're seeking work permits, permanent residency, or family sponsorship, our team of 
+  licensed consultants offers expert advice tailored to your unique situation. We understand the 
+  complexities of immigration processes and are here to help you navigate every step with confidence.
+</p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+                <div className="flex flex-col items-center sm:items-start gap-3 p-4 bg-[#f8f8f8] rounded-lg">
+                  <div className="text-4xl text-[#155da9]">
+                    <FaPhoneAlt />
+                  </div>
+                  <h3 className="text-[#c30e16] font-normal">Phone Number</h3>
+                  <p className="text-gray-500 text-center sm:text-left">
+                    +1443323432243
+                  </p>
+                </div>
+
+                <div className="flex flex-col items-center sm:items-start gap-3 p-4 bg-[#f8f8f8] rounded-lg">
+                  <div className="text-4xl text-[#155da9]">
+                    <MdOutlineMail />
+                  </div>
+                  <h3 className="text-[#c30e16] font-normal">Email</h3>
+                  <p className="text-gray-500 text-center sm:text-left">
+                    @seaviewimmigration
+                  </p>
+                </div>
+
+                <div className="flex flex-col items-center sm:items-start gap-3 p-4 bg-[#f8f8f8] rounded-lg">
+                  <div className="text-4xl text-[#c30e16]">
+                    <IoLocationSharp />
+                  </div>
+                  <h3 className="text-[#155da9] font-normal">Location</h3>
+                  <p className="text-gray-500 text-center sm:text-left">
+                    124 near wall street New York
+                  </p>
+                </div>
               </div>
+
+              <div className="mt-10">
+  <h3 className="text-xl sm:text-2xl text-gray-700 text-center sm:text-left">
+    Other Ways <span className="text-[#155da9]">To</span>{" "}
+    <span className="text-[#c30e16]">Connect</span>
+  </h3>
+  <div className="flex justify-center sm:justify-start gap-4 mt-4">
+    {[
+      { icon: <RiInstagramFill />, color: "bg-[#155da9]" },
+      { icon: <FaLinkedinIn />, color: "bg-[#c30e16]" },
+      { icon: <FaFacebookF />, color: "bg-[#155da9]" }, // Facebook added
+      { icon: <IoLogoTiktok />, color: "bg-[#c30e16]" },
+    ].map((social, index) => (
+      <button
+        key={index}
+        className={`h-12 w-12 flex items-center justify-center text-white text-xl rounded-full ${social.color} transition-transform hover:-translate-y-1 duration-300`}
+      >
+        {social.icon}
+      </button>
+    ))}
+  </div>
+</div>
             </div>
           </div>
         </div>
@@ -199,4 +204,3 @@ export default function Contact() {
 
   );
 }
-

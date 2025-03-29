@@ -26,7 +26,8 @@ import { LampDemo } from "@/components/ui/lamp";
 import { SparklesPreview } from "@/app/components/Esparkles";
 import { IoMdAirplane } from "react-icons/io";
 import WhyChoose from "@/app/components/Whychoose";
-import { InfiniteMovingCardsDemo } from "@/app/components/EScroll";
+import { StaticCardsDemo } from "@/app/components/EScroll";
+import { HorizontalTimelineDemo } from "@/app/components/EScroll2";
 
 
 
@@ -35,10 +36,11 @@ interface CounterProps {
 }
 const images = [
   "/contact6.jpg",
-  "/contact2.jpg",
-  "/contact3.jpg",
-  "/contact4.jpg",
-  "/contact5.jpg",
+  "/image6.avif",
+  "/contact9.jpg",
+  "/contact13.jpg",
+  "/home19.avif", 
+  "/home21.jpeg"
 ];
 const Counter: React.FC<CounterProps> = ({ targetValue }) => {
   const [count, setCount] = useState<number>(0); // Type state as number
@@ -86,7 +88,7 @@ const Counter: React.FC<CounterProps> = ({ targetValue }) => {
   );
 };
 
-export default function Contact() {
+export default function Home() {
   return (
     <div
       // style={{ fontFamily: raleway.style.fontFamily }}
@@ -126,7 +128,7 @@ export default function Contact() {
         ))}
       </div>
 
-      <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center z-20 bg-black bg-opacity-50">
+      <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center z-20 bg-black opacity-60">
         <h1 className="lg:mt-10 font-medium text-center tracking-widest text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white">
           Imagine. Believe. Succeed
         </h1>
@@ -148,8 +150,9 @@ export default function Contact() {
           animation: fade 15s infinite;
         }
       `}</style>
-    </div>
-<InfiniteMovingCardsDemo/>
+    </div> 
+
+<StaticCardsDemo/>
       
 
       {/* Content Section */}
@@ -245,25 +248,11 @@ export default function Contact() {
   </div>
 
 
-      <TimelineDemo/> 
-
-
-
+        <TimelineDemo />
       
       
-
-
-
-
-
-    
-
+      {/* Show on large screens only (lg and up) */}
       
-     
-     
- 
-
-
-    </div>
+</div>
   );
 }
