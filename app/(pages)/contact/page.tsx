@@ -131,12 +131,12 @@ export default function Contact() {
           {/* Contact Information */}
           <div className="lg:w-1/2">
             <div className="flex flex-col h-full">
-              <p className="text-gray-600 text-sm sm:text-base">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Explicabo laborum delectus blanditiis quaerat natus vel cumque
-                nemo qui ducimus est! Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Commodi, deserunt.
-              </p>
+            <p className="text-gray-600 text-sm sm:text-base">
+  At Seaview Immigration, we're committed to providing personalized guidance for your journey. 
+  Whether you're seeking work permits, permanent residency, or family sponsorship, our team of 
+  licensed consultants offers expert advice tailored to your unique situation. We understand the 
+  complexities of immigration processes and are here to help you navigate every step with confidence.
+</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
                 <div className="flex flex-col items-center sm:items-start gap-3 p-4 bg-[#f8f8f8] rounded-lg">

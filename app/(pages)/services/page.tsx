@@ -6,6 +6,11 @@ import { Raleway } from "next/font/google";
 import { SiVisa } from "react-icons/si";
 import Footer from "@/app/components/Footer";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import { GiEntryDoor } from "react-icons/gi"; 
+import { GrHome } from "react-icons/gr";
+import Link from "next/link";
+
+
 
 const raleway = Raleway({
   weight: ["400", "600", "800"],
@@ -74,78 +79,136 @@ export default function Services() {
       </div>
 
       {/* What We Do Section */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col py-8 md:py-12">
-        <div className="text-center md:text-left">
-          <span className="text-gray-500 text-3xl md:text-4xl">
-            What <span className="text-[#155da9]">We</span> Can{" "}
-            <span className="text-[#c30e16]">Do</span>?
-          </span>
-        </div>
-        <div className="mt-4 text-center md:text-left">
-          <p className="text-gray-600 text-sm md:text-base">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-            soluta ex cumque enim doloremque consequatur autem, perferendis quas
-            officiis id.
-          </p>
-        </div>
-      </div>
+     {/* What We Do Section */}
+<div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col py-8 md:py-12">
+  <div className="text-center md:text-left">
+    <span className="text-gray-500 text-3xl md:text-4xl">
+      What <span className="text-[#155da9]">We</span> Can{" "}
+      <span className="text-[#c30e16]">Do</span>?
+    </span>
+  </div>
+  <div className="mt-4 text-center md:text-left">
+    <p className="text-gray-600 text-sm md:text-base">
+      Our comprehensive immigration services are designed to guide you through every step of your journey to Canada. 
+      Whether you're seeking temporary residency, permanent status, or family reunification, our team of experts 
+      provides personalized solutions tailored to your unique circumstances. We combine legal expertise with 
+      compassionate service to make your transition as smooth as possible.
+    </p>
+  </div>
+</div>
 
       {/* Services Cards */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[1, 2, 3, 4, 5, 6].map((item) => (
-            <div 
-              key={item}
-              className="h-[250px] sm:h-[300px] shadow-xl rounded-lg border-2 hover:-translate-y-2 transition-transform duration-500 border-[#155da9]"
-            >
-              <div className="flex flex-col items-center justify-center h-full p-4 gap-4">
-                <div className={`h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full flex items-center justify-center ${item % 2 === 0 ? 'bg-[#155da9]' : 'bg-black'}`}>
-                  <SiVisa className="text-white text-4xl sm:text-5xl" />
-                </div>
-                <div className="text-center">
-                  <span className="text-xl sm:text-2xl text-[#c30e16]">
-                    <span className="text-[#155da9]">Express</span> Entry
-                  </span>
-                </div>
-                <p className="text-sm sm:text-base text-gray-600 text-center">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, voluptatibus.
-                </p>
-              </div>
-            </div>
-          ))}
+  <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-6">
+    {/* Permanent Residence Card */}
+    <Link href="/pr" className="flex-1 min-w-[250px] max-w-[400px] h-[250px] sm:h-[300px] shadow-xl rounded-lg border-2 hover:-translate-y-2 transition-transform duration-500 border-[#155da9]">
+      <div className="flex flex-col items-center justify-center h-full p-4 gap-4">
+        <div className="h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full flex items-center justify-center bg-[#c30e16]">
+        <GrHome className="text-white text-4xl sm:text-5xl" />
         </div>
+        <div className="text-center">
+          <span className="text-xl sm:text-2xl text-[#c30e16]">
+            <span className="text-[#155da9]">Permanent</span> Residence
+          </span>
+        </div>
+        <p className="text-sm sm:text-base text-gray-600 text-center">
+          Family sponsorship and pathways to obtain Canadian permanent resident status.
+        </p>
       </div>
+    </Link>
+
+    {/* Express Entry Card */}
+    <Link href="/expressentry" className="flex-1 min-w-[250px] max-w-[400px] h-[250px] sm:h-[300px] shadow-xl rounded-lg border-2 hover:-translate-y-2 transition-transform duration-500 border-[#155da9]">
+      <div className="flex flex-col items-center justify-center h-full p-4 gap-4">
+        <div className="h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full flex items-center justify-center bg-[#155da9]">
+           <GiEntryDoor className="text-white text-4xl sm:text-5xl" />
+        </div>
+        <div className="text-center">
+          <span className="text-xl sm:text-2xl text-[#c30e16]">
+            <span className="text-[#155da9]">Express</span> Entry
+          </span>
+        </div>
+        <p className="text-sm sm:text-base text-gray-600 text-center">
+          Fast-track immigration pathway for skilled workers to obtain Canadian permanent residence.
+        </p>
+      </div>
+    </Link>
+
+    {/* Visitor Visa Card */}
+    <Link href="/visitorvisa" className="flex-1 min-w-[250px] max-w-[400px] h-[250px] sm:h-[300px] shadow-xl rounded-lg border-2 hover:-translate-y-2 transition-transform duration-500 border-[#155da9]">
+      <div className="flex flex-col items-center justify-center h-full p-4 gap-4">
+        <div className="h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full flex items-center justify-center bg-[#c30e16]">
+          <SiVisa className="text-white text-4xl sm:text-5xl" />
+        </div>
+        <div className="text-center">
+          <span className="text-xl sm:text-2xl text-[#c30e16]">
+            <span className="text-[#155da9]">Visitor</span> Visa
+          </span>
+        </div>
+        <p className="text-sm sm:text-base text-gray-600 text-center">
+          Temporary visas for tourism, business visits, and family visits to Canada.
+        </p>
+      </div>
+    </Link>
+  </div>
+</div>
 
       {/* Process Section */}
       <div className="w-full bg-[#f1f1f1] py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl text-gray-500 text-center">
-            How We <span className="text-[#155da9]">Follow</span> The{" "}
-            <span className="text-[#c30e16]">Process</span>
-          </h2>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 className="text-2xl sm:text-3xl lg:text-4xl text-gray-500 text-center">
+      How We <span className="text-[#155da9]">Manage</span> Your{" "}
+      <span className="text-[#c30e16]">Immigration</span> Process
+    </h2>
 
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((step) => (
-              <div 
-                key={step}
-                className={`h-[250px] sm:h-[300px] lg:h-[350px] w-full max-w-[350px] mx-auto flex items-center justify-center relative rounded-full border ${step === 2 ? 'border-[#c30e16] md:translate-y-10' : 'border-[#155da9]'}`}
-              >
-                <div className={`absolute right-0 top-0 flex items-center justify-center -translate-x-3 translate-y-3 h-[50px] w-[50px] sm:h-[60px] sm:w-[60px] rounded-full ${step === 2 ? 'bg-[#155da9]' : 'bg-[#c30e16]'}`}>
-                  <span className="text-lg sm:text-xl font-extrabold text-white">0{step}</span>
-                </div>
-                <div className="flex flex-col items-center justify-center gap-4 px-6 text-center">
-                  <span className="text-gray-500 text-xl sm:text-2xl font-bold tracking-wider">
-                    <span className="text-[#155da9]">Lorem</span>, <span className="text-[#c30e16]">ipsum</span>.
-                  </span>
-                  <span className="text-sm sm:text-base">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, ipsa!
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
+    <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* Step 1: Initial Consultation */}
+      <div className="h-[250px] sm:h-[300px] lg:h-[350px] w-full max-w-[350px] mx-auto flex items-center justify-center relative rounded-full border border-[#155da9]">
+        <div className="absolute right-0 top-0 flex items-center justify-center -translate-x-3 translate-y-3 h-[50px] w-[50px] sm:h-[60px] sm:w-[60px] rounded-full bg-[#c30e16]">
+          <span className="text-lg sm:text-xl font-extrabold text-white">01</span>
+        </div>
+        <div className="flex flex-col items-center justify-center gap-4 px-6 text-center">
+          <span className="text-gray-500 text-xl sm:text-2xl font-normal tracking-wider">
+            <span className="text-[#155da9]">Initial</span> <span className="text-[#c30e16]">Assessment</span>
+          </span>
+          <span className="text-sm sm:text-base">
+            We evaluate your profile, discuss options, and recommend the best immigration pathway tailored to your qualifications and goals.
+          </span>
         </div>
       </div>
+
+      {/* Step 2: Application Preparation */}
+      <div className="h-[250px] sm:h-[300px] lg:h-[350px] w-full max-w-[350px] mx-auto flex items-center justify-center relative rounded-full border border-[#c30e16] md:translate-y-10">
+        <div className="absolute right-0 top-0 flex items-center justify-center -translate-x-3 translate-y-3 h-[50px] w-[50px] sm:h-[60px] sm:w-[60px] rounded-full bg-[#155da9]">
+          <span className="text-lg sm:text-xl font-extrabold text-white">02</span>
+        </div>
+        <div className="flex flex-col items-center justify-center gap-4 px-6 text-center">
+          <span className="text-gray-500 text-xl sm:text-2xl font-normal tracking-wider">
+            <span className="text-[#155da9]">Document</span> <span className="text-[#c30e16]">Preparation</span>
+          </span>
+          <span className="text-sm sm:text-base">
+            Our experts guide you through gathering required documents, completing forms accurately, and preparing a compelling application package.
+          </span>
+        </div>
+      </div>
+
+      {/* Step 3: Submission & Follow-up */}
+      <div className="h-[250px] sm:h-[300px] lg:h-[350px] w-full max-w-[350px] mx-auto flex items-center justify-center relative rounded-full border border-[#155da9]">
+        <div className="absolute right-0 top-0 flex items-center justify-center -translate-x-3 translate-y-3 h-[50px] w-[50px] sm:h-[60px] sm:w-[60px] rounded-full bg-[#c30e16]">
+          <span className="text-lg sm:text-xl font-extrabold text-white">03</span>
+        </div>
+        <div className="flex flex-col items-center justify-center gap-4 px-6 text-center">
+          <span className="text-gray-500 text-xl sm:text-2xl font-normal tracking-wider">
+            <span className="text-[#155da9]">Submission</span> & <span className="text-[#c30e16]">Follow-up</span>
+          </span>
+          <span className="text-sm sm:text-base">
+            We submit your application, monitor processing times, and handle all communications with immigration authorities until final decision.
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  
 
       {/* Contact & FAQ Section */}
       <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 flex flex-col lg:flex-row gap-8">
@@ -163,18 +226,18 @@ export default function Services() {
               For <span className="text-[#155da9]">More</span>{" "}
               <span className="text-[#c30e16]">Assistance</span>
             </h3>
-            <p className="text-gray-500 mt-4 text-sm sm:text-base">
+            <p className="text-gray-500 mt-4 pb-7 text-sm sm:text-base">
               Contact Our Experts For better Strategy to Complete your Dreams
             </p>
-            <button className="mt-6 border-2 border-[#155da9] text-[#155da9] px-8 py-3 hover:bg-[#155da9] hover:text-white transition-all duration-300 rounded-full">
+            <Link href="/contact" className=" border-2 border-[#155da9] text-[#155da9] px-8 py-3  hover:bg-[#155da9] hover:text-white transition-all duration-300 rounded-full">
               Send Message
-            </button>
+            </Link>
           </div>
         </div>
 
         {/* FAQ Section */}
         <div className="w-full lg:w-1/2">
-          <h2 className="text-2xl sm:text-3xl text-gray-500 text-center lg:text-left">
+          <h2 className="text-2xl font-normal sm:text-3xl text-gray-500 text-center lg:text-left">
             Frequently <span className="text-[#155da9]">Asked</span>{" "}
             <span className="text-[#c30e16]">Questions</span>
           </h2>
