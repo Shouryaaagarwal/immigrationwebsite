@@ -1,14 +1,17 @@
 "use client"   
 import Link from "next/link";
-import React, { useEffect, useState } from "react"   
-
+import React, { useEffect, useState } from "react";   
+import { usePathname } from "next/navigation";
+import { FiMenu, FiX } from "react-icons/fi";
 
 export default function Navbar() {   
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50); // Adjust threshold as needed
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -17,71 +20,61 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-    return (
-      <div
-      className={`fixed top-0 left-0 w-full flex items-center justify-between md:h-[90px] z-30 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white text-black shadow-lg"
-          : "bg-black bg-opacity-30 text-white shadow-none"
-      }`}
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/aboutus", label: "About Us" },
+    { href: "/services", label: "Services" },
+    { href: "/contact", label: "Contact" },
+    { href: "/profile", label: "Profile" },
+  ];
+
+  return (
+    <div
+      className={`fixed top-0 left-0 w-full flex items-center justify-between h-[70px] md:h-[90px] z-30 transition-all duration-300 px-4 md:px-10 bg-white text-black shadow-lg`}
     >
       <div>
         <img
-          className="h-[60px] pl-10 "
+          className="h-[50px] md:h-[60px]"
           src="https://seaviewimmigration.com/assets/img/logo.svg"
           alt="Logo"
         />
       </div>
-      <div className="pr-10 flex md:gap-10">
-        <Link
-          href={"/"}
-          className={`px-4 py-2 rounded transition-colors duration-300 ${
-            isScrolled
-              ? "text-black hover:bg-[#c30e16] hover:text-white"
-              : "text-white hover:bg-[#c30e16] hover:text-white"
-          }`}
-        >
-          Home
-        </Link>
-        <Link href={"/aboutus"}
-          className={`px-4 py-2 rounded transition-colors duration-300 ${
-            isScrolled
-              ? "text-black hover:bg-[#c30e16] hover:text-white"
-              : "text-white hover:bg-[#c30e16] hover:text-white"
-          }`}
-        >
-          About Us
-        </Link>
-        <Link href={"/services"}
-          className={`px-4 py-2 rounded transition-colors duration-300 ${
-            isScrolled
-              ? "text-black hover:bg-[#c30e16] hover:text-white"
-              : "text-white hover:bg-[#c30e16] hover:text-white"
-          }`}
-        >
-          Services
-        </Link>
-        <Link
-          href="/contact"
-          className={`px-4 py-2 rounded transition-colors duration-300 ${
-            isScrolled
-              ? "text-black hover:bg-[#c30e16] hover:text-white"
-              : "text-white hover:bg-[#c30e16] hover:text-white"
-          }`}
-        >
-          Contact
-        </Link>
-        <Link href="/profile"
-          className={`px-4 py-2 rounded transition-colors duration-300 ${
-            isScrolled
-              ? "text-black hover:bg-[#c30e16] hover:text-white"
-              : "text-white hover:bg-[#c30e16] hover:text-white"
-          }`}
-        >
-          Profile
-        </Link>
+      <div className="hidden md:flex gap-6 md:gap-10">
+        {navLinks.map(({ href, label }) => (
+          <Link
+            key={href}
+            href={href}
+            className={`px-4 py-2 rounded transition-colors duration-300 ${
+              pathname === href
+                ? "text-white bg-[#155da9]"
+                : "text-black hover:bg-[#155da9] hover:text-white"
+            }`}
+          >
+            {label}
+          </Link>
+        ))}
       </div>
+      <div className="md:hidden flex items-center">
+        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-black focus:outline-none">
+          {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+        </button>
+      </div>
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="absolute top-[70px] left-0 w-full bg-white text-black flex flex-col items-center py-4 md:hidden shadow-lg">
+          {navLinks.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className="py-2 text-lg w-full text-center hover:bg-[#155da9] hover:text-white"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {label}
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
-    );
-  }
-  
+  );
+}

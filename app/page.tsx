@@ -6,11 +6,10 @@ const Page: React.FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // Redirect to the About page as soon as the component is mounted
     router.push("/home");
-  }, [router]); // Empty dependency array to run only once when the component mounts
+  }, [router]); 
 
-  return <div></div>; // The component does not render anything, as it redirects instantly
+  return <div></div>; 
 };
 
 export default Page;
