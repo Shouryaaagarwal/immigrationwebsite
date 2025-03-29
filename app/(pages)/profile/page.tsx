@@ -154,6 +154,7 @@ import PCall from "@/app/components/PCall";
 import PMeeting from "@/app/components/PMeeting";
 import Navbar2 from "@/app/components/Navbar2";
 import PUsername from "@/app/components/PUsername";
+import Navbar from "@/app/components/Navbar";
 
 const raleway = Raleway({
   weight: ["400", "600", "800"],
