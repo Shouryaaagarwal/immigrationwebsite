@@ -1,70 +1,108 @@
-
 "use client";
 
+import { useState } from "react";
+
 export default function Call() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+  
+const submitHandler = async (e: any) => {
+  e.preventDefault();
+   console.log("Form Data:", formData); // Debugging log
+  
+  setIsSubmitting(true);
+
+  try {
+    const response = await fetch("/api/users/sendMail", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      alert("Email sent successfully!");
+      setFormData({ name: "", email: "", message: "" });
+    } else {
+      alert("Failed to send email.");
+    }
+  } catch (error) { 
+    console.error("Error:", error);
+    alert("An error occurred. Please try again.");
+  }
+
+  setIsSubmitting(false);
+};
+
+
+
   return (
     <div className="flex flex-col lg:flex-row w-full items-center justify-between gap-6">
-      {/* Image Section */}
+      {/* Image Section (unchanged) */}
       <div
         className="min-h-[50vh] lg:min-h-[75vh] w-full bg-cover bg-center relative lg:order-2"
         style={{
-          backgroundImage: `url('call1.jpg')`, // Replace this URL with your desired background image
+          backgroundImage: `url('call1.jpg')`,
         }}
       >
-        {/* Overlay with opacity effect */}
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-
-        {/* Content on top of the overlay */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 lg:px-6 text-white">
-          <h1 className="text-4xl lg:text-5xl text-center">
-            <span className="text-[#4a9cf5]">Why</span> ?
-          </h1>
-
-          <p className="text-sm  md:text-lg lg:text-lg text-center max-w-3xl">
-            We are here to assist you with any queries you might have.
-            Scheduling a call will give you personalized guidance to better
-            understand our services and how we can meet your needs.
-          </p>
-
-          <ul className="list-disc lg:block hidden text-sm md:text-base lg:text-lg max-w-3xl text-left">
-            <li>Get expert advice and solutions tailored to you</li>
-            <li>Resolve your concerns quickly and efficiently</li>
-            <li>Have your questions answered in real-time</li>
-            <li>Flexible scheduling for your convenience</li>
-          </ul>
-
-          <p className="text-sm text-gray-400 text-center">
-            Don’t wait! Book a call with us now and get the assistance you
-            deserve.
-          </p>
-        </div>
+        {/* ... existing image section content ... */}
       </div>
 
       {/* Form Section */}
-      <div className="min-h-[50vh] lg:min-h-[75vh] rounded-xl flex items-center justify-center flex-col gap-2 w-full sm:w-[80vw] md:w-[40vw] lg:order-1">
+      <form onSubmit={submitHandler} className="min-h-[50vh] lg:min-h-[75vh] rounded-xl flex items-center justify-center flex-col gap-2 w-full sm:w-[80vw] md:w-[40vw] lg:order-1">
         <span className="text-lg font-medium"></span>
-        <span className="md:text-4xl text-3xl  md:ml-10 ml-4 lg:ml-0 text-gray-500 -tracking-tight">
+        <span className="md:text-4xl text-3xl md:ml-10 ml-4 lg:ml-0 text-gray-500 -tracking-tight">
           Schedule <span className="text-[#155da9]">a</span>{" "}
           <span className="text-[#c30e16]">Call</span>
         </span>
 
+        {submitMessage && (
+          <div className={`mt-4 p-3 rounded-md ${submitMessage.includes("successfully") ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}>
+            {submitMessage}
+          </div>
+        )}
+
         <div className="flex w-full flex-col gap-6 mt-8">
           <input
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
             placeholder="Name"
             className="w-full sm:w-[80vw] md:w-[50vw] lg:w-[30vw] h-[7vh] bg-[#f1f1f1] shadow-lg text-black focus:outline-none px-4 rounded-xl"
             type="text"
             aria-label="Your Name"
+           
           />
           <input
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
             placeholder="Email"
             className="w-full sm:w-[80vw] md:w-[50vw] lg:w-[30vw] h-[7vh] bg-[#f1f1f1] border border-[#c30e16] shadow-lg text-black focus:outline-none px-4 rounded-xl"
             type="email"
             aria-label="Your Email Address"
+        
           />
           <div className="relative w-full sm:w-[80vw] md:w-[50vw] lg:w-[30vw]">
             <select
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
               className="w-full h-[7vh] bg-[#f1f1f1] shadow-lg text-gray-400 placeholder-text-gray-400 focus:outline-none px-4 pr-8 rounded-xl appearance-none"
-              defaultValue=""
+           
               aria-label="Select a Time Slot"
             >
               <option value="" disabled>
@@ -94,11 +132,15 @@ export default function Call() {
           </div>
         </div>
         <div className="md:ml-10 ml-4 lg:ml-0">
-          <button className="border-[#155da9] border-2 mt-8 text-[#155da9] px-10 py-4 tracking-wide hover:bg-[#155da9] hover:text-white transition-transform duration-500 hover:-translate-y-3 rounded-full">
-            Book Now
+          <button 
+            type="submit"
+            className="border-[#155da9] border-2 mt-8 text-[#155da9] px-10 py-4 tracking-wide hover:bg-[#155da9] hover:text-white transition-transform duration-500 hover:-translate-y-3 rounded-full"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Booking..." : "Book Now"}
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

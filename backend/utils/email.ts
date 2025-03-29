@@ -15,7 +15,7 @@ export const sendEmail = async (options: EmailOptions) => {
         pass: process.env.EMAIL_PASS,
       },
     });
-
+  
     const mailOptions = {
       from: `"GAUTAM JAIN" <${process.env.EMAIL_USER}>`,
       to: options.email,
