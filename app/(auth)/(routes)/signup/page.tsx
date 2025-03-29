@@ -170,6 +170,7 @@ headers: {
                 </div>
 
             
+<<<<<<< HEAD
             {/* <div className="mb-4">
               <label htmlFor="password" className="block font-medium mb-2">
                 Confirm Password
@@ -184,6 +185,9 @@ headers: {
                 className="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2"
               />
             </div> */}
+=======
+            
+>>>>>>> 38ef436 (changes in ui 2 29/3/2025)
 
 
                 <div className="mb-4 w-full">

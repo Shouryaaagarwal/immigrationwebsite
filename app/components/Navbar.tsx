@@ -31,7 +31,11 @@ export default function Navbar() {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full flex items-center justify-between h-[70px] md:h-[90px] z-30 transition-all duration-300 px-4 md:px-10 bg-white text-black shadow-lg`}
+      className={`fixed top-0 left-0 w-full flex items-center justify-between h-[70px] md:h-[90px] z-30 transition-all duration-300 px-4 md:px-10 ${
+        isScrolled 
+          ? "bg-white text-black shadow-lg" 
+          : "bg-black bg-opacity-30 text-white"
+      }`}
     >
       <div>
         <img
@@ -47,8 +51,10 @@ export default function Navbar() {
             href={href}
             className={`px-4 py-2 rounded transition-colors duration-300 ${
               pathname === href
-                ? "text-white bg-[#155da9]"
-                : "text-black hover:bg-[#155da9] hover:text-white"
+                ? "text-white bg-[#c30e16]"
+                : isScrolled 
+                  ? "text-black hover:bg-[#155da9] hover:text-white" 
+                  : "text-white hover:bg-[#155da9] hover:text-white"
             }`}
           >
             {label}
@@ -56,18 +62,29 @@ export default function Navbar() {
         ))}
       </div>
       <div className="md:hidden flex items-center">
-        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-black focus:outline-none">
+        <button 
+          onClick={() => setIsMenuOpen(!isMenuOpen)} 
+          className={`focus:outline-none ${
+            isScrolled ? "text-black" : "text-white"
+          }`}
+        >
           {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
         </button>
       </div>
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="absolute top-[70px] left-0 w-full bg-white text-black flex flex-col items-center py-4 md:hidden shadow-lg">
+        <div className={`absolute top-[70px] left-0 w-full ${
+          isScrolled ? "bg-white text-black" : "bg-black bg-opacity-90 text-white"
+        } flex flex-col items-center py-4 md:hidden shadow-lg`}>
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className="py-2 text-lg w-full text-center hover:bg-[#155da9] hover:text-white"
+              className={`py-2 text-lg w-full text-center ${
+                pathname === href
+                  ? "bg-[#c30e16] text-white"
+                  : "hover:bg-[#155da9] hover:text-white"
+              }`}
               onClick={() => setIsMenuOpen(false)}
             >
               {label}

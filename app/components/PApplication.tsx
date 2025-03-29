@@ -106,10 +106,10 @@ export default function App() {
 
   // Step data
   const steps = [
-    { id: 1, label: "Step 1", description: "Complete your initial form" },
-    { id: 2, label: "Step 2", description: "Upload your documents" },
-    { id: 3, label: "Step 3", description: "Review and submit" },
-    { id: 4, label: "Step 4", description: "Complete your application" },
+    { id: 1, label: "Step 1", description: "Sign Up" },
+    { id: 2, label: "Step 2", description: "Submit form " },
+    { id: 3, label: "Step 3", description: "Filling and Submission" },
+    { id: 4, label: "Step 4", description: "Result" },
   ];
 
   // Function to handle step progress
@@ -121,7 +121,7 @@ export default function App() {
 
   return (
     <div className="w-full flex flex-col items-center justify-center overflow-hidden">
-      <h1 className="lg:text-4xl md:text-3xl text-2xl md:mt-10 font-thin text-center text-[#155da9]">
+      <h1 className="lg:text-4xl md:text-3xl text-2xl md:mt-10 font-normal text-center text-[#155da9]">
         Your <span className="text-[#c30e16]">Application</span>
       </h1>
       <span className="text-gray-500 text-center mt-4 md:mt-8 text-sm md:text-lg  lg:text-lg w-[100%] md:w-[75%]">
@@ -180,7 +180,7 @@ export default function App() {
             onClick={nextStep} // Move to the next step when clicked
             className="border-[#155da9] border-2 text-[#155da9] px-10 py-4 tracking-wide hover:bg-[#155da9] hover:text-white transition-transform duration-500 hover:-translate-y-3 rounded-full"
           >
-            {currentStep < steps.length ? "Next Step" : "Submit Application"}{" "}
+            {currentStep < steps.length ? "Next Step" : "Success"}{" "}
             {/* Change button text */}
           </button>
         </div>
