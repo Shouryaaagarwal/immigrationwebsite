@@ -96,12 +96,12 @@ headers: {
     className="h-screen w-full text-gray-500"
   >
     {/* <Navbar/> */}
-    <div className=" flex items-center h-full w-full justfy-between">
-      <div className="flex items-center h-screen w-full justify-between relative">
+    <div className=" flex xl:flex-row flex-col items-center h-full w-full justfy-between">
+      <div className="flex items-center h-[50vh] xl:h-screen w-full justify-between relative">
         {/* Image */}
-        <div className="h-full w-full">
+        <div className="h-[50vh] lg:h-full w-full">
           <img
-            className="w-full h-screen object-cover"
+            className="w-full h-full object-cover"
             src="/signup5.jpeg"
             alt="Signup"
             width={500}
@@ -110,7 +110,7 @@ headers: {
         </div>
 
         {/* Overlay div */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80%] rounded-xl h-[90%] bg-black bg-opacity-50 flex items-center">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:w-[80%] w-[90%] rounded-xl h-[90%] bg-black bg-opacity-50 flex items-center">
           {/* Back Button */}
           <button
             className="absolute top-5 left-5 text-white  bg-opacity-70 px-4 py-2 rounded-md hover:underline flex items-center"
@@ -124,10 +124,10 @@ headers: {
           </button>
 
           {/* Content inside the overlay */}
-          <div className="text-white text-xl flex flex-col gap-5 ml-10">
-            <h1 className="text-6xl">
+          <div className="text-white  flex flex-col gap-5 ml-10">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl">
               Let's Get <br />
-              <span className="text-[70px] font-thin tracking-wider">
+              <span className="text-5xl md:text-[60px] lg:text-[70px] font-thin tracking-wider">
                 Started !
               </span>
             </h1>
@@ -136,11 +136,11 @@ headers: {
       </div>
       <div className="h-full   w-full flex items-center  ">
         <div
-          className="w-full   mr-10 bg-white rounded-md p-8 ml-14"
+          className="w-full   mr-10 bg-white rounded-md p-4 ml-2 md:p-8 md:ml-14"
           style={{ height: "620px" }}
         >
           <h2
-            className="text-5xl text-[#c30e16]  mb-6 
+            className="md:text-5xl text-3xl sm:text-4xl text-[#c30e16]  mb-6 
         "
           >
             Create <span className="text-[#155da9]">Account</span>
@@ -148,7 +148,7 @@ headers: {
 
           <form className="mt-10" onSubmit={submitHandler}>
             <div className="flex flex-col gap-5">
-              <div className="flex w-full gap-3">
+              <div className="flex sm:flex-row flex-col w-full gap-3">
                 <div className="mb-4 w-full ">
                   <label
                     htmlFor="name"
@@ -207,7 +207,7 @@ headers: {
                 </div>
               </div>
 
-              <div className="flex w-full gap-3">
+              <div className="flex md:flex-row flex-col w-full gap-3">
                 <div className="mb-4 w-full">
                   <label
                     htmlFor="password"
@@ -331,14 +331,211 @@ headers: {
               </button>
             )}
           </form>
-          <div className="flex mt-5 items-center justify-center">
+          <div className="flex md:flex-row flex-col pb-10 md:pb-0 mt-3  md:mt-5 items-center justify-center">
             Already have an account?{" "}
             <Link href="/signin" className="ml-2 text-[#155da9] hover:underline font-semibold">Log in</Link>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </div>   
+
+  // <div    
+  // style={{ fontFamily: raleway.style.fontFamily }} // Fixed style syntax
+
+  // className="h-screen w-full text-gray-500 font-raleway">
+  //     <div className="flex flex-col md:flex-row h-full w-full">
+  //       {/* Image Section */}
+  //       <div className="relative h-[50%] md:h-screen w-full md:w-1/2">
+  //         <img
+  //           className="w-full h-full object-cover"
+  //           src="/signup5.jpeg"
+  //           alt="Signup"
+  //         />
+  //         {/* Overlay */}
+  //         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+  //           {/* Back Button */}
+  //           <button
+  //             className="absolute top-5 left-5 text-white bg-opacity-70 px-4 py-2 rounded-md hover:underline flex items-center"
+  //             onClick={goback}
+  //           >
+  //             <MdKeyboardArrowLeft className="text-xl" />
+  //             Back
+  //           </button>
+  //           <div className="text-white text-center px-5">
+  //             <h1 className="text-4xl md:text-6xl ">
+  //               Let's Get <br />
+  //               <span className="text-[50px] md:text-[70px] font-thin tracking-wider">
+  //                 Started!
+  //               </span>
+  //             </h1>
+  //           </div>
+  //         </div>
+  //       </div>
+
+  //       {/* Form Section */}
+  //       <div className="h-full w-full md:w-1/2 flex items-center justify-center p-4 md:p-10 bg-white">
+  //         <div className="w-full max-w-[500px] bg-white rounded-md p-6 shadow-md">
+  //           <h2 className="text-4xl md:text-5xl text-[#c30e16] mb-6">
+  //             Create <span className="text-[#155da9]">Account</span>
+  //           </h2>
+  //           <form className="mt-6" onSubmit={submitHandler}>
+  //             <div className="flex flex-col gap-5">
+  //               {/* Name and Email */}
+  //               <div className="flex flex-col md:flex-row w-full gap-4">
+  //                 <div className="mb-4 w-full">
+  //                   <label
+  //                     htmlFor="name"
+  //                     className="block text-lg md:text-xl font-semibold mb-2"
+  //                   >
+  //                     Name <span className="text-red-600">*</span>
+  //                   </label>
+  //                   <input
+  //                     type="text"
+  //                     id="name"
+  //                     name="name"
+  //                     placeholder="Name"
+  //                     value={user.name}
+  //                     onChange={(e) =>
+  //                       setUser({ ...user, name: e.target.value })
+  //                     }
+  //                     className="w-full placeholder-gray-400 text-black border-gray-400 border-[1px] rounded-lg shadow-sm focus:outline-none p-2"
+  //                   />
+  //                 </div>
+  //                 <div className="mb-4 w-full">
+  //                   <label
+  //                     htmlFor="email"
+  //                     className="block text-lg md:text-xl font-semibold mb-2"
+  //                   >
+  //                     Email <span className="text-red-600">*</span>
+  //                   </label>
+  //                   <input
+  //                     type="email"
+  //                     id="email"
+  //                     name="email"
+  //                     placeholder="Email"
+  //                     value={user.email}
+  //                     onChange={(e) =>
+  //                       setUser({ ...user, email: e.target.value })
+  //                     }
+  //                     className="w-full placeholder-gray-400 text-black border-[#155da9] focus:outline-none rounded-md shadow-sm border-[1px] p-2"
+  //                   />
+  //                 </div>
+  //               </div>
+
+  //               {/* Password and Confirm Password */}
+  //               <div className="flex flex-col md:flex-row w-full gap-4">
+  //                 <div className="mb-4 w-full">
+  //                   <label
+  //                     htmlFor="password"
+  //                     className="block text-lg md:text-xl font-semibold mb-2"
+  //                   >
+  //                     Password
+  //                   </label>
+  //                   <input
+  //                     type="password"
+  //                     id="password"
+  //                     name="password"
+  //                     placeholder="Enter your password"
+  //                     value={user.password}
+  //                     onChange={(e) =>
+  //                       setUser({ ...user, password: e.target.value })
+  //                     }
+  //                     className="w-full placeholder-gray-400 text-black border-[#c30e16] focus:outline-none rounded-md shadow-sm border-[1px] p-2"
+  //                   />
+  //                 </div>
+  //                 <div className="mb-4 w-full">
+  //                   <label
+  //                     htmlFor="passwordConfirm"
+  //                     className="block text-lg md:text-xl font-semibold mb-2"
+  //                   >
+  //                     Confirm Password
+  //                   </label>
+  //                   <input
+  //                     type="password"
+  //                     id="passwordConfirm"
+  //                     name="passwordConfirm"
+  //                     placeholder="Confirm password"
+  //                     value={user.passwordConfirm}
+  //                     onChange={(e) =>
+  //                       setUser({ ...user, passwordConfirm: e.target.value })
+  //                     }
+  //                     className="w-full placeholder-gray-400 text-black border-gray-400 border-[1px] rounded-lg shadow-sm focus:outline-none p-2"
+  //                   />
+  //                 </div>
+  //               </div>
+
+  //               {/* Nationality */}
+  //               <div className="mb-4">
+  //                 <label
+  //                   htmlFor="nationality"
+  //                   className="block text-lg md:text-xl font-semibold mb-2"
+  //                 >
+  //                   Nationality
+  //                 </label>
+  //                 <div className="relative w-full">
+  //                   <select
+  //                     id="nationality"
+  //                     name="nationality"
+  //                     value={user.nationality}
+  //                     onChange={handleCountryChange}
+  //                     className="w-full pr-10 text-gray-400 border-gray-400 border-[1px] rounded-lg shadow-sm focus:outline-none p-2 appearance-none"
+  //                   >
+  //                     <option value="" className="text-gray-400">
+  //                       Select your nationality
+  //                     </option>
+  //                     {countries.map((country) => (
+  //                       <option key={country.code} value={country.code}>
+  //                         {country.name}
+  //                       </option>
+  //                     ))}
+  //                   </select>
+  //                   {/* Custom Dropdown Arrow */}
+  //                   <div className="absolute top-1/2 right-3 transform -translate-y-1/2 pointer-events-none">
+  //                     <svg
+  //                       xmlns="http://www.w3.org/2000/svg"
+  //                       className="h-4 w-4 text-gray-500"
+  //                       viewBox="0 0 20 20"
+  //                       fill="currentColor"
+  //                     >
+  //                       <path
+  //                         fillRule="evenodd"
+  //                         d="M5.293 7.707a1 1 0 011.414 0L10 11.086l3.293-3.379a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+  //                         clipRule="evenodd"
+  //                       />
+  //                     </svg>
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             </div>
+
+  //             {/* Submit Button */}
+  //             <button
+  //               type="submit"
+  //               className={`w-full mt-8 py-4 rounded-full text-lg font-semibold tracking-wide ${
+  //                 loading
+  //                   ? "bg-gray-400 text-white cursor-not-allowed"
+  //                   : "border-[#155da9] border-2 text-[#155da9] hover:bg-[#155da9] hover:text-white transition-transform duration-500 hover:-translate-y-1"
+  //               }`}
+  //               disabled={loading}
+  //             >
+  //               {loading ? "Submitting..." : "Sign Up"}
+  //             </button>
+  //           </form>
+
+  //           <div className="flex mt-5 items-center justify-center">
+  //             Already have an account?{" "}
+  //             <Link
+  //               href="/signin"
+  //               className="ml-2 text-[#155da9] hover:underline font-semibold"
+  //             >
+  //               Log in
+  //             </Link>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </div>
 );
 };
 
