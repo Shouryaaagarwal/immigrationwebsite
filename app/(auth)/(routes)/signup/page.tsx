@@ -63,9 +63,14 @@ const Page = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post(" /api/users/signup", user, {
-        withCredentials: true,
-      });
+ 
+      const res = await axios.post("/api/users/signup", user, {
+  withCredentials: true,
+headers: {
+  Authorization: `Bearer ${localStorage.getItem("token")}`
+}
+
+});
 
       const userdata = res.data.data.user;
       toast.success("SignUp Successfull");
@@ -165,7 +170,7 @@ const Page = () => {
                 </div>
 
             
-            <div className="mb-4">
+            {/* <div className="mb-4">
               <label htmlFor="password" className="block font-medium mb-2">
                 Confirm Password
               </label>
@@ -178,7 +183,7 @@ const Page = () => {
                 onChange={(e) => setUser({...user, passwordConfirm: e.target.value})}
                 className="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2"
               />
-            </div>
+            </div> */}
 
 
                 <div className="mb-4 w-full">

@@ -193,7 +193,10 @@ export default function Contact() {
 
       {/* Footer */}
       <Footer />
+          
     </div>
+
+
   );
 }
 

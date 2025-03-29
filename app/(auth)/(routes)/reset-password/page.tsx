@@ -26,6 +26,9 @@ const Page = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = async () => {
+    e.preventDefault();
+    // Validate input fields
+
     if (!otp || !email || !password || !passwordConfirm) {
       toast.error("All fields are required.");
       return;

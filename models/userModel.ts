@@ -31,10 +31,12 @@ const userSchema = new mongoose.Schema(
       required: [true, "Please select nationality"],
       enum: ["US", "IN", "CA", "GB", "AU", "FR", "DE", "JP", "BR", "ZA"],
     },
+    
     lastLogin: {
       type: Date,
       default: Date.now,
     },
+
     isVerified: {
       type: Boolean,
       default: false,
