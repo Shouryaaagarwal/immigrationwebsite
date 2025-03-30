@@ -113,7 +113,7 @@ export default function Navbar2() {
   }, []);
 
   const navLinks = [
-    { href: "/", label: "Home" },
+    { href: "/home", label: "Home" },
     { href: "/aboutus", label: "About Us" },
     { href: "/services", label: "Services" },
     { href: "/contact", label: "Contact" },
