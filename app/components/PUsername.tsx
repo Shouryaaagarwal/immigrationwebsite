@@ -2,13 +2,15 @@
 import Link from "next/link";
 import { FaUserCircle, FaFlag, FaCommentAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 export default function Username() {
-  // Sample user data
+
+  const details = useSelector((state:any) => state.auth.user);
   const user = {
-    name: "John Doe",
-    email: "john.doe@example.com",
-    nationality: "Canadian"
+    name: details?.name || "John Doe",
+    email: details?.email || "abc@gmail.com",
+    nationality: details?.nationality || "Indian",
   };
 
   return (

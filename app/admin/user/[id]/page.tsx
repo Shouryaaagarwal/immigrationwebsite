@@ -1,7 +1,7 @@
 // app/admin/user/[id]/page.tsx
 'use client'
 
-import { FiArrowLeft, FiCheck, FiX, FiDownload } from 'react-icons/fi';
+import { FiArrowLeft, FiCheck } from 'react-icons/fi';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import Navbar from '@/app/components/Navbar';
@@ -12,60 +12,49 @@ interface User {
   email: string;
   nationality: string;
   status: 'active' | 'inactive' | 'pending';
-  documents: {
-    type: string;
-    submittedDate: string;
-    verified: boolean;
-    fileUrl?: string;
-  }[];
+  // documents: {
+  //   type: string;
+  //   submittedDate: string;
+  //   verified: boolean;
+  //   fileUrl?: string;
+  // }[];
 }
 
 const UserDetailsPage = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
   
-  // Mock user data - replace with actual API call
   const user: User = {
     id: params.id,
     name: 'Alex Johnson',
     email: 'alex.johnson@example.com',
     nationality: 'United States',
     status: 'active',
-    documents: [
-      {
-        type: 'Passport Copy',
-        submittedDate: '2023-05-10',
-        verified: true,
-        fileUrl: '#'
-      },
-      {
-        type: 'Application Form',
-        submittedDate: '2023-05-12',
-        verified: false,
-        fileUrl: '#'
-      },
-      {
-        type: 'Proof of Address',
-        submittedDate: '2023-05-15',
-        verified: true,
-        fileUrl: '#'
-      }
-    ]
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'active': return 'bg-green-100 text-green-800';
-      case 'inactive': return 'bg-red-100 text-red-800';
-      case 'pending': return 'bg-yellow-100 text-yellow-800';
-      default: return 'bg-gray-100 text-gray-800';
-    }
+    // documents: [
+    //   {
+    //     type: 'Passport Copy',
+    //     submittedDate: '2023-05-10',
+    //     verified: true,
+    //     fileUrl: '#'
+    //   },
+    //   {
+    //     type: 'Application Form',
+    //     submittedDate: '2023-05-12',
+    //     verified: false,
+    //     fileUrl: '#'
+    //   },
+    //   {
+    //     type: 'Proof of Address',
+    //     submittedDate: '2023-05-15',
+    //     verified: true,
+    //     fileUrl: '#'
+    //   }
+    // ]
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       
-      {/* Back button positioned at top left */}
       <div className="absolute top-[110px] left-4 z-10">
         <button 
           onClick={() => router.back()}
@@ -77,7 +66,6 @@ const UserDetailsPage = ({ params }: { params: { id: string } }) => {
 
       <div className="max-w-6xl mx-auto px-4 pt-[160px] pb-8">
         <div className="bg-white shadow-md rounded-lg overflow-hidden">
-          {/* User Profile Header */}
           <div className="bg-gradient-to-r from-[#c30e16] to-[#155da9] p-6 text-white">
             <div className="flex items-center">
               <div className="flex-shrink-0 h-16 w-16 rounded-full bg-blue-300 flex items-center justify-center text-2xl font-bold text-blue-800">
@@ -90,7 +78,6 @@ const UserDetailsPage = ({ params }: { params: { id: string } }) => {
             </div>
           </div>
 
-          {/* User Details */}
           <div className="p-6 mt-4">
             <div className="grid grid-cols-1 gap-6 mb-8">
               <div className="bg-gray-50 p-4 rounded-lg">
@@ -122,7 +109,6 @@ const UserDetailsPage = ({ params }: { params: { id: string } }) => {
               </div>
             </div>
 
-            {/* Action Buttons */}
             <div className="flex flex-wrap gap-4 mb-8">
               <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center">
                 <FiCheck className="mr-2" /> Received Details
@@ -135,8 +121,9 @@ const UserDetailsPage = ({ params }: { params: { id: string } }) => {
               </button>
             </div>
 
-            {/* Documents Section */}
-            <div>
+            {/* Documents Section Removed */}
+            {/* Uncomment below to display documents */}
+            {/* <div>
               <h2 className="text-lg font-semibold text-gray-800 mb-4">Submitted Documents</h2>
               <div className="overflow-hidden border border-gray-200 rounded-lg">
                 <table className="min-w-full divide-y divide-gray-200">
@@ -195,7 +182,7 @@ const UserDetailsPage = ({ params }: { params: { id: string } }) => {
                   </tbody>
                 </table>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

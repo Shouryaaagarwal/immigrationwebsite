@@ -10,7 +10,7 @@ interface User {
   id: string;
   name: string;
   email: string;
-  status: 'active' | 'inactive' | 'pending';
+  status: 'pending' | 'done';
   nationality: string;
 }
 
@@ -25,52 +25,16 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        const response = await fetch("/api/users/all-users"); // Call your Next.js API route
+        if (!response.ok) {
+          throw new Error("Failed to fetch users");
+        }
         
-        // Mock data with nationality
-        const mockUsers: User[] = [
-          {
-            id: '1',
-            name: 'Alex Johnson',
-            email: 'alex.johnson@example.com',
-            status: 'active',
-            nationality: 'United States'
-          },
-          {
-            id: '2',
-            name: 'Maria Garcia',
-            email: 'maria.garcia@example.com',
-            status: 'active',
-            nationality: 'Spain'
-          },
-          {
-            id: '3',
-            name: 'James Wilson',
-            email: 'james.wilson@example.com',
-            status: 'pending',
-            nationality: 'United Kingdom'
-          },
-          {
-            id: '4',
-            name: 'Sarah Miller',
-            email: 'sarah.miller@example.com',
-            status: 'inactive',
-            nationality: 'Canada'
-          },
-          {
-            id: '5',
-            name: 'David Lee',
-            email: 'david.lee@example.com',
-            status: 'active',
-            nationality: 'Australia'
-          },
-        ];
-        
-        setUsers(mockUsers);
+        const data: User[] = await response.json(); // Parse JSON response
+        setUsers(data);
       } catch (err) {
-        setError('Failed to fetch users. Please try again later.');
-        console.error('Error fetching users:', err);
+        setError("Failed to fetch users. Please try again later.");
+        console.error("Error fetching users:", err);
       } finally {
         setIsLoading(false);
       }
@@ -80,13 +44,12 @@ const AdminDashboard = () => {
   }, []);
 
   const handleViewDetails = (userId: string) => {
-    router.push(`/admin/user/${userId}`);
+    router.push(`/admin/user/${userId}`); 
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'active': return 'bg-green-100 text-green-800';
-      case 'inactive': return 'bg-red-100 text-red-800';
+      case 'done': return 'bg-green-100 text-green-800';
       case 'pending': return 'bg-yellow-100 text-yellow-800';
       default: return 'bg-gray-100 text-gray-800';
     }
@@ -157,7 +120,8 @@ const AdminDashboard = () => {
               <tbody className="bg-white divide-y divide-gray-200">
                 {paginatedUsers.length > 0 ? (
                   paginatedUsers.map((user) => (
-                    <tr key={user.id} className="hover:bg-gray-50">
+              <tr key={user.id || user._id?.$oid || user._id} className="hover:bg-gray-50">
+
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10 rounded-full bg-[#155da9] flex items-center justify-center text-white font-medium">
@@ -187,7 +151,7 @@ const AdminDashboard = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <button
-                          onClick={() => handleViewDetails(user.id)}
+                          onClick={() => handleViewDetails(user._id)}
                           className="text-[#c30e16] hover:text-indigo-900 flex items-center"
                           title="View Details"
                         >

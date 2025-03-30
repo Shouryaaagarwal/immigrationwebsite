@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide a password"],
       minlength: 8,
-      select: false, // This will exclude the password field from query results
+      select: false,
     },
     passwordConfirm: {
       type: String,
@@ -31,12 +31,10 @@ const userSchema = new mongoose.Schema(
       required: [true, "Please select nationality"],
       enum: ["US", "IN", "CA", "GB", "AU", "FR", "DE", "JP", "BR", "ZA"],
     },
-    
     lastLogin: {
       type: Date,
       default: Date.now,
     },
-
     isVerified: {
       type: Boolean,
       default: false,
@@ -57,6 +55,12 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
+    status: {
+      type: String,
+      enum: ["pending","done"],
+      default: "pending",
+    },
+
     createdAt: {
       type: Date,
       default: Date.now,
@@ -64,8 +68,6 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
-
 
 
 
