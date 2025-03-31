@@ -20,10 +20,10 @@ const applicantSchema = new mongoose.Schema({
 
   
     personalDetails: {
-        firstName: { type: String, required: true },
-        lastName: { type: String, required: true },
-        dateOfBirth: { type: String, required: true },
-        placeOfBirth: { type: String, required: true },
+        firstName: { type: String,  },
+        lastName: { type: String,  },
+        dateOfBirth: { type: String,  },
+        placeOfBirth: { type: String,},
         colorOfEyes: { type: String },
         height: {
             inches: { type: Number },
