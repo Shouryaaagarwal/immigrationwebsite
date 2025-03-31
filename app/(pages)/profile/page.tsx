@@ -267,8 +267,8 @@ export default function ResponsiveSidebar() {
           </header>
 
           {/* Main Content Area */}
-          <main className="flex-1 bg-white p-8">
-            <div className="mt-4 text-gray-600">
+          <main className="flex-1 h-screen  bg-white">
+            <div className="h-full text-gray-600">
               {renderContent()} {/* Dynamically render content based on selected section */}
             </div>
           </main>

@@ -136,7 +136,7 @@ export default function About() {
       <div className="w-full bg-[#f1f1f1] py-12 md:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="w-full max-w-3xl mx-auto flex flex-col items-center text-center gap-6 p-6 md:p-8 lg:p-10">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl text-gray-500">
+            <h2 className="text-3xl font-normal sm:text-4xl lg:text-5xl text-gray-500">
               Our <span className="text-[#155da9]">Vision</span>
             </h2>
             <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed">
@@ -163,7 +163,7 @@ export default function About() {
           </div>
           
           <div className="w-full lg:w-1/2 flex flex-col gap-6 p-4 sm:p-6">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl text-gray-500">
+            <h2 className="text-3xl font-normal sm:text-4xl lg:text-5xl text-gray-500">
               Our <span className="text-[#155da9]">Mission</span>
             </h2>
             <div className="text-sm sm:text-base lg:text-lg text-gray-600">
@@ -184,26 +184,26 @@ export default function About() {
       {/* Testimonials Section */}
       <div className="w-full bg-white py-12 md:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl text-gray-500  mb-12 md:mb-16">
+          <h2 className="text-3xl font-normal sm:text-4xl text-gray-500  mb-12 md:mb-16">
             Hear It From <span className="text-[#155da9]">Our</span>{' '}
             <span className="text-[#c30e16]">Clients</span>
           </h2>
-          <div className="w-full h-[400px] sm:h-[450px] md:h-[500px]">
+          {/* <div className="w-full h-[400px] sm:h-[450px] md:h-[500px]">
             <SwiperNavigation />
-          </div>
+          </div> */}
         </div>
       </div>
 
       {/* Google Reviews Section */}
       <div className="w-full bg-white ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="reviews-section w-full flex justify-center">
             <Script 
               src="https://static.elfsight.com/platform/platform.js" 
               strategy="afterInteractive" 
             />
             <div 
-              className="elfsight-app-4e6f1f71-59e7-476b-86f5-99f49830bcb4 w-full" 
+              className="elfsight-app-45c6ce40-4897-465b-a0a6-c09387be1007 w-full" 
               data-elfsight-app-lazy
             />
           </div>
@@ -214,3 +214,8 @@ export default function About() {
     </div>
   );
 }
+
+
+// <!-- Elfsight Google Reviews | Untitled Google Reviews -->
+{/* <script src="https://static.elfsight.com/platform/platform.js" async></script>
+<div class="elfsight-app-45c6ce40-4897-465b-a0a6-c09387be1007" data-elfsight-app-lazy></div> */}
