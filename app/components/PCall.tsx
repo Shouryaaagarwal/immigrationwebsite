@@ -50,8 +50,10 @@ const submitHandler = async (e: any) => {
 
 
   return (
-    <div className="flex flex-col lg:flex-row w-full items-center justify-between gap-6">
-      {/* Image Section (unchanged) */}
+
+    <div className="flex p-10 flex-col lg:flex-row w-full items-center justify-between gap-6">
+      {/* Image Section */}
+
       <div
         className="min-h-[50vh] lg:min-h-[75vh] w-full bg-cover bg-center relative lg:order-2"
         style={{

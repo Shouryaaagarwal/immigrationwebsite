@@ -47,7 +47,7 @@ export default function ScheduleMeeting() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row-reverse w-full items-center justify-between gap-6 overflow-x-hidden">
+    <div className="flex p-10 flex-col lg:flex-row-reverse w-full items-center justify-between gap-6 overflow-x-hidden">
       {/* Right Section: Image Section */}
       <div
         className="min-h-[50vh] lg:min-h-[75vh] w-full bg-cover bg-center relative lg:order-1"

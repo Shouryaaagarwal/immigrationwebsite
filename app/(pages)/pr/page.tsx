@@ -10,6 +10,8 @@ import { MdMiscellaneousServices } from "react-icons/md";
 import SwiperNavigation from "@/app/components/SwiperNavigation";
 import Footer from "@/app/components/Footer";
 import { SiVisa } from "react-icons/si";
+import Link from "next/link";
+import { GiEntryDoor } from "react-icons/gi";
 const raleway = Raleway({
   weight: ["400", "600", "800"],
   subsets: ["latin"],
@@ -29,7 +31,7 @@ export default function Pr() {
         <h1 className=" font-semibold tracking-widest text-6xl mt-10 z-20 text-white">
           Permanent <span className="">Residence</span>{" "}
         </h1>
-        <h5 className="text-[#F1F1F1] mt-4 font-thin text-lg z-20 tracking-widest">
+        <h5 className="text-[#F1F1F1] mt-4 font-normal text-lg z-20 tracking-widest">
           Connecting Dreams to Destinations Let’s Build Your Path Together
         </h5>
       </div>
@@ -117,8 +119,41 @@ export default function Pr() {
                  </span>
                </div>
        
-               <div className="flex gap-5 flex-wrap h-auto mb-20 items-center justify-center px-20 py-10">
-                 <div className="h-[300px] w-[400px] shadow-xl rounded-lg hover:-translate-y-2 transition-transform duration-500 bg-[#fff]">
+               <div className="flex gap-5 flex-wrap h-auto mb-20 items-center justify-center px-20 py-10"> 
+                {/* Express Entry Card */}
+    <Link href="/expressentry" className="flex-1 min-w-[250px] max-w-[400px] h-[250px] sm:h-[300px] shadow-xl rounded-lg border-2 hover:-translate-y-2 transition-transform duration-500 border-[#155da9]">
+      <div className="flex flex-col items-center justify-center h-full p-4 gap-4">
+        <div className="h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full flex items-center justify-center bg-[#155da9]">
+           <GiEntryDoor className="text-white text-4xl sm:text-5xl" />
+        </div>
+        <div className="text-center">
+          <span className="text-xl sm:text-2xl text-[#c30e16]">
+            <span className="text-[#155da9]">Express</span> Entry
+          </span>
+        </div>
+        <p className="text-sm sm:text-base text-gray-600 text-center">
+          Fast-track immigration pathway for skilled workers to obtain Canadian permanent residence.
+        </p>
+      </div>
+    </Link>
+
+    {/* Visitor Visa Card */}
+    <Link href="/visitorvisa" className="flex-1 min-w-[250px] max-w-[400px] h-[250px] sm:h-[300px] shadow-xl rounded-lg border-2 hover:-translate-y-2 transition-transform duration-500 border-[#155da9]">
+      <div className="flex flex-col items-center justify-center h-full p-4 gap-4">
+        <div className="h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full flex items-center justify-center bg-[#c30e16]">
+          <SiVisa className="text-white text-4xl sm:text-5xl" />
+        </div>
+        <div className="text-center">
+          <span className="text-xl sm:text-2xl text-[#c30e16]">
+            <span className="text-[#155da9]">Visitor</span> Visa
+          </span>
+        </div>
+        <p className="text-sm sm:text-base text-gray-600 text-center">
+          Temporary visas for tourism, business visits, and family visits to Canada.
+        </p>
+      </div>
+    </Link>
+                 {/* <div className="h-[300px] w-[400px] shadow-xl rounded-lg hover:-translate-y-2 transition-transform duration-500 bg-[#fff]">
                    <div className="flex flex-col items-center justify-center mt-5 gap-3">
                      <div className="flex flex-col items-center justify-center">
                        <div className="h-[100px] w-[100px] bg-[#000] rounded-full flex items-center justify-center">
@@ -185,9 +220,9 @@ export default function Pr() {
                        </span>
                      </div>
                    </div>
-                 </div>
+                 </div> */}
        
-                 <div className="h-[300px] w-[400px] shadow-xl rounded-lg border-[2px] hover:-translate-y-2 transition-transform duration-500 border-[#155da9]">
+                 {/* <div className="h-[300px] w-[400px] shadow-xl rounded-lg border-[2px] hover:-translate-y-2 transition-transform duration-500 border-[#155da9]">
                    <div className="flex flex-col items-center justify-center mt-5 gap-3">
                      <div className="flex flex-col items-center justify-center">
                        <div className="h-[100px] w-[100px] bg-[#155da9] rounded-full flex items-center justify-center">
@@ -209,8 +244,8 @@ export default function Pr() {
                      </div>
                    </div>
                  </div>
-       
-                 <div className="h-[300px] w-[400px] shadow-xl rounded-lg hover:-translate-y-2 transition-transform duration-500 bg-[#fff]">
+        */}
+                 {/* <div className="h-[300px] w-[400px] shadow-xl rounded-lg hover:-translate-y-2 transition-transform duration-500 bg-[#fff]">
                    <div className="flex flex-col items-center justify-center mt-5 gap-3">
                      <div className="flex flex-col items-center justify-center">
                        <div className="h-[100px] w-[100px] bg-[#c30e16] rounded-full flex items-center justify-center">
@@ -254,7 +289,7 @@ export default function Pr() {
                        </span>
                      </div>
                    </div>
-                 </div>
+                 </div> */}
                </div>
 
       <Footer/>
