@@ -6,6 +6,9 @@ import { Raleway } from "next/font/google";
 import { SiVisa } from "react-icons/si";
 import SwiperNavigation from "@/app/components/SwiperNavigation";
 import Footer from "@/app/components/Footer";
+import Link from "next/link";
+import { GiEntryDoor } from "react-icons/gi";
+import { GrHome } from "react-icons/gr";
 
 const raleway = Raleway({
   weight: ["400", "600", "800"],
@@ -26,7 +29,7 @@ export default function TemporaryResidence() {
         <h1 className="font-semibold tracking-widest text-6xl mt-10 z-20 text-white">
           Visitor Visa
         </h1>
-        <h5 className="text-[#F1F1F1] mt-4 font-thin text-lg z-20 tracking-widest">
+        <h5 className="text-[#F1F1F1] mt-4 font-normal text-lg z-20 tracking-widest">
           Explore Canada's beauty with the right travel authorization
         </h5>
       </div>
@@ -108,8 +111,41 @@ export default function TemporaryResidence() {
           </span>
         </div>
 
-        <div className="flex gap-5 flex-wrap h-auto mb-20 items-center justify-center px-20 py-10">
-          <div className="h-[300px] w-[400px] shadow-xl rounded-lg hover:-translate-y-2 transition-transform duration-500 bg-[#fff]">
+        <div className="flex gap-5 flex-wrap h-auto mb-20 items-center justify-center px-20 py-10"> 
+           {/* Permanent Residence Card */}
+    <Link href="/pr" className="flex-1 min-w-[250px] max-w-[400px] h-[250px] sm:h-[300px] shadow-xl rounded-lg border-2 hover:-translate-y-2 transition-transform duration-500 border-[#155da9]">
+      <div className="flex flex-col items-center justify-center h-full p-4 gap-4">
+        <div className="h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full flex items-center justify-center bg-[#c30e16]">
+        <GrHome className="text-white text-4xl sm:text-5xl" />
+        </div>
+        <div className="text-center">
+          <span className="text-xl sm:text-2xl text-[#c30e16]">
+            <span className="text-[#155da9]">Permanent</span> Residence
+          </span>
+        </div>
+        <p className="text-sm sm:text-base text-gray-600 text-center">
+          Family sponsorship and pathways to obtain Canadian permanent resident status.
+        </p>
+      </div>
+    </Link>
+
+    {/* Express Entry Card */}
+    <Link href="/expressentry" className="flex-1 min-w-[250px] max-w-[400px] h-[250px] sm:h-[300px] shadow-xl rounded-lg border-2 hover:-translate-y-2 transition-transform duration-500 border-[#155da9]">
+      <div className="flex flex-col items-center justify-center h-full p-4 gap-4">
+        <div className="h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full flex items-center justify-center bg-[#155da9]">
+           <GiEntryDoor className="text-white text-4xl sm:text-5xl" />
+        </div>
+        <div className="text-center">
+          <span className="text-xl sm:text-2xl text-[#c30e16]">
+            <span className="text-[#155da9]">Express</span> Entry
+          </span>
+        </div>
+        <p className="text-sm sm:text-base text-gray-600 text-center">
+          Fast-track immigration pathway for skilled workers to obtain Canadian permanent residence.
+        </p>
+      </div>
+    </Link>
+          {/* <div className="h-[300px] w-[400px] shadow-xl rounded-lg hover:-translate-y-2 transition-transform duration-500 bg-[#fff]">
             <div className="flex flex-col items-center justify-center mt-5 gap-3">
               <div className="flex flex-col items-center justify-center">
                 <div className="h-[100px] w-[100px] bg-[#000] rounded-full flex items-center justify-center">
@@ -239,7 +275,7 @@ export default function TemporaryResidence() {
                 </span>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <Footer />

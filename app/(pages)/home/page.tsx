@@ -28,6 +28,7 @@ import { IoMdAirplane } from "react-icons/io";
 import WhyChoose from "@/app/components/Whychoose";
 import { StaticCardsDemo } from "@/app/components/EScroll";
 import { HorizontalTimelineDemo } from "@/app/components/EScroll2";
+import Link from "next/link";
 
 
 
@@ -235,14 +236,14 @@ export default function Home() {
       />
       <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center px-4">
         <h1 className="text-3xl sm:text-4xl text-white">
-          Start <span>Your <span className="text-[#155da9]">Journey</span></span>
+          Start <span>Your <span className="text-[#6ab1fd]">Journey</span></span>
         </h1>
         <span className="text-gray-400 text-base sm:text-lg max-w-md">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, ea.
         </span>
-        <button className="border-white border px-6 sm:px-10 py-3 sm:py-4 mt-6 text-white tracking-wide hover:border-[#155da9] hover:bg-[#155da9] hover:text-white transition-transform duration-500 hover:-translate-y-3 rounded-full">
+        <Link href="/contact" className="border-white border px-6 sm:px-10 py-3 sm:py-4 mt-6 text-white tracking-wide hover:border-[#155da9] hover:bg-[#155da9] hover:text-white transition-transform duration-500 hover:-translate-y-3 rounded-full">
           Contact Us
-        </button>
+        </Link>
       </div>
     </div>
   </div>
