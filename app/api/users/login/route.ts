@@ -1,10 +1,11 @@
 import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
 import { createSendToken } from "../signup/route";
+import { isAuthenticated } from "@/backend/middlewares/isAuthenticated";
 import bcryptjs from "bcryptjs"; 
 export async function POST(req: NextRequest, res: NextResponse) {
     try {
-        const body = await req.json();
+        const body = await req.json();         
         const { email, password } = body;
 
         if (!email || !password) {
