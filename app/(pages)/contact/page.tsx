@@ -84,7 +84,7 @@ export default function Contact() {
             <span className="text-lg font-medium text-gray-500">
               Contact Us
             </span>
-            <h2 className="text-3xl sm:text-4xl text-gray-500">
+            <h2 className="text-3xl sm:text-4xl font-light text-gray-500">
               Get <span className="text-[#155da9]">In</span>{" "}
               <span className="text-[#c30e16]">Touch</span>
             </h2>

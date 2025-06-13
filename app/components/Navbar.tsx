@@ -72,13 +72,18 @@ export default function Navbar() {
       }`}
     >
       <div>
-        <Link href="/home">
-          <img
-            className="h-[50px] md:h-[60px]"
-            src="https://seaviewimmigration.com/assets/img/logo.svg"
-            alt="Logo"
-          />
-        </Link>
+
+        <img
+  className="h-[50px] md:h-[60px] transition-all duration-300"
+  src="https://seaviewimmigration.com/assets/img/logo.svg"
+  style={{
+    filter: isScrolled ? "none" : "brightness(0) invert(1)",
+  }}
+  alt="Logo"
+/>
+
+
+
       </div>
       
       {/* Desktop Navigation */}

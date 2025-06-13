@@ -124,13 +124,13 @@ export default function App() {
         }}
       >
         <SwiperSlide>
-          <Link href="/pr" className='bg-[#f1f1f1] h-full p-5 w-full flex flex-col gap-4 items-center justify-center rounded-2xl'>      
+          <div className='bg-[#f1f1f1] h-full p-5 w-full flex flex-col gap-4 items-center justify-center rounded-2xl'>      
             <div className='h-[80px] w-[80px]'> 
               <img src="house.png" className='h-[80px] w-[80px]' alt="House Icon" />
             </div> 
             <h1 className='text-2xl text-[#155da9]'>Permanent Residence</h1>   
             <span className='text-sm text-gray-500'>Let's make Canada your permanent home</span>
-          </Link>
+          </div>
         </SwiperSlide>
 
         <SwiperSlide>

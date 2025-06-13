@@ -202,9 +202,9 @@ export default function Home() {
       </span>
 
       <div className="flex justify-center lg:justify-start">
-        <button className="border-[#155da9] lg:ml-10 border-2 text-[#155da9] px-8 py-3 tracking-wide hover:bg-[#155da9] hover:text-white transition-transform duration-300 hover:-translate-y-2 rounded-full">
+        <Link href = "/aboutus" className="border-[#155da9] lg:ml-10 border-2 text-[#155da9] px-8 py-3 tracking-wide hover:bg-[#155da9] hover:text-white transition-transform duration-300 hover:-translate-y-2 rounded-full">
           More...
-        </button>
+        </Link>
       </div>
     </div>
   </div>
@@ -216,10 +216,10 @@ export default function Home() {
         
         <Swiper2 />
         <div className="flex items-center justify-center">
-          <button className="border-[#155da9] border-2  mt-10 text-[#155da9] px-10 py-4  tracking-wide hover:bg-[#155da9] hover:text-white transition-transform duration-500 hover:-translate-y-3 rounded-full">
+          <Link href="/services" className="border-[#155da9] border-2  mt-10 text-[#155da9] px-10 py-4  tracking-wide hover:bg-[#155da9] hover:text-white transition-transform duration-500 hover:-translate-y-3 rounded-full">
             {" "}
             View All Services{" "}
-          </button>
+          </Link>
         </div>
       </div>
 
