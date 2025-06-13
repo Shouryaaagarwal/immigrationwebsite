@@ -39,10 +39,15 @@ export default function Navbar() {
     >
       <div>
         <img
-          className="h-[50px] md:h-[60px]"
-          src="https://seaviewimmigration.com/assets/img/logo.svg"
-          alt="Logo"
-        />
+  className="h-[50px] md:h-[60px] transition-all duration-300"
+  src="https://seaviewimmigration.com/assets/img/logo.svg"
+  style={{
+    filter: isScrolled ? "none" : "brightness(0) invert(1)",
+  }}
+  alt="Logo"
+/>
+
+
       </div>
       <div className="hidden md:flex gap-6 md:gap-10">
         {navLinks.map(({ href, label }) => (

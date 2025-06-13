@@ -47,7 +47,7 @@
 import React from "react";
 import { IoMdAirplane } from "react-icons/io";
 import { RiVisaLine } from "react-icons/ri";
-import { FaUniversity } from "react-icons/fa";
+import { FaBriefcase, FaUniversity } from "react-icons/fa";
 
 export function StaticCardsDemo() {
   const items = [
@@ -62,10 +62,11 @@ export function StaticCardsDemo() {
       description: "Expert guidance for your visa success.",
     },
     {
-      icon: <FaUniversity className="text-4xl text-white" />,
-      title: "College Admissions and Counselling",
-      description: "Guiding you to your dream college.",
-    },
+  icon: <FaBriefcase className="text-4xl text-white" />,
+  title: "Work Permits ",
+  description: "Helping you secure the right permits for your global career.",
+},
+
     {
       icon: <IoMdAirplane className="text-4xl text-white" />,
       title: "Immigration Support",

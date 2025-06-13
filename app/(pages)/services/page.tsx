@@ -9,6 +9,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { GiEntryDoor } from "react-icons/gi"; 
 import { GrHome } from "react-icons/gr";
 import Link from "next/link";
+import { FaBriefcase } from "react-icons/fa";
 
 
 
@@ -98,7 +99,8 @@ export default function Services() {
 </div>
 
       {/* Services Cards */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+{/*  */}   
+<div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
   <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-6">
     {/* Permanent Residence Card */}
     <Link href="/pr" className="flex-1 min-w-[250px] max-w-[400px] h-[250px] sm:h-[300px] shadow-xl rounded-lg border-2 hover:-translate-y-2 transition-transform duration-500 border-[#155da9]">
@@ -149,14 +151,31 @@ export default function Services() {
           Temporary visas for tourism, business visits, and family visits to Canada.
         </p>
       </div>
-    </Link>
+    </Link>   
+
+    <Link href="/workpermit" className="flex-1 min-w-[250px] max-w-[400px] h-[250px] sm:h-[300px] shadow-xl rounded-lg border-2 hover:-translate-y-2 transition-transform duration-500 border-[#155da9]">
+  <div className="flex flex-col items-center justify-center h-full p-4 gap-4">
+    <div className="h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full flex items-center justify-center bg-[#155da9]">
+      <GiEntryDoor className="text-white text-4xl sm:text-5xl" />
+    </div>
+    <div className="text-center">
+      <span className="text-xl sm:text-2xl text-[#c30e16]">
+        <span className="text-[#155da9]">Work</span> Permit
+      </span>
+    </div>
+    <p className="text-sm sm:text-base text-gray-600 text-center">
+      Legal authorization to work in Canada through employer-specific or open permits.
+    </p>
+  </div>
+</Link>
+
   </div>
 </div>
 
       {/* Process Section */}
       <div className="w-full bg-[#f1f1f1] py-12 md:py-16">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 className="text-2xl sm:text-3xl lg:text-4xl text-gray-500 text-center">
+    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-gray-500 text-center">
       How We <span className="text-[#155da9]">Manage</span> Your{" "}
       <span className="text-[#c30e16]">Immigration</span> Process
     </h2>
@@ -222,7 +241,7 @@ export default function Services() {
             />
           </div>
           <div className="p-6 text-center">
-            <h3 className="text-2xl sm:text-3xl text-gray-500 font-medium">
+            <h3 className="text-2xl sm:text-3xl text-gray-500 font-normal">
               For <span className="text-[#155da9]">More</span>{" "}
               <span className="text-[#c30e16]">Assistance</span>
             </h3>
@@ -251,12 +270,12 @@ export default function Services() {
               <div
                 key={index}
                 onClick={() => toggleAccordion(index)}
-                className="border border-[#155da9] rounded-xl shadow-sm cursor-pointer overflow-hidden"
+                className="border font-light border-[#155da9] rounded-xl shadow-sm cursor-pointer overflow-hidden"
               >
                 <div
                   className={`flex items-center justify-between p-4 ${activeIndex === index ? 'bg-[#155da9] text-white' : 'bg-white text-[#155da9]'}`}
                 >
-                  <h3 className="text-sm sm:text-base font-medium">
+                  <h3 className="text-sm font-light sm:text-base font-medium">
                     {item.question}
                   </h3>
                   <MdKeyboardArrowDown 

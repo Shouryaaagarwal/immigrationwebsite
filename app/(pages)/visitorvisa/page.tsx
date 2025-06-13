@@ -9,6 +9,7 @@ import Footer from "@/app/components/Footer";
 import Link from "next/link";
 import { GiEntryDoor } from "react-icons/gi";
 import { GrHome } from "react-icons/gr";
+import { Briefcase } from "lucide-react";
 
 const raleway = Raleway({
   weight: ["400", "600", "800"],
@@ -145,137 +146,23 @@ export default function TemporaryResidence() {
         </p>
       </div>
     </Link>
-          {/* <div className="h-[300px] w-[400px] shadow-xl rounded-lg hover:-translate-y-2 transition-transform duration-500 bg-[#fff]">
-            <div className="flex flex-col items-center justify-center mt-5 gap-3">
-              <div className="flex flex-col items-center justify-center">
-                <div className="h-[100px] w-[100px] bg-[#000] rounded-full flex items-center justify-center">
-                  <span className="text-white text-6xl">
-                    <SiVisa />
-                  </span>
-                </div>
-              </div>
-              <div className="mt-5 text-center">
-                <span className="text-3xl text-[#c30e16]">
-                  <span className="text-[#155da9]">Express</span> Entry
-                </span>
-              </div>
-              <div className="w-[80%] text-sm text-center">
-                <span>
-                  Fast-track immigration pathway for skilled workers to obtain Canadian permanent residence.
-                </span>
-              </div>
-            </div>
-          </div>
+          {/* Work Permit Card */}
+<Link href="/workpermit" className="flex-1 min-w-[250px] max-w-[400px] h-[250px] sm:h-[300px] shadow-xl rounded-lg border-2 hover:-translate-y-2 transition-transform duration-500 border-[#155da9]">
+  <div className="flex flex-col items-center justify-center h-full p-4 gap-4">
+    <div className="h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full flex items-center justify-center bg-[#c30e16]">
+      <Briefcase className="text-white text-4xl sm:text-5xl" />
+    </div>
+    <div className="text-center">
+      <span className="text-xl sm:text-2xl text-[#c30e16]">
+        <span className="text-[#155da9]">Work</span> Permit
+      </span>
+    </div>
+    <p className="text-sm sm:text-base text-gray-600 text-center">
+      Legal authorization to work in Canada through employer-specific or open permits.
+    </p>
+  </div>
+</Link>
 
-          <div className="h-[300px] w-[400px] shadow-xl rounded-lg hover:-translate-y-2 transition-transform duration-500 border-2 border-[#c30e16]">
-            <div className="flex flex-col items-center justify-center mt-5 gap-3">
-              <div className="flex flex-col items-center justify-center">
-                <div className="h-[100px] w-[100px] bg-[#155da9] rounded-full flex items-center justify-center">
-                  <span className="text-white text-6xl">
-                    <SiVisa />
-                  </span>
-                </div>
-              </div>
-              <div className="mt-5 text-center">
-                <span className="text-3xl text-[#c30e16]">
-                  <span className="text-[#155da9]">Study</span> Permits
-                </span>
-              </div>
-              <div className="w-[80%] text-sm text-center">
-                <span>
-                  Authorization for international students to pursue education at Canadian institutions.
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="h-[300px] w-[400px] shadow-xl rounded-lg hover:-translate-y-2 transition-transform duration-500 bg-[#fff]">
-            <div className="flex flex-col items-center justify-center mt-5 gap-3">
-              <div className="flex flex-col items-center justify-center">
-                <div className="h-[100px] w-[100px] bg-[#000] rounded-full flex items-center justify-center">
-                  <span className="text-white text-6xl">
-                    <SiVisa />
-                  </span>
-                </div>
-              </div>
-              <div className="mt-5 text-center">
-                <span className="text-3xl text-[#c30e16]">
-                  <span className="text-[#155da9]">Work</span> Permits
-                </span>
-              </div>
-              <div className="w-[80%] text-sm text-center">
-                <span>
-                  Temporary authorization for foreign nationals to work in Canada.
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="h-[300px] w-[400px] shadow-xl rounded-lg border-[2px] hover:-translate-y-2 transition-transform duration-500 border-[#155da9]">
-            <div className="flex flex-col items-center justify-center mt-5 gap-3">
-              <div className="flex flex-col items-center justify-center">
-                <div className="h-[100px] w-[100px] bg-[#155da9] rounded-full flex items-center justify-center">
-                  <span className="text-white text-6xl">
-                    <SiVisa />
-                  </span>
-                </div>
-              </div>
-              <div className="mt-5 text-center">
-                <span className="text-3xl text-[#c30e16]">
-                  <span className="text-[#155da9]">Permanent</span> Residence
-                </span>
-              </div>
-              <div className="w-[80%] text-sm text-center">
-                <span>
-                  Family sponsorship and other pathways to Canadian permanent residency.
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="h-[300px] w-[400px] shadow-xl rounded-lg hover:-translate-y-2 transition-transform duration-500 bg-[#fff]">
-            <div className="flex flex-col items-center justify-center mt-5 gap-3">
-              <div className="flex flex-col items-center justify-center">
-                <div className="h-[100px] w-[100px] bg-[#c30e16] rounded-full flex items-center justify-center">
-                  <span className="text-white text-6xl">
-                    <SiVisa />
-                  </span>
-                </div>
-              </div>
-              <div className="mt-5 text-center">
-                <span className="text-3xl text-[#c30e16]">
-                  <span className="text-[#155da9]">Provincial</span> Nominee
-                </span>
-              </div>
-              <div className="w-[80%] text-sm text-center">
-                <span>
-                  Regional immigration programs addressing specific provincial labor needs.
-                </span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="h-[300px] w-[400px] shadow-xl rounded-lg border-[2px] hover:-translate-y-2 transition-transform duration-500 border-[#155da9]">
-            <div className="flex flex-col items-center justify-center mt-5 gap-3">
-              <div className="flex flex-col items-center justify-center">
-                <div className="h-[100px] w-[100px] bg-[#155da9] rounded-full flex items-center justify-center">
-                  <span className="text-white text-6xl">
-                    <SiVisa />
-                  </span>
-                </div>
-              </div>
-              <div className="mt-5 text-center">
-                <span className="text-3xl text-[#c30e16]">
-                  <span className="text-[#155da9]">Citizenship</span> Services
-                </span>
-              </div>
-              <div className="w-[80%] text-sm text-center">
-                <span>
-                  Assistance with Canadian citizenship applications and requirements.
-                </span>
-              </div>
-            </div>
-          </div> */}
         </div>
 
         <Footer />
