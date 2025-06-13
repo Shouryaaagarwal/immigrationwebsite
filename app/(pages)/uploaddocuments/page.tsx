@@ -2,18 +2,29 @@
 import Navbar from '@/app/components/Navbar';
 import { useState } from 'react';
 import { FiUpload, FiTrash2, FiPlus, FiCheck } from 'react-icons/fi';
+import { UploadButton } from '@/src/utils/uploadthing';
+import { OurFileRouter } from "@/app/api/uploadthing/core";
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
 
 const DocumentUploadPage = () => {
+   const user = useSelector((state:any) => state.auth.user);
+    const userId = user?._id;
+
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   // Required single documents
-  const [passport, setPassport] = useState<File | null>(null);
-  const [nationalId, setNationalId] = useState<File | null>(null);
-  const [birthCertificate, setBirthCertificate] = useState<File | null>(null);
+  const [passport, setPassport] = useState<{ name: string; url: string } | null>(null);
+  const [nationalId, setNationalId] = useState<{ name: string; url: string } | null>(null);
+  const [birthCertificate, setBirthCertificate] = useState<{ name: string; url: string; description: string } | null>(null);
 
   // Multiple document sections
-  const [marksheets, setMarksheets] = useState<Array<{ file: File | null; description: string }>>([]);
-  const [visas, setVisas] = useState<Array<{ file: File | null; description: string }>>([]);
-  const [workExperience, setWorkExperience] = useState<Array<{ file: File | null; description: string }>>([]);
-  const [previousRefusals, setPreviousRefusals] = useState<Array<{ file: File | null; description: string }>>([]);
+  const [marksheets, setMarksheets] = useState<Array<{ file: { name: string; url: string } | null; description: string }>>([]);
+  const [visas, setVisas] = useState<Array<{ file: { name: string; url: string } | null; description: string }>>([]);
+  const [workExperience, setWorkExperience] = useState<Array<{ file: { name: string; url: string } | null; description: string }>>([]);
+  const [previousRefusals, setPreviousRefusals] = useState<Array<{ file: { name: string; url: string } | null; description: string }>>([]);
 
   // National ID examples by country
   const nationalIdExamples = [
@@ -24,19 +35,12 @@ const DocumentUploadPage = () => {
     { country: 'Australia', name: 'Medicare Card' },
   ];
 
-  const handleFileChange = (setter: React.Dispatch<React.SetStateAction<File | null>>) => 
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files && e.target.files[0]) {
-        setter(e.target.files[0]);
-      }
-    };
-
   const handleMultipleFileChange = (
-    array: Array<{ file: File | null; description: string }>,
-    setter: React.Dispatch<React.SetStateAction<Array<{ file: File | null; description: string }>>>,
+    array: Array<{ file: { name: string; url: string } | null; description: string }>,
+    setter: React.Dispatch<React.SetStateAction<Array<{ file: { name: string; url: string } | null; description: string }>>>,
     index: number,
     field: 'file' | 'description',
-    value: File | string
+    value: { name: string; url: string } | string
   ) => {
     const newArray = [...array];
     newArray[index] = { ...newArray[index], [field]: value };
@@ -44,25 +48,98 @@ const DocumentUploadPage = () => {
   };
 
   const addDocumentSection = (
-    setter: React.Dispatch<React.SetStateAction<Array<{ file: File | null; description: string }>>>
+    setter: React.Dispatch<React.SetStateAction<Array<{ file: { name: string; url: string } | null; description: string }>>>
   ) => {
     setter(prev => [...prev, { file: null, description: '' }]);
   };
 
   const removeDocumentSection = (
-    array: Array<{ file: File | null; description: string }>,
-    setter: React.Dispatch<React.SetStateAction<Array<{ file: File | null; description: string }>>>,
+    array: Array<{ file: { name: string; url: string } | null; description: string }>,
+    setter: React.Dispatch<React.SetStateAction<Array<{ file: { name: string; url: string } | null; description: string }>>>,
     index: number
   ) => {
     const newArray = [...array];
     newArray.splice(index, 1);
     setter(newArray);
   };
+  
+  console.log(userId)
+  console.log(passport?.url)
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  setError(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-  };
+  try {
+    if (!userId) {
+      throw new Error('User not authenticated');
+    }
+
+    // Validate required fields
+    if (!passport || !nationalId || !birthCertificate || marksheets.length === 0 || visas.length === 0) {
+      throw new Error('Please fill all required fields');
+    }
+
+    // Prepare data for API
+    const documentData = {
+      userId: userId,
+      passport: {
+        url: passport.url
+      },
+      marksheets: marksheets
+        .filter(m => m.file) // Only include marksheets with files
+        .map(m => ({
+          url: m.file!.url,
+          description: m.description
+        })),
+      countryVisa: visas[0]?.file ? {
+        url: visas[0].file.url,
+        description: visas[0].description
+      } : null,
+      nationalId: nationalId.url,
+      previousWork: workExperience
+        .filter(w => w.file) // Only include work experience with files
+        .map(w => ({
+          url: w.file!.url,
+          description: w.description
+        })),
+      birthCertificate: {
+        url: birthCertificate.url,
+        description: birthCertificate.description || 'Birth Certificate'
+      },
+      previousRefusals: previousRefusals
+        .filter(r => r.file) // Only include refusals with files
+        .map(r => ({
+          url: r.file!.url
+        }))
+    };
+
+    console.log('Document data:', documentData);  
+    const response = await fetch('/api/documents/upload', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(documentData)
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Failed to submit documents');
+    }
+
+  
+    router.push('/admin/user/' + userId); 
+    alert('Documents submitted successfully!');
+    
+  } catch (err) {
+    console.error('Submission error:', err);
+    setError(err instanceof Error ? err.message : 'An unknown error occurred');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <div className="max-w-4xl mx-auto p-6"> 
@@ -70,21 +147,32 @@ const DocumentUploadPage = () => {
       <div className="pt-[110px]">
         <h1 className="text-5xl text-[#155da9] font-normal mb-8">Upload Documents</h1>
         
+        {error && (
+          <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+            {error}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-8">
           {/* Passport - Required Single */}
           <div className="border-b border-gray-200 pb-8">
             <h2 className="text-xl text-[#155da9] font-normal mb-4">Passport <span className="text-[#c30e16]">*</span></h2>
             <div className="flex items-center gap-4">
-              <label className="flex items-center px-6 py-3 bg-gradient-to-r from-[#c30e16] to-[#155da9] text-white rounded-md cursor-pointer hover:opacity-90 transition-opacity">
-                <FiUpload className="mr-2" />
-                Upload Passport
-                <input 
-                  type="file" 
-                  className="hidden" 
-                  onChange={handleFileChange(setPassport)}
-                  required
-                />
-              </label>
+              <UploadButton
+                endpoint="fileUploader"
+                onClientUploadComplete={(res: { name: string; url: string }[] | null) => {
+                  if (res && res[0]) {
+                    setPassport({ name: res[0].name, url: res[0].url });
+                  }
+                }}
+                onUploadError={(error: Error) => {
+                  alert(`ERROR! ${error.message}`);
+                }}
+                appearance={{
+                  button: "bg-gradient-to-r from-[#c30e16] to-[#155da9] text-white rounded-md px-6 py-3",
+                  allowedContent: "hidden",
+                }}
+              />
               {passport && (
                 <div className="flex items-center bg-gray-50 px-4 py-2 rounded-md">
                   <FiCheck className="text-green-600 mr-2" />
@@ -103,16 +191,21 @@ const DocumentUploadPage = () => {
               ))}
             </p>
             <div className="flex items-center gap-4">
-              <label className="flex items-center px-6 py-3 bg-gradient-to-r from-[#c30e16] to-[#155da9] text-white rounded-md cursor-pointer hover:opacity-90 transition-opacity">
-                <FiUpload className="mr-2" />
-                Upload National ID
-                <input 
-                  type="file" 
-                  className="hidden" 
-                  onChange={handleFileChange(setNationalId)}
-                  required
-                />
-              </label>
+              <UploadButton
+                endpoint="fileUploader"
+                onClientUploadComplete={(res) => {
+                  if (res && res[0]) {
+                    setNationalId({ name: res[0].name, url: res[0].url });
+                  }
+                }}
+                onUploadError={(error: Error) => {
+                  alert(`ERROR! ${error.message}`);
+                }}
+                appearance={{
+                  button: "bg-gradient-to-r from-[#c30e16] to-[#155da9] text-white rounded-md px-6 py-3",
+                  allowedContent: "hidden",
+                }}
+              />
               {nationalId && (
                 <div className="flex items-center bg-gray-50 px-4 py-2 rounded-md">
                   <FiCheck className="text-green-600 mr-2" />
@@ -140,22 +233,27 @@ const DocumentUploadPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-normal text-gray-700 mb-2">File</label>
-                    <label className="flex items-center px-6 py-3 bg-gradient-to-r from-[#c30e16] to-[#155da9] text-white rounded-md cursor-pointer hover:opacity-90 transition-opacity">
-                      {/* <FiUpload className="mr-2" />
-                      Upload
-                      <input 
-                        type="file" 
-                        className="hidden" 
-                        onChange={(e) => handleMultipleFileChange(
-                          marksheets, 
-                          setMarksheets, 
-                          index, 
-                          'file', 
-                          // e.target.files?.[0] || null
-                        )}
-                        required
-                      /> */}
-                    </label>
+                    <UploadButton
+                      endpoint="fileUploader"
+                      onClientUploadComplete={(res) => {
+                        if (res && res[0]) {
+                          handleMultipleFileChange(
+                            marksheets, 
+                            setMarksheets, 
+                            index, 
+                            'file', 
+                            { name: res[0].name, url: res[0].url }
+                          );
+                        }
+                      }}
+                      onUploadError={(error: Error) => {
+                        alert(`ERROR! ${error.message}`);
+                      }}
+                      appearance={{
+                        button: "bg-gradient-to-r from-[#c30e16] to-[#155da9] text-white rounded-md px-6 py-3",
+                        allowedContent: "hidden",
+                      }}
+                    />
                     {doc.file && (
                       <div className="mt-2 flex items-center bg-gray-50 px-4 py-2 rounded-md">
                         <FiCheck className="text-green-600 mr-2" />
@@ -210,22 +308,27 @@ const DocumentUploadPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">File</label>
-                    <label className="flex items-center px-6 py-3 bg-gradient-to-r from-[#c30e16] to-[#155da9] text-white rounded-md cursor-pointer hover:opacity-90 transition-opacity">
-                      {/* <FiUpload className="mr-2" />
-                      Upload
-                      <input 
-                        type="file" 
-                        className="hidden" 
-                        onChange={(e) => handleMultipleFileChange(
-                          visas, 
-                          setVisas, 
-                          index, 
-                          'file', 
-                          e.target.files?.[0] || null
-                        )}
-                        required
-                      /> */}
-                    </label>
+                    <UploadButton
+                      endpoint="fileUploader"
+                      onClientUploadComplete={(res) => {
+                        if (res && res[0]) {
+                          handleMultipleFileChange(
+                            visas, 
+                            setVisas, 
+                            index, 
+                            'file', 
+                            { name: res[0].name, url: res[0].url }
+                          );
+                        }
+                      }}
+                      onUploadError={(error: Error) => {
+                        alert(`ERROR! ${error.message}`);
+                      }}
+                      appearance={{
+                        button: "bg-gradient-to-r from-[#c30e16] to-[#155da9] text-white rounded-md px-6 py-3",
+                        allowedContent: "hidden",
+                      }}
+                    />
                     {doc.file && (
                       <div className="mt-2 flex items-center bg-gray-50 px-4 py-2 rounded-md">
                         <FiCheck className="text-green-600 mr-2" />
@@ -266,20 +369,41 @@ const DocumentUploadPage = () => {
           <div className="border-b border-gray-200 pb-8">
             <h2 className="text-xl text-[#155da9] font-normal mb-4">Birth Certificate <span className="text-[#c30e16]">*</span></h2>
             <div className="flex items-center gap-4">
-              <label className="flex items-center px-6 py-3 bg-gradient-to-r from-[#c30e16] to-[#155da9] text-white rounded-md cursor-pointer hover:opacity-90 transition-opacity">
-                <FiUpload className="mr-2" />
-                Upload Birth Certificate
-                <input 
-                  type="file" 
-                  className="hidden" 
-                  onChange={handleFileChange(setBirthCertificate)}
-                  required
-                />
-              </label>
+              <UploadButton
+                endpoint="fileUploader"
+                onClientUploadComplete={(res) => {
+                  if (res && res[0]) {
+                    setBirthCertificate({ 
+                      name: res[0].name, 
+                      url: res[0].url,
+                      description: 'Birth Certificate' 
+                    });
+                  }
+                }}
+                onUploadError={(error: Error) => {
+                  alert(`ERROR! ${error.message}`);
+                }}
+                appearance={{
+                  button: "bg-gradient-to-r from-[#c30e16] to-[#155da9] text-white rounded-md px-6 py-3",
+                  allowedContent: "hidden",
+                }}
+              />
               {birthCertificate && (
-                <div className="flex items-center bg-gray-50 px-4 py-2 rounded-md">
-                  <FiCheck className="text-green-600 mr-2" />
-                  <span className="text-gray-700">{birthCertificate.name}</span>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center bg-gray-50 px-4 py-2 rounded-md">
+                    <FiCheck className="text-green-600 mr-2" />
+                    <span className="text-gray-700">{birthCertificate.name}</span>
+                  </div>
+                  <input
+                    type="text"
+                    value={birthCertificate.description}
+                    onChange={(e) => setBirthCertificate(prev => 
+                      prev ? { ...prev, description: e.target.value } : null
+                    )}
+                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#155da9] focus:border-transparent"
+                    placeholder="Birth Certificate Description"
+                    required
+                  />
                 </div>
               )}
             </div>
@@ -303,21 +427,27 @@ const DocumentUploadPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">File</label>
-                    <label className="flex items-center px-6 py-3 bg-gradient-to-r from-[#c30e16] to-[#155da9] text-white rounded-md cursor-pointer hover:opacity-90 transition-opacity">
-                      {/* <FiUpload className="mr-2" />
-                      Upload
-                      <input 
-                        type="file" 
-                        className="hidden" 
-                        onChange={(e) => handleMultipleFileChange(
-                          workExperience, 
-                          setWorkExperience, 
-                          index, 
-                          'file', 
-                          e.target.files?.[0] || null
-                        )}
-                      /> */}
-                    </label>
+                    <UploadButton
+                      endpoint="fileUploader"
+                      onClientUploadComplete={(res) => {
+                        if (res && res[0]) {
+                          handleMultipleFileChange(
+                            workExperience, 
+                            setWorkExperience, 
+                            index, 
+                            'file', 
+                            { name: res[0].name, url: res[0].url }
+                          );
+                        }
+                      }}
+                      onUploadError={(error: Error) => {
+                        alert(`ERROR! ${error.message}`);
+                      }}
+                      appearance={{
+                        button: "bg-gradient-to-r from-[#c30e16] to-[#155da9] text-white rounded-md px-6 py-3",
+                        allowedContent: "hidden",
+                      }}
+                    />
                     {doc.file && (
                       <div className="mt-2 flex items-center bg-gray-50 px-4 py-2 rounded-md">
                         <FiCheck className="text-green-600 mr-2" />
@@ -371,21 +501,27 @@ const DocumentUploadPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">File</label>
-                    <label className="flex items-center px-6 py-3 bg-gradient-to-r from-[#c30e16] to-[#155da9] text-white rounded-md cursor-pointer hover:opacity-90 transition-opacity">
-                      {/* <FiUpload className="mr-2" />
-                      Upload
-                      <input 
-                        type="file" 
-                        className="hidden" 
-                        onChange={(e) => handleMultipleFileChange(
-                          previousRefusals, 
-                          setPreviousRefusals, 
-                          index, 
-                          'file', 
-                          e.target.files?.[0] || null
-                        )}
-                      /> */}
-                    </label>
+                    <UploadButton
+                      endpoint="fileUploader"
+                      onClientUploadComplete={(res) => {
+                        if (res && res[0]) {
+                          handleMultipleFileChange(
+                            previousRefusals, 
+                            setPreviousRefusals, 
+                            index, 
+                            'file', 
+                            { name: res[0].name, url: res[0].url }
+                          );
+                        }
+                      }}
+                      onUploadError={(error: Error) => {
+                        alert(`ERROR! ${error.message}`);
+                      }}
+                      appearance={{
+                        button: "bg-gradient-to-r from-[#c30e16] to-[#155da9] text-white rounded-md px-6 py-3",
+                        allowedContent: "hidden",
+                      }}
+                    />
                     {doc.file && (
                       <div className="mt-2 flex items-center bg-gray-50 px-4 py-2 rounded-md">
                         <FiCheck className="text-green-600 mr-2" />
@@ -424,9 +560,10 @@ const DocumentUploadPage = () => {
           <div className="flex justify-center pb-10">
             <button
               type="submit"
-              className="border-[1px] text-center border-[#155da9] mt-4 text-[#155da9] px-8 py-3 text-sm sm:text-base font-normal hover:bg-[#155da9] hover:text-white transition-all duration-300 hover:-translate-y-1 rounded-full"
+              disabled={isSubmitting}
+              className={`border-[1px] text-center border-[#155da9] mt-4 text-[#155da9] px-8 py-3 text-sm sm:text-base font-normal hover:bg-[#155da9] hover:text-white transition-all duration-300 hover:-translate-y-1 rounded-full ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
-              Submit Documents
+              {isSubmitting ? 'Submitting...' : 'Submit Documents'}
             </button>
           </div>
         </form>

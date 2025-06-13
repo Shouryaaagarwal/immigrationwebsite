@@ -7,6 +7,7 @@ import { FiChevronLeft, FiChevronRight, FiEye } from 'react-icons/fi';
 import { useRouter } from 'next/navigation';
 
 interface User {
+  [x: string]: any;
   id: string;
   name: string;
   email: string;
@@ -15,6 +16,7 @@ interface User {
 }
 
 const AdminDashboard = () => {
+  
   const router = useRouter();
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(true);

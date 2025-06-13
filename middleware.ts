@@ -9,7 +9,6 @@ export function middleware(request: NextRequest) {
     // Redirect to /home
     return NextResponse.redirect(new URL('/home', request.url))
   }
-<<<<<<< HEAD
 
   // For all other paths, continue as normal
   return NextResponse.next()
@@ -130,16 +129,10 @@ export const config = {
 // }
 
 
-=======
+
 
   // For all other paths, continue as normal
-  return NextResponse.next()
-}
-
-// Specify the paths this middleware should run on
-export const config = {
-  matcher: '/',
-}
+  // return NextResponse.next()
 
 
 
@@ -325,4 +318,3 @@ export const config = {
 // export const config = {
 //   matcher: ['/', '/admin/:path*', '/signin'],
 // }
->>>>>>> 03f0706b999aa2e75be90e5b7b251eaeb75c4182
