@@ -215,79 +215,51 @@ headers: {
                   />
                 </div>
 
-                <div className="mb-4 w-full">
-                  <label
-                    htmlFor="password"
-                    className="block text-xl font-semibold mb-2"
-                  >
-                    Confirm Password
-                  </label>
-                  <input
-                    type="password"
-                    id="passwordConfirm"
-                    name="passwordConfirm"
-                    placeholder="confirm password"
-                    value={user.passwordConfirm}
-                    onChange={(e) =>
-                      setUser({ ...user, passwordConfirm: e.target.value })
-                    }
-                    className="w-full placeholder-gray-400 text-black border-gray-400 border-[2px] rounded-lg shadow-sm   focus:outline-none p-2"
-                  />
-                </div>
-              </div>
-              <div className="mb-4">
-                <label
-                  htmlFor="nationality"
-                  className="block text-xl font-semibold mb-2"
+
+            
+            <div className="mb-4">
+              <label htmlFor="password" className="block font-medium mb-2">
+                Password
+              </label>
+              <input
+                type="password"
+                id="passwordConfirm"
+                name="passwordConfirm"
+                placeholder="Enter your password"
+                value={user.passwordConfirm}
+                onChange={(e) => setUser({...user, passwordConfirm: e.target.value})}
+                className="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2"
+              />
+            </div>
+
+
+           
+
+            <div className="mb-4">
+              <label htmlFor="nationality" className="block font-medium mb-2">
+                Nationality
+              </label>
+              <div className="flex items-center">
+                <select
+                  id="nationality"
+                  name="nationality"
+                  value={user.nationality}
+                  onChange = {handleCountryChange}
+                 
+                  className="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2"
                 >
-                  Nationality
-                </label>
-                <div className="flex items-center">
-                  <div className="relative w-full">
-                    {/* Select with Peer */}
-                    <select
-                      id="nationality"
-                      name="nationality"
-                      value={user.nationality}
-                      onChange={handleCountryChange}
-                      className="peer w-full pr-10  text-gray-400 border-gray-400 border-[2px] rounded-lg shadow-sm focus:outline-none p-2 appearance-none"
-                    >
-                      <option value="" className="text-gray-400">
-                        Select your nationality
-                      </option>
-                      {countries.map((country) => (
-                        <option key={country.code} value={country.code}>
-                          {country.name}
-                        </option>
-                      ))}
-                    </select>
-
-                    {/* Custom Arrow with Rotate */}
-                    <div className="absolute top-1/2 right-3 transform -translate-y-1/2 pointer-events-none transition-transform duration-300 peer-focus:rotate-180  peer-blur:rotate-0">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4 text-gray-500"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M5.293 7.707a1 1 0 011.414 0L10 11.086l3.293-3.379a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
+                  <option value="">Select your nationality</option>
+                  {countries.map((country) => (
+                    <option key={country.code} value={country.code}>
+                      {country.name}
+                    </option>
+                  ))}
+                </select>
+                {selectedCountry && (
+                  <div className="ml-3">
+                    <Flag code={selectedCountry.toLowerCase()} className="w-8 h-5" />
                   </div>
-
-                  {selectedCountry && (
-                    <div className="ml-3">
-                      <Flag
-                        code={selectedCountry.toLowerCase()}
-                        className="w-8 h-5"
-                      />
-                    </div>
-                  )}
-                </div>
+                )}
               </div>
             </div>
 
