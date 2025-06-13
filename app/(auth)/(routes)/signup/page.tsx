@@ -231,10 +231,10 @@ const Page = () => {
                 {loading ? (
                   <button
                     type="submit"
-                    className="border-[#155da9] border-2 w-full mt-10 text-[#155da9] px-10 py-4 tracking-wide hover:bg-[#155da9] hover:text-white transition-transform duration-500 hover:-translate-y-1 rounded-full flex items-center justify-center"
+                    className="border-[#155da9] border-2 w-full mt-10 text-white bg-[#155da9] px-10 py-4 tracking-wide transition-transform duration-500 rounded-full flex items-center justify-center cursor-not-allowed"
                     disabled
                   >
-                    <Loader className="animate-spin text-white h-6 w-6" />
+                    <Loader className="animate-spin h-6 w-6" />
                   </button>
                 ) : (
                   <button

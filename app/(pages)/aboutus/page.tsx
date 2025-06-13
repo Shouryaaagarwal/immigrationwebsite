@@ -44,8 +44,8 @@ export default function About() {
       <div className="w-full bg-white py-10 px-4 md:px-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8">
           <div className="md:w-1/3">
-            <span className="text-gray-500 text-2xl lg:text-4xl">
-              <span className="text-2xl md:text-3xl lg:text-5xl tracking-wider font-medium text-[#155da9]">
+            <span className="text-gray-500 font-light text-2xl lg:text-4xl">
+              <span className="text-2xl md:text-3xl lg:text-5xl tracking-wider font-light text-[#155da9]">
                 Your Trusted
               </span>{" "}
               Immigration <br />
@@ -53,7 +53,7 @@ export default function About() {
                 Partner in Canada
               </span>
             </span>
-          </div>
+          </div> 
           <div className="md:w-1/3 text-gray-500">
             <p className="md:mt-10">
               Founded by immigrants for immigrants, we bring firsthand experience 
