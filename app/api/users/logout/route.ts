@@ -1,15 +1,21 @@
-import { NextResponse, NextRequest } from "next/server";
-import { connect } from "@/backend/db";
+import { NextResponse } from "next/server";
 
-connect();
+export async function POST() {
+    const response = NextResponse.json(
+        { message: "Logged out successfully" },
+        { status: 200 }
+    );
 
-
-
-export async function POST(request: NextRequest) {
-    const response = NextResponse.json({ message: "Logged out" }, { status: 200 });
-
-    response.headers.set('Set-Cookie', `token=loggedout; HttpOnly; Expires=${new Date(Date.now() + 10 * 1000).toUTCString()}; SameSite=${process.env.NODE_ENV === 'production' ? 'Strict' : 'Lax'}; ${process.env.NODE_ENV === 'production' ? 'Secure' : ''}`);
+   
+    response.cookies.set({
+        name: "token",
+        value: "",
+        expires: new Date(0),  // Immediately expires the cookie
+        httpOnly: true,
+        sameSite: process.env.NODE_ENV === "production" ? "strict" : "lax",
+        secure: process.env.NODE_ENV === "production",
+        path: "/",
+    });
 
     return response;
 }
-

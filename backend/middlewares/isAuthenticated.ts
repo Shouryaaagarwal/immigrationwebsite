@@ -15,6 +15,6 @@ export const isAuthenticated = async (req: NextRequest, res: NextResponse) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as jwt.JwtPayload;
     const currentUser = await User.findById(decoded.id);
     if (!currentUser) return NextResponse.json({ error: "User not found" }, { status: 401 });
-
+    console.log("Current User:", currentUser);
     req.user = currentUser;
 };
