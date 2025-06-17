@@ -195,7 +195,7 @@ export default function About() {
       </div>
 
       {/* Google Reviews Section */}
-      <div className="w-full bg-white ">
+      {/* <div className="w-full bg-white ">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="reviews-section w-full flex justify-center">
             <Script 
@@ -208,7 +208,7 @@ export default function About() {
             />
           </div>
         </div>
-      </div>
+      </div> */}
 
       <Footer />
     </div>
