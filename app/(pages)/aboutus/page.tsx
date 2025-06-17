@@ -188,14 +188,14 @@ export default function About() {
             Hear It From <span className="text-[#155da9]">Our</span>{' '}
             <span className="text-[#c30e16]">Clients</span>
           </h2>
-          {/* <div className="w-full h-[400px] sm:h-[450px] md:h-[500px]">
+          <div className="w-full h-[400px] sm:h-[450px] md:h-[500px]">
             <SwiperNavigation />
-          </div> */}
+          </div>
         </div>
       </div>
 
       {/* Google Reviews Section */}
-      <div className="w-full bg-white ">
+      {/* <div className="w-full bg-white ">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="reviews-section w-full flex justify-center">
             <Script 
@@ -208,7 +208,7 @@ export default function About() {
             />
           </div>
         </div>
-      </div>
+      </div> */}
 
       <Footer />
     </div>
