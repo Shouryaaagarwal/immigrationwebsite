@@ -3154,7 +3154,9 @@ export default function Form() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    
     try {
+      // 1. Submit the form data
       const res = await axios.post(
         "http://localhost:3000/api/applicant-form",
         { ...formData, userId },
@@ -3163,6 +3165,26 @@ export default function Form() {
           withCredentials: true,
         }
       );
+  
+      // 2. Update the tracker to mark form as submitted
+      try {
+        await axios.patch(
+          `/api/tracker/${userId}`,
+          {
+            field: "submitForm",
+            value: true
+          },
+          {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+          }
+        );
+      } catch (trackerError) {
+        console.error("Failed to update tracker:", trackerError);
+        // You might want to handle this error differently
+      }
+  
+      // 3. Redirect after successful submission
       router.push("/home");
     } catch (error: any) {
       console.error("Submission error:", error);

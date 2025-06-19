@@ -5,113 +5,70 @@ import { useSelector } from "react-redux";
 import { selectUser } from "@/store/authSlice";
 import axios from "axios";
 
-interface Document {
-  id: string;
-  // ... other properties
-}
-
-interface Form {
-  id: string;
-  // ... other properties
+interface TrackerData {
+  signUp: boolean;
+  submitForm: boolean;
+  fillingAndSubmission: boolean;
+  result: boolean;
 }
 
 export default function App() {
-  const [currentStep, setCurrentStep] = useState(1); 
+  const [currentStep, setCurrentStep] = useState(1);
+  const [tracker, setTracker] = useState<TrackerData | null>(null);
+  const [loading, setLoading] = useState(true);
   const user = useSelector(selectUser);
   const userId = user?._id;
 
-  const [documents, setDocuments] = useState<Document[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [forms, setForms] = useState<Form[]>([]);
-  const [loadingForms, setLoadingForms] = useState<boolean>(true);
-
-  console.log("User ID:", userId);
-  console.log("Documents:", documents);
-  console.log("Forms:", forms);
-
   useEffect(() => {
-    const fetchDocuments = async () => {
-      if (!userId) return;
-      
+    const fetchTrackerData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`/api/users/user_documents/${userId}`);
-        // Check if response.data exists and is an array
-        if (Array.isArray(response.data)) {
-          setDocuments(response.data);
-        } else {
-          setDocuments([]);
-        }
-      } catch (err) {
-        console.error('Error fetching documents:', err);
-        // Silently handle error - don't show to user
-        setDocuments([]);
+        const response = await axios.get(`/api/tracker/${userId}`);
+        setTracker(response.data.tracker);
+      } catch (error) {
+        console.error("Error fetching tracker data:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchDocuments();
+    if (userId) {
+      fetchTrackerData();
+    }
   }, [userId]);
 
+  // Determine current step based on tracker data
   useEffect(() => {
-    const fetchForms = async () => {
-      if (!userId) return;
-      
-      try {
-        setLoadingForms(true);
-        const response = await axios.get(`/api/users/user_forms/${userId}`);
-        // Check if response.data exists and is an array
-        if (Array.isArray(response.data)) {
-          setForms(response.data);
-        } else {
-          setForms([]);
-        }
-      } catch (err) {
-        console.error('Error fetching forms:', err);
-        // Silently handle error - don't show to user
-        setForms([]);
-      } finally {
-        setLoadingForms(false);
-      }
-    };
-
-    fetchForms();
-  }, [userId]);
-
-  // Automatically progress steps based on user status and data
-  useEffect(() => {
-    if (!user) {
-      setCurrentStep(1);
-    } else if (user && forms.length > 0 && documents.length === 0) {
-      setCurrentStep(2);
-    } else if (user && documents.length > 0) {
+    if (!tracker) return;
+         console.log("Tracker data:", tracker);
+console.log(
+  tracker?.signUp,
+  tracker?.submitForm, 
+  tracker?.fillingAndSubmission,
+  tracker?.result
+);
+    if (tracker.result) {
+      setCurrentStep(4);
+    } else if (tracker.fillingAndSubmission) {
       setCurrentStep(3);
-    } else if (user) {
-      // User is logged in but no forms or documents yet
+    } else if (tracker.submitForm) {
+      setCurrentStep(2);
+    } else if (tracker.signUp) {
       setCurrentStep(1);
     }
-  }, [user, forms, documents]);
+  }, [tracker]);
 
   const steps = [
-    { id: 1, label: "Step 1", description: "Sign Up" },
-    { id: 2, label: "Step 2", description: "Submit form" },
-    { id: 3, label: "Step 3", description: "Filling and Submission" },
-    { id: 4, label: "Step 4", description: "Result" },
+    { id: 1, label: "Step 1", description: "Sign Up", completed: tracker?.signUp },
+    { id: 2, label: "Step 2", description: "Submit form", completed: tracker?.submitForm },
+    { id: 3, label: "Step 3", description: "Filling and Submission", completed: tracker?.fillingAndSubmission },
+    { id: 4, label: "Step 4", description: "Result", completed: tracker?.result },
   ];
 
-  const nextStep = () => {
-    if (currentStep < steps.length) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  // Show loading state while checking user data
-  if ((loading || loadingForms) && user) {
+  if (loading) {
     return (
-      <div className="w-full flex flex-col items-center justify-center min-h-[50vh]">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#155da9]"></div>
-        <p className="mt-4 text-gray-600">Checking your application status...</p>
+      <div className="w-full flex items-center justify-center h-64">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
       </div>
     );
   }
@@ -138,7 +95,7 @@ export default function App() {
                 {/* Step Number */}
                 <div
                   className={`w-10 h-10 order-2 lg:order-1 rounded-full flex items-center justify-center text-white font-semibold ${
-                    currentStep >= step.id ? "bg-[#155da9]" : "bg-gray-300"
+                    step.completed ? "bg-[#155da9]" : "bg-gray-300"
                   }`}
                 >
                   {step.id}
@@ -148,7 +105,7 @@ export default function App() {
                 <div className="w-[25vw] lg:w-auto lg:text-center mt-4 lg:mt-0 lg:order-2 order-1">
                   <p
                     className={`text-sm font-medium ${
-                      currentStep >= step.id ? "text-[#c30e16]" : "text-gray-400"
+                      step.completed ? "text-[#c30e16]" : "text-gray-400"
                     }`}
                   >
                     {step.label}
@@ -160,7 +117,7 @@ export default function App() {
                 {index < steps.length - 1 && (
                   <div
                     className={`absolute lg:block hidden top-5 left-1/2 transform -translate-y-1/2 translate-x-5 ${
-                      currentStep > step.id ? "bg-[#c30e16]" : "bg-gray-300"
+                      steps[index + 1].completed ? "bg-[#c30e16]" : "bg-gray-300"
                     }`}
                     style={{
                       width: "calc(100% - 40px)",
@@ -173,18 +130,8 @@ export default function App() {
           </div>
         </div>
         <div className="mt-6 flex flex-col items-center">
-          <button
-            onClick={nextStep}
-            className={`border-2 px-10 py-4 tracking-wide transition-transform duration-500 hover:-translate-y-3 rounded-full ${
-              currentStep === 1 && !user
-                ? "border-gray-400 text-gray-400 cursor-not-allowed"
-                : "border-[#155da9] text-[#155da9] hover:bg-[#155da9] hover:text-white"
-            }`}
-            disabled={currentStep === 1 && !user}
-          >
-            {currentStep < steps.length ? "Next Step" : "Success"}
-          </button>
-          {currentStep === 1 && !user && (
+        
+          {!user && (
             <p className="text-red-500 text-sm mt-2">Please sign up to continue</p>
           )}
         </div>

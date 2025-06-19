@@ -64,19 +64,36 @@ const Page = () => {
     e.preventDefault();
     setLoading(true);
     try {
+      // 1. First make the signup request
       const res = await axios.post("/api/users/signup", user, {
         withCredentials: true,
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
         }
       });
-
+  
       const userdata = res.data.data.user;
-      toast.success("SignUp Successfull");
+      
+      // 2. Then update the tracker
+      try {
+        await axios.patch(`/api/tracker/${userdata._id}`, {
+          field: "signUp",
+          value: true
+        }, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+      } catch (trackerError) {
+        console.error("Failed to update tracker:", trackerError);
+        // You might want to handle this error differently
+      }
+  
+      toast.success("SignUp Successful");
       dispatch(setAuthUser(userdata));
       router.push("/verify");
     } catch (error: any) {
-      toast.error(error.res?.data?.message || "An error occured");
+      toast.error(error.response?.data?.message || "An error occurred");
       console.log(error);
     } finally {
       setLoading(false);

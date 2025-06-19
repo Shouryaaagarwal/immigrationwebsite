@@ -10,7 +10,6 @@ const applicantSchema = new mongoose.Schema({
         visitorVisa: { type: Boolean, default: false },
     },
 
-
     previousVisaApplication: {
         appliedBefore: { type: Boolean, default: false },
         details: { type: String },
@@ -38,7 +37,6 @@ const applicantSchema = new mongoose.Schema({
     },
 
 
-    // **Passport Details**
     passportDetails: {
         passportNumber: { type: String },
         issueDate: { type: String },
