@@ -1,4 +1,3 @@
-
 'use client'
 
 import { FiArrowLeft, FiCheck, FiDownload, FiExternalLink } from 'react-icons/fi';
@@ -396,3 +395,6 @@ const UserDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
 };
 
 export default UserDetailsPage;
+
+
+
