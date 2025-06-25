@@ -1,48 +1,3 @@
-// "use client";
-
-// import React from "react";
-// import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
-// import {  IoMdAirplane } from "react-icons/io";
-// import { RiVisaLine } from "react-icons/ri";
-// import { FaUniversity } from "react-icons/fa";
-
-// export function InfiniteMovingCardsDemo() {
-//   const items = [
-//     {
-//       icon: <IoMdAirplane className="text-4xl text-white" />,
-//       title: "Easy Application",
-//       description: "Seamless immigration made simple.",
-//     },
-//     {
-//       icon: <RiVisaLine className="text-4xl text-white" />,
-//       title: "Visa Assistance",
-//       description: "Expert guidance for your visa success.",
-//     },
-//     {
-//       icon: <FaUniversity className="text-4xl text-white" />,
-//       title: "College Admissions and Counselling",
-//       description: "Guiding you to your dream college.",
-//       // raised: true, // This box will be raised
-//     },
-//     {
-//       icon: <IoMdAirplane className="text-4xl text-white" />,
-//       title: "Immigration Support",
-//       description: "Comprehensive support for your journey abroad.",
-//     },
-//   ];
-
-//   return (
-//     <div className="h-[20rem]  bg-white rounded-md flex flex-col antialiased items-center justify-center relative overflow-hidden">
-//       <InfiniteMovingCards
-//         items={items}
-//         direction="right"
-//         speed="slow"
-//       />
-//     </div>
-//   );
-// } 
-
-
 "use client";
 import React from "react";
 import { IoMdAirplane } from "react-icons/io";
@@ -77,7 +32,7 @@ export function StaticCardsDemo() {
   return (
     <div className="bg-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div data-scroll-section data-scroll data-scroll-speed="0.2" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {items.map((item, idx) => (
             <div
               key={idx}

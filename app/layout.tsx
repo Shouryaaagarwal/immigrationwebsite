@@ -45,17 +45,80 @@
 // }
 
 
+// import type { Metadata } from "next";
+// import localFont from "next/font/local";
+// import "./globals.css";
+// import ClientProvider from "@/hoc/ClientProvider";
+// import { ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+// import { TrendingUpDownIcon } from "lucide-react";
+// import { Raleway } from "next/font/google";
+// import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+// import { extractRouterConfig } from "uploadthing/server";
+// import { ourFileRouter } from "@/app/api/uploadthing/core";
+
+// const font = Raleway({ subsets: ['latin'] });
+
+// export const metadata: Metadata = {
+//   title: "SeaView Immigration Services Ltd.",
+//   description: "Your trusted partner for immigration solutions",
+//   icons: {
+//     icon: [
+//       { url: "/favicon1.png"},
+//     ],
+//   },
+// };
+
+
+// export default function RootLayout({
+//   children,
+// }: Readonly<{
+//   children: React.ReactNode;
+// }>) {
+//   return (
+//     <html lang="en">
+//       <body className={`${font.className}`}> 
+//         <ClientProvider>
+//           <NextSSRPlugin
+//             /**
+//              * The `extractRouterConfig` will extract only the route configs
+//              * from the router to prevent additional information from being
+//              * leaked to the client. The data passed to the client is the same
+//              * as if you were to fetch `/api/uploadthing` directly.
+//              */
+//             routerConfig={extractRouterConfig(ourFileRouter)}
+//           />
+//           {children}
+//           <ToastContainer
+//             position="top-right"
+//             autoClose={5000}
+//             hideProgressBar
+//             closeOnClick
+//             pauseOnHover
+//             draggable
+//             toastClassName="custom-toast" 
+//             className="custom-toast-body"
+//             style={{textAlign: 'center'}}
+//           />
+//         </ClientProvider>
+//       </body>
+//     </html>
+//   );
+// } 
+
+
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import ClientProvider from "@/hoc/ClientProvider";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { TrendingUpDownIcon } from "lucide-react";
 import { Raleway } from "next/font/google";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "@/app/api/uploadthing/core";
+import SmoothScroll from "@/components/smoothscroll"; // ✅ Import SmoothScroll
 
 const font = Raleway({ subsets: ['latin'] });
 
@@ -63,12 +126,9 @@ export const metadata: Metadata = {
   title: "SeaView Immigration Services Ltd.",
   description: "Your trusted partner for immigration solutions",
   icons: {
-    icon: [
-      { url: "/favicon1.png"},
-    ],
+    icon: [{ url: "/favicon1.png" }],
   },
 };
-
 
 export default function RootLayout({
   children,
@@ -77,18 +137,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${font.className}`}> 
+      <body className={font.className}>
         <ClientProvider>
           <NextSSRPlugin
-            /**
-             * The `extractRouterConfig` will extract only the route configs
-             * from the router to prevent additional information from being
-             * leaked to the client. The data passed to the client is the same
-             * as if you were to fetch `/api/uploadthing` directly.
-             */
             routerConfig={extractRouterConfig(ourFileRouter)}
           />
-          {children}
+          <SmoothScroll> {/* ✅ Wrap children */}
+            {children}
+          </SmoothScroll>
           <ToastContainer
             position="top-right"
             autoClose={5000}
@@ -96,12 +152,17 @@ export default function RootLayout({
             closeOnClick
             pauseOnHover
             draggable
-            toastClassName="custom-toast" 
+            toastClassName="custom-toast"
             className="custom-toast-body"
-            style={{textAlign: 'center'}}
-          />
+            style={{ textAlign: 'center' }}
+          /> 
+          
         </ClientProvider>
       </body>
     </html>
   );
 }
+
+
+
+
