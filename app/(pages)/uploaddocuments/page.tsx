@@ -6,6 +6,7 @@ import { UploadButton } from '@/src/utils/uploadthing';
 import { OurFileRouter } from "@/app/api/uploadthing/core";
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 const DocumentUploadPage = () => {
    const user = useSelector((state:any) => state.auth.user);
@@ -65,81 +66,99 @@ const DocumentUploadPage = () => {
   
   console.log(userId)
   console.log(passport?.url)
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsSubmitting(true);
-  setError(null);
 
-  try {
-    if (!userId) {
-      throw new Error('User not authenticated');
-    }
-
-    // Validate required fields
-    if (!passport || !nationalId || !birthCertificate || marksheets.length === 0 || visas.length === 0) {
-      throw new Error('Please fill all required fields');
-    }
-
-    // Prepare data for API
-    const documentData = {
-      userId: userId,
-      passport: {
-        url: passport.url
-      },
-      marksheets: marksheets
-        .filter(m => m.file) // Only include marksheets with files
-        .map(m => ({
-          url: m.file!.url,
-          description: m.description
-        })),
-      countryVisa: visas[0]?.file ? {
-        url: visas[0].file.url,
-        description: visas[0].description
-      } : null,
-      nationalId: nationalId.url,
-      previousWork: workExperience
-        .filter(w => w.file) // Only include work experience with files
-        .map(w => ({
-          url: w.file!.url,
-          description: w.description
-        })),
-      birthCertificate: {
-        url: birthCertificate.url,
-        description: birthCertificate.description || 'Birth Certificate'
-      },
-      previousRefusals: previousRefusals
-        .filter(r => r.file) // Only include refusals with files
-        .map(r => ({
-          url: r.file!.url
-        }))
-    };
-
-    console.log('Document data:', documentData);  
-    const response = await fetch('/api/documents/upload', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(documentData)
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.message || 'Failed to submit documents');
-    }
-
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
   
-    router.push('/admin/user/' + userId); 
-    alert('Documents submitted successfully!');
-    
-  } catch (err) {
-    console.error('Submission error:', err);
-    setError(err instanceof Error ? err.message : 'An unknown error occurred');
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+    try {
+      if (!userId) {
+        throw new Error('User not authenticated');
+      }
+  
+      // Validate required fields
+      if (!passport || !nationalId || !birthCertificate || marksheets.length === 0 || visas.length === 0) {
+        throw new Error('Please fill all required fields');
+      }
+  
+      // Prepare data for API
+      const documentData = {
+        userId: userId,
+        passport: {
+          url: passport.url
+        },
+        marksheets: marksheets
+          .filter(m => m.file)
+          .map(m => ({
+            url: m.file!.url,
+            description: m.description
+          })),
+        countryVisa: visas[0]?.file ? {
+          url: visas[0].file.url,
+          description: visas[0].description
+        } : null,
+        nationalId: nationalId.url,
+        previousWork: workExperience
+          .filter(w => w.file)
+          .map(w => ({
+            url: w.file!.url,
+            description: w.description
+          })),
+        birthCertificate: {
+          url: birthCertificate.url,
+          description: birthCertificate.description || 'Birth Certificate'
+        },
+        previousRefusals: previousRefusals
+          .filter(r => r.file)
+          .map(r => ({
+            url: r.file!.url
+          }))
+      };
+  
+      // 1. Submit the documents
+      const response = await fetch('/api/documents/upload', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(documentData)
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to submit documents');
+      }
+  
+      try {
+        await axios.patch(
+          `/api/tracker/${userId}`,
+          {
+            field: "fillingAndSubmission",
+            value: true
+          },
+          {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+          }
+        );
+      } catch (trackerError) {
+        console.error('Tracker update error:', trackerError);
+        // You might want to handle this error differently or just log it
+      }
+  
+      // 3. Redirect after successful submission
+      router.push('/admin/user/' + userId); 
+      alert('Documents submitted successfully!');
+      
+    } catch (err) {
+      console.error('Submission error:', err);
+      setError(err instanceof Error ? err.message : 'An unknown error occurred');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="max-w-4xl mx-auto p-6"> 

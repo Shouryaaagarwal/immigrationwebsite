@@ -4,6 +4,8 @@ import { FiArrowLeft, FiCheck, FiDownload, FiExternalLink } from 'react-icons/fi
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState, use } from 'react';
 import Navbar from '@/app/components/Navbar';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 interface User {
   id: string;
@@ -21,24 +23,37 @@ interface Document {
   fileUrl: string;
 }
 
+interface Tracker {
+  _id: string;
+  userId: string;
+  result: boolean;
+  status: 'pending' | 'done';
+}
+
 const UserDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [documents, setDocuments] = useState<Document[]>([]);
+  const [tracker, setTracker] = useState<Tracker | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
-   const { id: userId } = use(params);
-   console.log('User ID:', userId);
+  const { id: userId } = use(params);
 
   useEffect(() => {
     if (!userId) return;
 
-    async function fetchData() {
+    const fetchData = async () => {
       try {
         setLoading(true);
         setError(null);
 
+        // Fetch tracker data first
+        const trackerResponse = await axios.get(`/api/tracker/${userId}`);
+        const trackerData = trackerResponse.data.tracker;
+        setTracker(trackerData);
+
+        // Then fetch user and documents
         const [userResponse, docsResponse] = await Promise.all([
           fetch(`/api/users/open-user/${userId}`),
           fetch(`/api/users/user_documents/${userId}`)
@@ -55,30 +70,153 @@ const UserDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
         setUser(userData);
 
         // Process documents
-        const extractedDocs = docsData.flatMap((doc: any) => {
-          return Object.entries(doc)
-            .filter(([_, value]) => typeof value === 'object' && (value as any)?.url)
-            .map(([key, value]) => ({
-              _id: `${doc._id}-${key}`,
-              userId: doc.userId,
-              type: key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()),
-              submittedDate: doc.createdAt || new Date(),
-              fileUrl: (value as any).url,
-            }));
-        });
-
+        interface Document {
+          _id: string;
+          userId: string;
+          type: string;
+          submittedDate: Date;
+          fileUrl: string;
+          description?: string; // Added to handle documents with descriptions
+        }
+        
+        // In your fetchData function, replace the documents processing with:
+        let extractedDocs: Document[] = [];
+        
+        if (Array.isArray(docsData)) {
+          extractedDocs = docsData.flatMap((doc: any) => {
+            const documents: Document[] = [];
+            
+            // Handle single documents
+            if (doc.passport?.url) {
+              documents.push({
+                _id: `${doc._id}-passport`,
+                userId: doc.userId,
+                type: 'Passport',
+                submittedDate: doc.createdAt || new Date(),
+                fileUrl: doc.passport.url
+              });
+            }
+        
+            if (doc.countryVisa?.url) {
+              documents.push({
+                _id: `${doc._id}-countryVisa`,
+                userId: doc.userId,
+                type: 'Country Visa',
+                submittedDate: doc.createdAt || new Date(),
+                fileUrl: doc.countryVisa.url,
+                description: doc.countryVisa.description
+              });
+            }
+        
+            if (doc.birthCertificate?.url) {
+              documents.push({
+                _id: `${doc._id}-birthCertificate`,
+                userId: doc.userId,
+                type: 'Birth Certificate',
+                submittedDate: doc.createdAt || new Date(),
+                fileUrl: doc.birthCertificate.url,
+                description: doc.birthCertificate.description
+              });
+            }
+        
+            // Handle array documents
+            if (Array.isArray(doc.marksheets)) {
+              doc.marksheets.forEach((marksheet: any, index: number) => {
+                if (marksheet.url) {
+                  documents.push({
+                    _id: `${doc._id}-marksheet-${index}`,
+                    userId: doc.userId,
+                    type: `Marksheet ${index + 1}`,
+                    submittedDate: doc.createdAt || new Date(),
+                    fileUrl: marksheet.url,
+                    description: marksheet.description
+                  });
+                }
+              });
+            }
+        
+            if (Array.isArray(doc.previousWork)) {
+              doc.previousWork.forEach((work: any, index: number) => {
+                if (work.url) {
+                  documents.push({
+                    _id: `${doc._id}-previousWork-${index}`,
+                    userId: doc.userId,
+                    type: `Previous Work ${index + 1}`,
+                    submittedDate: doc.createdAt || new Date(),
+                    fileUrl: work.url,
+                    description: work.description
+                  });
+                }
+              });
+            }
+        
+            if (Array.isArray(doc.previousRefusals)) {
+              doc.previousRefusals.forEach((refusal: any, index: number) => {
+                if (refusal.url) {
+                  documents.push({
+                    _id: `${doc._id}-previousRefusal-${index}`,
+                    userId: doc.userId,
+                    type: `Previous Refusal ${index + 1}`,
+                    submittedDate: doc.createdAt || new Date(),
+                    fileUrl: refusal.url
+                  });
+                }
+              });
+            }
+        
+            // Handle nationalId if it's a URL
+            if (doc.nationalId && typeof doc.nationalId === 'string' && doc.nationalId.startsWith('http')) {
+              documents.push({
+                _id: `${doc._id}-nationalId`,
+                userId: doc.userId,
+                type: 'National ID',
+                submittedDate: doc.createdAt || new Date(),
+                fileUrl: doc.nationalId
+              });
+            }
+        
+            return documents;
+          });
+        }
+        
+      
         setDocuments(extractedDocs);
       } catch (err) {
         setError((err as Error).message);
       } finally {
         setLoading(false);
       }
-    }
+    };
 
     fetchData();
   }, [userId]);
 
-  console.log(documents)
+  const updateTrackerStatus = async (result: boolean) => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      // Update tracker result
+      const response = await axios.patch(`/api/tracker/${userId}`, {
+        field: 'result',
+        value : result,
+      });
+
+      // Update local state
+      setTracker(prev => ({
+        ...prev!,
+        result,
+        status: result ? "done" : "pending"
+      }));
+
+
+      toast(`Status updated to ${result ? 'done' : 'pending'} successfully!`);
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -105,7 +243,7 @@ const UserDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
     );
   }
 
-  if (!user) {
+  if (!user || !tracker) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full text-center">
@@ -120,6 +258,9 @@ const UserDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
       </div>
     );
   }
+
+  // Determine status based on tracker.result
+  const currentStatus = tracker.result ? true : false;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -168,11 +309,10 @@ const UserDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
                   <div>
                     <p className="text-sm text-gray-500">Account Status</p>
                     <span className={`px-3 py-1.5 rounded-full text-sm font-medium ${
-                      user.status === 'done' ? 'bg-green-100 text-green-800' :
-                      user.status === 'pending' ? 'bg-red-100 text-black' :
-                      'bg-yellow-300 text-black'
+                      currentStatus === true ? 'bg-green-100 text-green-800' :
+                      'bg-red-100 text-black'
                     }`}>
-                      {user.status.charAt(0).toUpperCase() + user.status.slice(1)}
+                      {currentStatus ? 'done' : 'pending'}
                     </span>
                   </div>
                 </div>
@@ -180,14 +320,20 @@ const UserDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
             </div>
 
             <div className="flex flex-wrap gap-4 mb-8">
-              <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center">
-                <FiCheck className="mr-2" /> Received Details
+              <button 
+                onClick={() => updateTrackerStatus(true)}
+                className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center"
+              >
+                <FiCheck className="mr-2" /> Approve 
               </button>
-              <button className="px-6 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors flex items-center">
-                <FiCheck className="mr-2" /> Process Started
+              <button 
+                onClick={() => updateTrackerStatus(false)}
+                className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors flex items-center"
+              >
+                Reject 
               </button>
-              <button className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center">
-                <FiCheck className="mr-2" /> Process Completed
+              <button className="flex ml-auto items-center px-6 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors ">
+                <FiDownload className="mr-2" /> Download Form
               </button>
             </div>
 
