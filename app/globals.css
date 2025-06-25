@@ -8,6 +8,33 @@ body {
    .logo-white {
   filter: brightness(0) invert(1);
 }
+/* ------------------ CUSTOM SCROLLBAR ------------------ */
+
+/* Webkit browsers: Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  background: transparent; /* ✅ Make the scrollbar track transparent */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* ✅ Hide white background of track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #181819; /* Dark grey thumb */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6556CD; /* Purple thumb on hover */
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #181819 transparent; /* ✅ Track is transparent */
+}
 
 
 /* For the container */

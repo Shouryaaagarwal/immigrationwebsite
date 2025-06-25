@@ -971,3 +971,6 @@ const UserDetailsPage = ({ params }: { params: Promise<{ id: string }> }) => {
 };
 
 export default UserDetailsPage;
+
+
+

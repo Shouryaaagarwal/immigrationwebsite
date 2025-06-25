@@ -1,21 +1,50 @@
 "use client";
 
 import Navbar from "@/app/components/Navbar";
-import React from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import { Raleway } from "next/font/google";
 import { FaTools } from "react-icons/fa";
 import { HiUserGroup } from "react-icons/hi2";
 import { MdMiscellaneousServices } from "react-icons/md";
 import SwiperNavigation from "@/app/components/SwiperNavigation";
 import Footer from "@/app/components/Footer";
-import Script from "next/script";
+import Script from "next/script";   
+ import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 
 const raleway = Raleway({
   weight: ["400", "600", "800"],
   subsets: ["latin"],
 });
 
-export default function About() {
+export default function About() {   
+ 
+
+  const aboutRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: aboutRef.current,
+          start: "top center",
+          end: "bottom top",
+          scrub: true,
+          markers: true, // Optional: remove in production
+        },
+      })
+      .fromTo(
+        aboutRef.current,
+        { opacity: 1, scale: 0.6 },
+        { opacity: 1, scale: 1.5, ease: "power2.out" }
+      );
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <div
       style={{ fontFamily: raleway.style.fontFamily }}
@@ -32,9 +61,13 @@ export default function About() {
         }}
       >
         <Navbar />
-        <h1 className="font-medium tracking-widest text-4xl md:text-5xl lg:text-6xl z-20 text-white text-center px-4">
-          About Us
-        </h1>
+      <h1
+        ref={aboutRef}
+        className="font-medium tracking-widest text-4xl md:text-5xl lg:text-6xl z-20 text-white text-center px-4 will-change-transform"
+        style={{ transformOrigin: "center center" }}
+      >
+        About Us
+      </h1>
         <h5 className="text-[#F1F1F1] mt-4 font-thin text-sm md:text-lg z-20 tracking-widest text-center px-4">
           Connecting Dreams to Destinations Let's Build Your Path Together
         </h5>
