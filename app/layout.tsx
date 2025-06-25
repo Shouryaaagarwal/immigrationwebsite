@@ -56,7 +56,7 @@ import { Raleway } from "next/font/google";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "@/app/api/uploadthing/core";
-
+import { ClerkProvider } from "@clerk/nextjs";
 const font = Raleway({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -76,6 +76,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider> 
     <html lang="en">
       <body className={`${font.className}`}> 
         <ClientProvider>
@@ -103,5 +104,6 @@ export default function RootLayout({
         </ClientProvider>
       </body>
     </html>
+    </ClerkProvider>
   );
 }

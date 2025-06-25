@@ -39,3 +39,43 @@ export async function PATCH(req: NextRequest) {
         return NextResponse.json({ message: 'Server Error', error: err.message || 'Internal Server Error' }, { status: 500 });
     }
 }
+
+
+
+
+export async function GET(
+    request: Request,
+    { params }: { params: { id: string } }
+  ) {
+    await connect();
+  
+    try {
+      const id = params?.id;
+      console.log('id', id);
+  
+      if (!id) {
+        return NextResponse.json(
+          { message: 'User ID is required' },
+          { status: 400 }
+        );
+      }
+  
+      // Find all documents for this user based on userId
+      const documents = await UserForm.find({ userId: id });
+      console.log('documents', documents);
+  
+      if (!documents || documents.length === 0) {
+        return NextResponse.json(
+          { message: 'No documents found for this user' },
+        );
+      }
+  
+      return NextResponse.json(documents);
+    } catch (error) {
+      console.error('Error fetching documents:', error);
+      return NextResponse.json(
+        { message: 'Server error', error: error instanceof Error ? error.message : 'Unknown error' },
+        { status: 500 }
+      );
+    }
+  }
