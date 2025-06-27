@@ -649,14 +649,12 @@ export default function Form() {
       <div className="page-container pt-[140px] pb-10 pl-4 pr-4 sm:pl-10 sm:pr-10">
         <div className="form-pages-wrapper">
           {/* Page 1 */}
-          <div className="page1 mb-10 sm:px-6 lg:px-8">
+         <div className="page1 mb-10 sm:px-6 lg:px-8">
             <h2 className="sm:text-4xl text-2xl mb-10 text-center sm:text-left">
               PERSONAL INFORMATION SHEET
             </h2>
             <div className="w-full max-w-4xl mx-auto">
-              <h2 className="text-lg text-black mb-4">
-                DETAILS OF APPLICATION:
-              </h2>
+              <h2 className="text-lg text-black mb-4">DETAILS OF APPLICATION:</h2>
               <textarea
                 className="w-full sm:w-[80%] md:w-[70%] lg:w-[60%] p-2 border rounded-md mb-4"
                 placeholder="Enter details here..."
@@ -664,10 +662,8 @@ export default function Form() {
                 value={formData.applicationDetails}
                 onChange={handleInputChange}
               ></textarea>
-
               <h2 className="text-lg text-black mb-4">
-                Have you applied for a visa to Canada before? (If yes, please
-                provide details):
+                Have you applied for a visa to Canada before? (If yes, please provide details):
               </h2>
               <textarea
                 className="w-full sm:w-[80%] md:w-[70%] lg:w-[60%] p-2 border rounded-md mb-4"
@@ -676,10 +672,8 @@ export default function Form() {
                 value={formData.previousVisaDetails}
                 onChange={handleInputChange}
               ></textarea>
-
               <h2 className="text-lg text-black mb-4">
-                UCI No: (8 digits number on your Canadian Permit/Visa/previous
-                refusal letter)
+                UCI No: (8 digits number on your Canadian Permit/Visa/previous refusal letter)
               </h2>
               <input
                 type="text"
@@ -689,11 +683,8 @@ export default function Form() {
                 value={formData.uciNumber}
                 onChange={handleInputChange}
               />
-
               <div>
-                <h2 className="text-lg text-black mb-4">
-                  Select Your Application Type
-                </h2>
+                <h2 className="text-lg text-black mb-4">Select Your Application Type</h2>
                 <form className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6">
                   {[
                     "Express Entry - Principal Applicant",
@@ -726,7 +717,7 @@ export default function Form() {
 
           {/* Page 2 */}
 
-          <div id="page2" className="page2 pb-10 sm:px-10">
+           <div id="page2" className="page2 pb-10 sm:px-10">
             <h2 className="sm:text-4xl text-2xl sm:text-left text-center mb-10">
               Applicant Information
             </h2>
@@ -744,9 +735,7 @@ export default function Form() {
                   />
                 </div>
                 <div className="w-full sm:w-1/2">
-                  <label className="text-lg text-black mb-2">
-                    Last Name (Surname):
-                  </label>
+                  <label className="text-lg text-black mb-2">Last Name (Surname):</label>
                   <input
                     type="text"
                     className="w-full p-2 border rounded-md"
@@ -757,12 +746,9 @@ export default function Form() {
                   />
                 </div>
               </div>
-
               <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
                 <div className="w-full sm:w-1/2">
-                  <label className="text-lg text-black mb-2">
-                    Date of Birth (dd/mm/yy):
-                  </label>
+                  <label className="text-lg text-black mb-2">Date of Birth (dd/mm/yy):</label>
                   <input
                     type="date"
                     className="w-full p-2 border rounded-md"
@@ -772,9 +758,7 @@ export default function Form() {
                   />
                 </div>
                 <div className="w-full sm:w-1/2">
-                  <label className="text-lg text-black mb-2">
-                    Place of Birth:
-                  </label>
+                  <label className="text-lg text-black mb-2">Place of Birth:</label>
                   <input
                     type="text"
                     className="w-full p-2 border rounded-md"
@@ -785,12 +769,9 @@ export default function Form() {
                   />
                 </div>
               </div>
-
               <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
                 <div className="w-full sm:w-1/2">
-                  <label className="text-lg text-black mb-2">
-                    Color of Eyes:
-                  </label>
+                  <label className="text-lg text-black mb-2">Color of Eyes:</label>
                   <input
                     type="text"
                     className="w-full p-2 border rounded-md"
@@ -801,9 +782,7 @@ export default function Form() {
                   />
                 </div>
                 <div className="w-full sm:w-1/2">
-                  <label className="text-lg text-black mb-2">
-                    Height (inches/cm):
-                  </label>
+                  <label className="text-lg text-black mb-2">Height (inches/cm):</label>
                   <input
                     type="number"
                     className="w-full p-2 border rounded-md"
@@ -814,7 +793,6 @@ export default function Form() {
                   />
                 </div>
               </div>
-
               <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
                 <div className="w-full sm:w-1/2">
                   <label className="text-lg text-black mb-2">Gender:</label>
@@ -831,9 +809,7 @@ export default function Form() {
                   </select>
                 </div>
                 <div className="w-full sm:w-1/2">
-                  <label className="text-lg text-black mb-2">
-                    Telephone No:
-                  </label>
+                  <label className="text-lg text-black mb-2">Telephone No:</label>
                   <input
                     type="number"
                     className="w-full p-2 border rounded-md"
@@ -844,12 +820,9 @@ export default function Form() {
                   />
                 </div>
               </div>
-
               <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
                 <div className="w-full sm:w-1/2">
-                  <label className="text-lg text-black mb-2">
-                    Email Address:
-                  </label>
+                  <label className="text-lg text-black mb-2">Email Address:</label>
                   <input
                     type="email"
                     className="w-full p-2 border rounded-md"
@@ -860,9 +833,7 @@ export default function Form() {
                   />
                 </div>
                 <div className="w-full sm:w-1/2">
-                  <label className="text-lg text-black mb-2">
-                    Status in Canada (If applicable):
-                  </label>
+                  <label className="text-lg text-black mb-2">Status in Canada (If applicable):</label>
                   <input
                     type="text"
                     className="w-full p-2 border rounded-md"
@@ -873,12 +844,9 @@ export default function Form() {
                   />
                 </div>
               </div>
-
               <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
                 <div className="w-full sm:w-1/2">
-                  <label className="text-lg text-black mb-2">
-                    Current Address:
-                  </label>
+                  <label className="text-lg text-black mb-2">Current Address:</label>
                   <input
                     type="text"
                     className="w-full p-2 border rounded-md"
@@ -889,9 +857,7 @@ export default function Form() {
                   />
                 </div>
                 <div className="w-full sm:w-1/2">
-                  <label className="text-lg text-black mb-2">
-                    Address in Home Country:
-                  </label>
+                  <label className="text-lg text-black mb-2">Address in Home Country:</label>
                   <input
                     type="text"
                     className="w-full p-2 border rounded-md"
@@ -902,12 +868,9 @@ export default function Form() {
                   />
                 </div>
               </div>
-
               <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
                 <div className="w-full sm:w-1/2">
-                  <label className="text-lg text-black mb-2">
-                    Passport No:
-                  </label>
+                  <label className="text-lg text-black mb-2">Passport No:</label>
                   <input
                     type="number"
                     className="w-full p-2 border rounded-md"
@@ -928,12 +891,9 @@ export default function Form() {
                   />
                 </div>
               </div>
-
               <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
                 <div className="w-full sm:w-1/2">
-                  <label className="text-lg text-black mb-2">
-                    Expiry Date:
-                  </label>
+                  <label className="text-lg text-black mb-2">Expiry Date:</label>
                   <input
                     type="date"
                     className="w-full p-2 border rounded-md"
@@ -943,9 +903,7 @@ export default function Form() {
                   />
                 </div>
                 <div className="w-full sm:w-1/2">
-                  <label className="text-lg text-black mb-2">
-                    Country of Issue:
-                  </label>
+                  <label className="text-lg text-black mb-2">Country of Issue:</label>
                   <input
                     type="text"
                     className="w-full p-2 border rounded-md"
@@ -956,11 +914,8 @@ export default function Form() {
                   />
                 </div>
               </div>
-
               <div className="w-full">
-                <label className="text-lg text-black mb-2">
-                  Marital Status:
-                </label>
+                <label className="text-lg text-black mb-2">Marital Status:</label>
                 <select
                   className="w-full p-2 border rounded-md"
                   name="applicantInfo.maritalStatus"
@@ -979,725 +934,1092 @@ export default function Form() {
 
           {/* Page 3 */}
 
-  <div id="page3" className="page3 pb-10 sm:px-10">
-    <h3 className="text-2xl sm:text-left text-center sm:text-4xl mb-4">
-      Spouse/Common Law Partner Information
-    </h3>
-    <div className="spouse-info space-y-6 mb-10">
-      <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
-        <div className="w-full sm:w-1/2">
-          <label className="text-lg text-black mb-2">Date of Marriage:</label>
-          <input
-            type="date"
-            className="w-full p-2 border rounded-md"
-            name="spouseInfo.marriageDate"
-            value={formData.spouseInfo.marriageDate}
-            onChange={handleInputChange}
-          />
-        </div>
-      </div>
-      <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
-        <div className="w-full sm:w-1/2">
-          <label className="text-lg text-black mb-2">First Name:</label>
-          <input
-            type="text"
-            className="w-full p-2 border rounded-md"
-            placeholder="Enter First Name"
-            name="spouseInfo.firstName"
-            value={formData.spouseInfo.firstName}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="w-full sm:w-1/2">
-          <label className="text-lg text-black mb-2">Last Name:</label>
-          <input
-            type="text"
-            className="w-full p-2 border rounded-md"
-            placeholder="Enter Last Name"
-            name="spouseInfo.lastName"
-            value={formData.spouseInfo.lastName}
-            onChange={handleInputChange}
-          />
-        </div>
-      </div>
-      <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
-        <div className="w-full sm:w-1/2">
-          <label className="text-lg text-black mb-2">Date of Birth (dd/mm/yy):</label>
-          <input
-            type="date"
-            className="w-full p-2 border rounded-md"
-            name="spouseInfo.dob"
-            value={formData.spouseInfo.dob}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="w-full sm:w-1/2">
-          <label className="text-lg text-black mb-2">Place of Birth:</label>
-          <input
-            type="text"
-            className="w-full p-2 border rounded-md"
-            placeholder="Enter Place of Birth"
-            name="spouseInfo.placeOfBirth"
-            value={formData.spouseInfo.placeOfBirth}
-            onChange={handleInputChange}
-          />
-        </div>
-      </div>
-      <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
-        <div className="w-full sm:w-1/2">
-          <label className="text-lg text-black mb-2">Occupation:</label>
-          <input
-            type="text"
-            className="w-full p-2 border rounded-md"
-            placeholder="Enter Occupation"
-            name="spouseInfo.occupation"
-            value={formData.spouseInfo.occupation}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="w-full sm:w-1/2">
-          <label className="text-lg text-black mb-2">Spouse Address:</label>
-          <input
-            type="text"
-            className="w-full p-2 border rounded-md"
-            placeholder="Enter Spouse Address"
-            name="spouseInfo.address"
-            value={formData.spouseInfo.address}
-            onChange={handleInputChange}
-          />
-        </div>
-      </div>
-    </div>
-
-    <div className="previous-marriage-info space-y-6 mb-10">
-      <h3 className="text-4xl mb-4">If Married Previously</h3>
-      <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
-        <div className="w-full sm:w-1/2">
-          <label className="text-lg text-black mb-2">Date of Marriage:</label>
-          <input
-            type="date"
-            className="w-full p-2 border rounded-md"
-            name="previousMarriage.marriageDate"
-            value={formData.previousMarriage.marriageDate}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="w-full sm:w-1/2">
-          <label className="text-lg text-black mb-2">End Date of Marriage:</label>
-          <input
-            type="date"
-            className="w-full p-2 border rounded-md"
-            name="previousMarriage.endDate"
-            value={formData.previousMarriage.endDate}
-            onChange={handleInputChange}
-          />
-        </div>
-      </div>
-      <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
-        <div className="w-full sm:w-1/2">
-          <label className="text-lg text-black mb-2">Spouse First Name:</label>
-          <input
-            type="text"
-            className="w-full p-2 border rounded-md"
-            placeholder="Enter Spouse First Name"
-            name="previousMarriage.spouseFirstName"
-            value={formData.previousMarriage.spouseFirstName}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="w-full sm:w-1/2">
-          <label className="text-lg text-black mb-2">Spouse Last Name:</label>
-          <input
-            type="text"
-            className="w-full p-2 border rounded-md"
-            placeholder="Enter Spouse Last Name"
-            name="previousMarriage.spouseLastName"
-            value={formData.previousMarriage.spouseLastName}
-            onChange={handleInputChange}
-          />
-        </div>
-      </div>
-      <div className="flex flex-col sm:flex-row gap-y-6">
-        <div className="w-full sm:w-1/2">
-          <label className="text-lg text-black mb-2">Date of Birth (dd/mm/yy):</label>
-          <input
-            type="date"
-            className="w-full p-2 border rounded-md"
-            name="previousMarriage.spouseDob"
-            value={formData.previousMarriage.spouseDob}
-            onChange={handleInputChange}
-          />
-        </div>
-      </div>
-    </div>
-  </div>   
-
+           <div id="page3" className="page3 pb-10 sm:px-10">
+            <h3 className="text-2xl sm:text-left text-center sm:text-4xl mb-4">
+              Spouse/Common Law Partner Information
+            </h3>
+            <div className="spouse-info space-y-6 mb-10">
+              <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
+                <div className="w-full sm:w-1/2">
+                  <label className="text-lg text-black mb-2">Date of Marriage:</label>
+                  <input
+                    type="date"
+                    className="w-full p-2 border rounded-md"
+                    name="spouseInfo.marriageDate"
+                    value={formData.spouseInfo.marriageDate}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
+                <div className="w-full sm:w-1/2">
+                  <label className="text-lg text-black mb-2">First Name:</label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded-md"
+                    placeholder="Enter First Name"
+                    name="spouseInfo.firstName"
+                    value={formData.spouseInfo.firstName}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="w-full sm:w-1/2">
+                  <label className="text-lg text-black mb-2">Last Name:</label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded-md"
+                    placeholder="Enter Last Name"
+                    name="spouseInfo.lastName"
+                    value={formData.spouseInfo.lastName}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
+                <div className="w-full sm:w-1/2">
+                  <label className="text-lg text-black mb-2">Date of Birth (dd/mm/yy):</label>
+                  <input
+                    type="date"
+                    className="w-full p-2 border rounded-md"
+                    name="spouseInfo.dob"
+                    value={formData.spouseInfo.dob}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="w-full sm:w-1/2">
+                  <label className="text-lg text-black mb-2">Place of Birth:</label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded-md"
+                    placeholder="Enter Place of Birth"
+                    name="spouseInfo.placeOfBirth"
+                    value={formData.spouseInfo.placeOfBirth}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
+                <div className="w-full sm:w-1/2">
+                  <label className="text-lg text-black mb-2">Occupation:</label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded-md"
+                    placeholder="Enter Occupation"
+                    name="spouseInfo.occupation"
+                    value={formData.spouseInfo.occupation}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="w-full sm:w-1/2">
+                  <label className="text-lg text-black mb-2">Spouse Address:</label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded-md"
+                    placeholder="Enter Spouse Address"
+                    name="spouseInfo.address"
+                    value={formData.spouseInfo.address}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="previous-marriage-info space-y-6 mb-10">
+              <h3 className="text-4xl mb-4">If Married Previously</h3>
+              <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
+                <div className="w-full sm:w-1/2">
+                  <label className="text-lg text-black mb-2">Date of Marriage:</label>
+                  <input
+                    type="date"
+                    className="w-full p-2 border rounded-md"
+                    name="previousMarriage.marriageDate"
+                    value={formData.previousMarriage.marriageDate}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="w-full sm:w-1/2">
+                  <label className="text-lg text-black mb-2">End Date of Marriage:</label>
+                  <input
+                    type="date"
+                    className="w-full p-2 border rounded-md"
+                    name="previousMarriage.endDate"
+                    value={formData.previousMarriage.endDate}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:space-x-4 gap-y-6">
+                <div className="w-full sm:w-1/2">
+                  <label className="text-lg text-black mb-2">Spouse First Name:</label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded-md"
+                    placeholder="Enter Spouse First Name"
+                    name="previousMarriage.spouseFirstName"
+                    value={formData.previousMarriage.spouseFirstName}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="w-full sm:w-1/2">
+                  <label className="text-lg text-black mb-2">Spouse Last Name:</label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded-md"
+                    placeholder="Enter Spouse Last Name"
+                    name="previousMarriage.spouseLastName"
+                    value={formData.previousMarriage.spouseLastName}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-y-6">
+                <div className="w-full sm:w-1/2">
+                  <label className="text-lg text-black mb-2">Date of Birth (dd/mm/yy):</label>
+                  <input
+                    type="date"
+                    className="w-full p-2 border rounded-md"
+                    name="previousMarriage.spouseDob"
+                    value={formData.previousMarriage.spouseDob}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
 
   {/* Page 4 */}
 
-  <div id="page4" className="page4 mb-10 sm:px-10">
-    <h2 className="sm:text-4xl text-2xl sm:text-left text-center mb-10">
-      Parental Information
-    </h2>
-
-    {/* Father's Details */}
-    <div className="sm:p-6 rounded-lg mb-6">
-      <h3 className="text-2xl mb-4">Father’s Details</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-1">First Name:</label>
-          <input
-            type="text"
-            className="w-full p-2 border rounded-md"
-            placeholder="Enter first name"
-            name="parentsInfo.father.firstName"
-            value={formData.parentsInfo.father.firstName}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-1">Last Name:</label>
-          <input
-            type="text"
-            className="w-full p-2 border rounded-md"
-            placeholder="Enter last name"
-            name="parentsInfo.father.lastName"
-            value={formData.parentsInfo.father.lastName}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-1">Date of Birth (dd/mm/yy):</label>
-          <input
-            type="date"
-            className="w-full p-2 border rounded-md"
-            name="parentsInfo.father.dob"
-            value={formData.parentsInfo.father.dob}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-1">Place of Birth:</label>
-          <input
-            type="text"
-            className="w-full p-2 border rounded-md"
-            placeholder="Enter place of birth"
-            name="parentsInfo.father.placeOfBirth"
-            value={formData.parentsInfo.father.placeOfBirth}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-1">Occupation:</label>
-          <input
-            type="text"
-            className="w-full p-2 border rounded-md"
-            placeholder="Enter occupation"
-            name="parentsInfo.father.occupation"
-            value={formData.parentsInfo.father.occupation}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-1">Current Address:</label>
-          <textarea
-            className="w-full p-2 border rounded-md"
-            placeholder="Enter current address"
-            name="parentsInfo.father.address"
-            value={formData.parentsInfo.father.address}
-            onChange={handleInputChange}
-          ></textarea>
-        </div>
-        <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-1">
-            If Deceased, Date of Death (if applicable):
-          </label>
-          <input
-            type="date"
-            className="w-full p-2 border rounded-md"
-            name="parentsInfo.father.dateOfDeath"
-            value={formData.parentsInfo.father.dateOfDeath}
-            onChange={handleInputChange}
-          />
-        </div>
-      </div>
-    </div>
-
-    {/* Mother's Details */}
-    <div className="sm:p-6 rounded-lg">
-      <h3 className="text-2xl mb-4">Mother’s Details</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-1">First Name:</label>
-          <input
-            type="text"
-            className="w-full p-2 border rounded-md"
-            placeholder="Enter first name"
-            name="parentsInfo.mother.firstName"
-            value={formData.parentsInfo.mother.firstName}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-1">Last Name:</label>
-          <input
-            type="text"
-            className="w-full p-2 border rounded-md"
-            placeholder="Enter last name"
-            name="parentsInfo.mother.lastName"
-            value={formData.parentsInfo.mother.lastName}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-1">Date of Birth (dd/mm/yy):</label>
-          <input
-            type="date"
-            className="w-full p-2 border rounded-md"
-            name="parentsInfo.mother.dob"
-            value={formData.parentsInfo.mother.dob}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-1">Place of Birth:</label>
-          <input
-            type="text"
-            className="w-full p-2 border rounded-md"
-            placeholder="Enter place of birth"
-            name="parentsInfo.mother.placeOfBirth"
-            value={formData.parentsInfo.mother.placeOfBirth}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-1">Occupation:</label>
-          <input
-            type="text"
-            className="w-full p-2 border rounded-md"
-            placeholder="Enter occupation"
-            name="parentsInfo.mother.occupation"
-            value={formData.parentsInfo.mother.occupation}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-1">Current Address:</label>
-          <textarea
-            className="w-full p-2 border rounded-md"
-            placeholder="Enter current address"
-            name="parentsInfo.mother.address"
-            value={formData.parentsInfo.mother.address}
-            onChange={handleInputChange}
-          ></textarea>
-        </div>
-        <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-1">
-            If Deceased, Date of Death (if applicable):
-          </label>
-          <input
-            type="date"
-            className="w-full p-2 border rounded-md"
-            name="parentsInfo.mother.dateOfDeath"
-            value={formData.parentsInfo.mother.dateOfDeath}
-            onChange={handleInputChange}
-          />
-        </div>
-      </div>
-    </div>
-  </div>    
-
+               <div id="page4" className="page4 mb-10 sm:px-10">
+            <h2 className="sm:text-4xl text-2xl sm:text-left text-center mb-10">
+              Parental Information
+            </h2>
+            <div className="sm:p-6 rounded-lg mb-6">
+              <h3 className="text-2xl mb-4">Father’s Details</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-gray-700 text-sm font-semibold mb-1">
+                    First Name:
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded-md"
+                    placeholder="Enter first name"
+                    name="parentsInfo.father.firstName"
+                    value={formData.parentsInfo.father.firstName}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 text-sm font-semibold mb-1">
+                    Last Name:
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded-md"
+                    placeholder="Enter last name"
+                    name="parentsInfo.father.lastName"
+                    value={formData.parentsInfo.father.lastName}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 text-sm font-semibold mb-1">
+                    Date of Birth (dd/mm/yy):
+                  </label>
+                  <input
+                    type="date"
+                    className="w-full p-2 border rounded-md"
+                    name="parentsInfo.father.dob"
+                    value={formData.parentsInfo.father.dob}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 text-sm font-semibold mb-1">
+                    Place of Birth:
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded-md"
+                    placeholder="Enter place of birth"
+                    name="parentsInfo.father.placeOfBirth"
+                    value={formData.parentsInfo.father.placeOfBirth}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 text-sm font-semibold mb-1">
+                    Occupation:
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded-md"
+                    placeholder="Enter occupation"
+                    name="parentsInfo.father.occupation"
+                    value={formData.parentsInfo.father.occupation}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 text-sm font-semibold mb-1">
+                    Current Address:
+                  </label>
+                  <textarea
+                    className="w-full p-2 border rounded-md"
+                    placeholder="Enter current address"
+                    name="parentsInfo.father.address"
+                    value={formData.parentsInfo.father.address}
+                    onChange={handleInputChange}
+                  ></textarea>
+                </div>
+                <div>
+                  <label className="block text-gray-700 text-sm font-semibold mb-1">
+                    If Deceased, Date of Death (if applicable):
+                  </label>
+                  <input
+                    type="date"
+                    className="w-full p-2 border rounded-md"
+                    name="parentsInfo.father.dateOfDeath"
+                    value={formData.parentsInfo.father.dateOfDeath}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="sm:p-6 rounded-lg">
+              <h3 className="text-2xl mb-4">Mother’s Details</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-gray-700 text-sm font-semibold mb-1">
+                    First Name:
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded-md"
+                    placeholder="Enter first name"
+                    name="parentsInfo.mother.firstName"
+                    value={formData.parentsInfo.mother.firstName}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 text-sm font-semibold mb-1">
+                    Last Name:
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded-md"
+                    placeholder="Enter last name"
+                    name="parentsInfo.mother.lastName"
+                    value={formData.parentsInfo.mother.lastName}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 text-sm font-semibold mb-1">
+                    Date of Birth (dd/mm/yy):
+                  </label>
+                  <input
+                    type="date"
+                    className="w-full p-2 border rounded-md"
+                    name="parentsInfo.mother.dob"
+                    value={formData.parentsInfo.mother.dob}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 text-sm font-semibold mb-1">
+                    Place of Birth:
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded-md"
+                    placeholder="Enter place of birth"
+                    name="parentsInfo.mother.placeOfBirth"
+                    value={formData.parentsInfo.mother.placeOfBirth}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 text-sm font-semibold mb-1">
+                    Occupation:
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full p-2 border rounded-md"
+                    placeholder="Enter occupation"
+                    name="parentsInfo.mother.occupation"
+                    value={formData.parentsInfo.mother.occupation}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 text-sm font-semibold mb-1">
+                    Current Address:
+                  </label>
+                  <textarea
+                    className="w-full p-2 border rounded-md"
+                    placeholder="Enter current address"
+                    name="parentsInfo.mother.address"
+                    value={formData.parentsInfo.mother.address}
+                    onChange={handleInputChange}
+                  ></textarea>
+                </div>
+                <div>
+                  <label className="block text-gray-700 text-sm font-semibold mb-1">
+                    If Deceased, Date of Death (if applicable):
+                  </label>
+                  <input
+                    type="date"
+                    className="w-full p-2 border rounded-md"
+                    name="parentsInfo.mother.dateOfDeath"
+                    value={formData.parentsInfo.mother.dateOfDeath}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
 
 
 {/* Page 5 */}
 
-  <div id="page5" className="page5 mb-10 sm:px-10">
-    <h2 className="sm:text-4xl text-2xl sm:text-left text-center mb-10">
-      IELTS & Other Questions
-    </h2>
-
-    {/* IELTS Scores */}
-    <div className="mb-10">
-      <h3 className="text-2xl mb-4">IELTS Scores</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Listening</label>
-          <input
-            type="number"
-            name="ieltsScores.listening"
-            className="w-full p-2 border rounded-md"
-            placeholder="Listening Score"
-            value={formData.ieltsScores.listening}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Speaking</label>
-          <input
-            type="number"
-            name="ieltsScores.speaking"
-            className="w-full p-2 border rounded-md"
-            placeholder="Speaking Score"
-            value={formData.ieltsScores.speaking}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Reading</label>
-          <input
-            type="number"
-            name="ieltsScores.reading"
-            className="w-full p-2 border rounded-md"
-            placeholder="Reading Score"
-            value={formData.ieltsScores.reading}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Writing</label>
-          <input
-            type="number"
-            name="ieltsScores.writing"
-            className="w-full p-2 border rounded-md"
-            placeholder="Writing Score"
-            value={formData.ieltsScores.writing}
-            onChange={handleInputChange}
-          />
-        </div>
-      </div>
-    </div>
-
-    {/* Criminal Record Question */}
-    <div className="mb-10">
-      <h3 className="text-2xl mb-4">Criminal Record</h3>
-      <label className="block text-sm font-medium text-gray-700 mb-2">
-        Have you ever been refused a visa or permit, denied entry, or ordered to leave Canada or any other country?
-      </label>
-      <textarea
-        name="questions.crime.details"
-        className="w-full p-2 border rounded-md"
-        placeholder="Provide details if applicable"
-        value={formData.questions.crime.details}
-        onChange={handleInputChange}
-      />
-    </div>
-
-    {/* Visa Refusal */}
-    <div className="mb-10">
-      <h3 className="text-2xl mb-4">Visa Refusals</h3>
-      <label className="block text-sm font-medium text-gray-700 mb-2">
-        Have you ever had a visa refusal from Canada or any other country?
-      </label>
-      <textarea
-        name="questions.visa.details"
-        className="w-full p-2 border rounded-md"
-        placeholder="Provide details if applicable"
-        value={formData.questions.visa.details}
-        onChange={handleInputChange}
-      />
-    </div>
-
-    {/* Medical/Health Conditions */}
-    <div className="mb-10">
-      <h3 className="text-2xl mb-4">Medical/Health Conditions</h3>
-      <label className="block text-sm font-medium text-gray-700 mb-2">
-        Do you or any family members have a medical condition that requires ongoing treatment?
-      </label>
-      <textarea
-        name="questions.health.details"
-        className="w-full p-2 border rounded-md"
-        placeholder="Provide details if applicable"
-        value={formData.questions.health.details}
-        onChange={handleInputChange}
-      />
-    </div>
-  </div>    
+        <div id="page5" className="page5 mb-10 sm:px-10 overflow-x-auto">
+            <h2 className="sm:text-4xl text-2xl sm:text-left text-center mb-10">
+              Education and Work History
+            </h2>
+            <div className="mb-10">
+              <h3 className="text-2xl mb-4">Education History</h3>
+              <div className="w-full overflow-x-auto">
+                <table className="w-full min-w-[700px] text-left">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="p-2">From (dd/mm/yy)</th>
+                      <th className="p-2">To (dd/mm/yy)</th>
+                      <th className="p-2">Institute Name</th>
+                      <th className="p-2">City</th>
+                      <th className="p-2">Course</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {educationRows.map((row, index) => (
+                      <tr key={row.id} className="border-b">
+                        <td className="p-2">
+                          <input
+                            type="date"
+                            className="w-full p-1 border rounded-md"
+                            name={`educationHistory.${index}.fromDate`}
+                            value={formData.educationHistory[index]?.fromDate || ""}
+                            onChange={handleInputChange}
+                          />
+                        </td>
+                        <td className="p-2">
+                          <input
+                            type="date"
+                            className="w-full p-1 border rounded-md"
+                            name={`educationHistory.${index}.toDate`}
+                            value={formData.educationHistory[index]?.toDate || ""}
+                            onChange={handleInputChange}
+                          />
+                        </td>
+                        <td className="p-2">
+                          <input
+                            type="text"
+                            className="w-full p-1 border rounded-md"
+                            placeholder="Institute Name"
+                            name={`educationHistory.${index}.instituteName`}
+                            value={formData.educationHistory[index]?.instituteName || ""}
+                            onChange={handleInputChange}
+                          />
+                        </td>
+                        <td className="p-2">
+                          <input
+                            type="text"
+                            className="w-full p-1 border rounded-md"
+                            placeholder="City"
+                            name={`educationHistory.${index}.city`}
+                            value={formData.educationHistory[index]?.city || ""}
+                            onChange={handleInputChange}
+                          />
+                        </td>
+                        <td className="p-2">
+                          <input
+                            type="text"
+                            className="w-full p-1 border rounded-md"
+                            placeholder="Course"
+                            name={`educationHistory.${index}.course`}
+                            value={formData.educationHistory[index]?.course || ""}
+                            onChange={handleInputChange}
+                          />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <button onClick={addEducationRow} className="mt-2 flex items-center text-[#155da9]">
+                <Plus className="w-5 h-5 mr-1" /> Add Education Row
+              </button>
+            </div>
+            <div>
+              <h3 className="text-2xl mb-4">Work History (From 18th Birthday)</h3>
+              <div className="w-full overflow-x-auto">
+                <table className="w-full min-w-[900px] text-left">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="p-2">From (Y/M/D)</th>
+                      <th className="p-2">To (Y/M/D)</th>
+                      <th className="p-2">Designation</th>
+                      <th className="p-2">Job Duties</th>
+                      <th className="p-2">City</th>
+                      <th className="p-2">Country</th>
+                      <th className="p-2">Company Name</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {workRows.map((row, index) => (
+                      <tr key={row.id} className="border-b">
+                        <td className="p-2">
+                          <input
+                            type="date"
+                            className="w-full p-1 border rounded-md"
+                            name={`workHistory.${index}.fromDate`}
+                            value={formData.workHistory[index]?.fromDate || ""}
+                            onChange={handleInputChange}
+                          />
+                        </td>
+                        <td className="p-2">
+                          <input
+                            type="date"
+                            className="w-full p-1 border rounded-md"
+                            name={`workHistory.${index}.toDate`}
+                            value={formData.workHistory[index]?.toDate || ""}
+                            onChange={handleInputChange}
+                          />
+                        </td>
+                        <td className="p-2">
+                          <input
+                            type="text"
+                            className="w-full p-1 border rounded-md"
+                            placeholder="Designation"
+                            name={`workHistory.${index}.designation`}
+                            value={formData.workHistory[index]?.designation || ""}
+                            onChange={handleInputChange}
+                          />
+                        </td>
+                        <td className="p-2">
+                          <input
+                            type="text"
+                            className="w-full p-1 border rounded-md"
+                            placeholder="Job Duties"
+                            name={`workHistory.${index}.jobDuties`}
+                            value={formData.workHistory[index]?.jobDuties || ""}
+                            onChange={handleInputChange}
+                          />
+                        </td>
+                        <td className="p-2">
+                          <input
+                            type="text"
+                            className="w-full p-1 border rounded-md"
+                            placeholder="City"
+                            name={`workHistory.${index}.city`}
+                            value={formData.workHistory[index]?.city || ""}
+                            onChange={handleInputChange}
+                          />
+                        </td>
+                        <td className="p-2">
+                          <input
+                            type="text"
+                            className="w-full p-1 border rounded-md"
+                            placeholder="Country"
+                            name={`workHistory.${index}.country`}
+                            value={formData.workHistory[index]?.country || ""}
+                            onChange={handleInputChange}
+                          />
+                        </td>
+                        <td className="p-2">
+                          <input
+                            type="text"
+                            className="w-full p-1 border rounded-md"
+                            placeholder="Company Name"
+                            name={`workHistory.${index}.companyName`}
+                            value={formData.workHistory[index]?.companyName || ""}
+                            onChange={handleInputChange}
+                          />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <button onClick={addWorkRow} className="mt-2 flex items-center text-[#155da9]">
+                <Plus className="w-5 h-5 mr-1" /> Add Work Row
+              </button>
+            </div>
+          </div>   
 
 
   {/* Page 6 */}
 
-  <div id="page6" className="page6 mb-10 sm:px-10">
-    <h2 className="sm:text-4xl text-2xl sm:text-left text-center mb-10">
-      Education History
-    </h2>
-
-    {formData.educationHistory.map((edu, index) => (
-      <div key={index} className="mb-6 border border-gray-200 p-4 rounded-md">
-        <h3 className="text-xl font-semibold mb-4">Education #{index + 1}</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">From Date:</label>
-            <input
-              type="date"
-              name={`educationHistory.${index}.fromDate`}
-              className="w-full p-2 border rounded-md"
-              value={edu.fromDate}
-              onChange={handleInputChange}
-            />
+    <div id="page6" className="page6 mb-10 sm:px-10">
+            <h2 className="sm:text-4xl text-2xl sm:text-left text-center mb-10">
+              Additional Information
+            </h2>
+            <div className="mb-10">
+              <h3 className="text-2xl mb-4">Children of Main Applicant</h3>
+              {childrenRows.map((row, index) => (
+                <div key={row.id} className="mb-6 sm:p-4 border-b border-gray-300 space-y-4">
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <input
+                      type="text"
+                      className="w-full p-2 border rounded-md"
+                      placeholder="First Name"
+                      name={`children.${index}.firstName`}
+                      value={formData.children[index]?.firstName || ""}
+                      onChange={handleInputChange}
+                    />
+                    <input
+                      type="text"
+                      className="w-full p-2 border rounded-md"
+                      placeholder="Last Name"
+                      name={`children.${index}.lastName`}
+                      value={formData.children[index]?.lastName || ""}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-3">
+                    <select
+                      className="w-full p-2 border rounded-md"
+                      name={`children.${index}.relation`}
+                      value={formData.children[index]?.relation || ""}
+                      onChange={handleInputChange}
+                    >
+                      <option value="">Select Relation</option>
+                      <option value="Son">Son</option>
+                      <option value="Daughter">Daughter</option>
+                    </select>
+                    <input
+                      type="date"
+                      className="w-full p-2 border rounded-md"
+                      name={`children.${index}.dob`}
+                      value={formData.children[index]?.dob || ""}
+                      onChange={handleInputChange}
+                    />
+                    <input
+                      type="text"
+                      className="w-full p-2 border rounded-md"
+                      placeholder="Place of Birth"
+                      name={`children.${index}.placeOfBirth`}
+                      value={formData.children[index]?.placeOfBirth || ""}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 mb-2">
+                      Marital Status: Married (M), Unmarried/Single (S), Divorced (D), Widowed (W)
+                    </p>
+                    <div className="grid gap-4 sm:grid-cols-3">
+                      <input
+                        type="text"
+                        className="w-full p-2 border rounded-md"
+                        placeholder="M / S / D / W"
+                        name={`children.${index}.maritalStatus`}
+                        value={formData.children[index]?.maritalStatus || ""}
+                        onChange={handleInputChange}
+                      />
+                      <input
+                        type="text"
+                        className="w-full p-2 border rounded-md"
+                        placeholder="Occupation"
+                        name={`children.${index}.occupation`}
+                        value={formData.children[index]?.occupation || ""}
+                        onChange={handleInputChange}
+                      />
+                      <input
+                        type="text"
+                        className="w-full p-2 border rounded-md"
+                        placeholder="Current Address"
+                        name={`children.${index}.currentAddress`}
+                        value={formData.children[index]?.currentAddress || ""}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <input
+                      type="text"
+                      className="w-full p-2 border rounded-md"
+                      placeholder="Eye Colour"
+                      name={`children.${index}.eyeColour`}
+                      value={formData.children[index]?.eyeColour || ""}
+                      onChange={handleInputChange}
+                    />
+                    <div className="grid grid-cols-2 gap-2">
+                      <input
+                        type="number"
+                        className="w-full p-2 border rounded-md"
+                        placeholder="Feet"
+                        name={`children.${index}.heightFeet`}
+                        value={formData.children[index]?.heightFeet || ""}
+                        onChange={handleInputChange}
+                      />
+                      <input
+                        type="number"
+                        className="w-full p-2 border rounded-md"
+                        placeholder="Inches"
+                        name={`children.${index}.heightInches`}
+                        value={formData.children[index]?.heightInches || ""}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+              <button onClick={addChildrenRow} className="mt-2 flex items-center text-[#155da9]">
+                <Plus className="w-5 h-5 mr-1" /> Add Child
+              </button>
+            </div>
+            <div>
+              <h3 className="text-2xl mb-4">Brothers & Sisters of Main Applicant</h3>
+              {siblingsRows.map((row, index) => (
+                <div key={row.id} className="mb-6 sm:p-4 border-b border-gray-300 space-y-4">
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <input
+                      type="text"
+                      className="w-full p-2 border rounded-md"
+                      placeholder="Name"
+                      name={`siblings.${index}.name`}
+                      value={formData.siblings[index]?.name || ""}
+                      onChange={handleInputChange}
+                    />
+                    <select
+                      className="w-full p-2 border rounded-md"
+                      name={`siblings.${index}.relation`}
+                      value={formData.siblings[index]?.relation || ""}
+                      onChange={handleInputChange}
+                    >
+                      <option value="">Select Relation</option>
+                      <option value="Brother">Brother</option>
+                      <option value="Sister">Sister</option>
+                    </select>
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-3">
+                    <input
+                      type="date"
+                      className="w-full p-2 border rounded-md"
+                      name={`siblings.${index}.dob`}
+                      value={formData.siblings[index]?.dob || ""}
+                      onChange={handleInputChange}
+                    />
+                    <input
+                      type="text"
+                      className="w-full p-2 border rounded-md"
+                      placeholder="Place of Birth"
+                      name={`siblings.${index}.placeOfBirth`}
+                      value={formData.siblings[index]?.placeOfBirth || ""}
+                      onChange={handleInputChange}
+                    />
+                    <input
+                      type="text"
+                      className="w-full p-2 border rounded-md"
+                      placeholder="M / S / D / W"
+                      name={`siblings.${index}.maritalStatus`}
+                      value={formData.siblings[index]?.maritalStatus || ""}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <p className="text-sm text-gray-500">
+                    Marital Status: Married (M), Unmarried/Single (S), Divorced (D), Widowed (W)
+                  </p>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <input
+                      type="text"
+                      className="w-full p-2 border rounded-md"
+                      placeholder="Occupation"
+                      name={`siblings.${index}.occupation`}
+                      value={formData.siblings[index]?.occupation || ""}
+                      onChange={handleInputChange}
+                    />
+                    <input
+                      type="text"
+                      className="w-full p-2 border rounded-md"
+                      placeholder="Current Address"
+                      name={`siblings.${index}.currentAddress`}
+                      value={formData.siblings[index]?.currentAddress || ""}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+              ))}
+              <button onClick={addSiblingsRow} className="mt-2 flex items-center text-[#155da9]">
+                <Plus className="w-5 h-5 mr-1" /> Add Sibling
+              </button>
+            </div>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">To Date:</label>
-            <input
-              type="date"
-              name={`educationHistory.${index}.toDate`}
-              className="w-full p-2 border rounded-md"
-              value={edu.toDate}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Institute Name:</label>
-            <input
-              type="text"
-              name={`educationHistory.${index}.instituteName`}
-              className="w-full p-2 border rounded-md"
-              value={edu.instituteName}
-              onChange={handleInputChange}
-              placeholder="Enter institute name"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">City:</label>
-            <input
-              type="text"
-              name={`educationHistory.${index}.city`}
-              className="w-full p-2 border rounded-md"
-              value={edu.city}
-              onChange={handleInputChange}
-              placeholder="Enter city"
-            />
-          </div>
-          <div className="sm:col-span-2">
-            <label className="block text-sm font-medium text-gray-700">Course:</label>
-            <input
-              type="text"
-              name={`educationHistory.${index}.course`}
-              className="w-full p-2 border rounded-md"
-              value={edu.course}
-              onChange={handleInputChange}
-              placeholder="Enter course"
-            />
-          </div>
-        </div>
-      </div>
-    ))}
-
-    <button
-      type="button"
-      onClick={addEducationRow}
-      className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-    >
-      Add More Education
-    </button>
-  </div>   
 
 
 
   {/* Page 7 */}
-  <div id="page7" className="page7 mb-10 sm:px-10">
-    <h2 className="sm:text-4xl text-2xl sm:text-left text-center mb-10">
-      Work History
-    </h2>
-
-    {formData.workHistory.map((work, index) => (
-      <div key={index} className="mb-6 border border-gray-200 p-4 rounded-md">
-        <h3 className="text-xl font-semibold mb-4">Work #{index + 1}</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">From Date:</label>
-            <input
-              type="date"
-              name={`workHistory.${index}.fromDate`}
-              className="w-full p-2 border rounded-md"
-              value={work.fromDate}
-              onChange={handleInputChange}
-            />
+  <div id="page7" className="page7 mb-10 px-4 sm:px-10">
+            <h2 className="sm:text-4xl text-2xl sm:text-left text-center mb-10">
+              Additional Information
+            </h2>
+            <div className="mb-10">
+              <h3 className="sm:text-2xl text-lg mb-4">
+                Address of Places the Main Applicant Has Lived Since 18th Birthday
+              </h3>
+              <p className="text-sm text-gray-500 mb-2">
+                Do not leave any gap in the time period.
+              </p>
+              {addressRows.map((row, index) => (
+                <div key={row.id} className="mb-6 sm:p-4 border-b border-gray-300 space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input
+                      type="date"
+                      className="w-full p-2 border rounded-md"
+                      placeholder="From (Y/M/D)"
+                      name={`addressHistory.${index}.fromDate`}
+                      value={formData.addressHistory[index]?.fromDate || ""}
+                      onChange={handleInputChange}
+                    />
+                    <input
+                      type="date"
+                      className="w-full p-2 border rounded-md"
+                      placeholder="To (Y/M/D)"
+                      name={`addressHistory.${index}.toDate`}
+                      value={formData.addressHistory[index]?.toDate || ""}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <input
+                      type="text"
+                      className="w-full p-2 border rounded-md"
+                      placeholder="Address"
+                      name={`addressHistory.${index}.address`}
+                      value={formData.addressHistory[index]?.address || ""}
+                      onChange={handleInputChange}
+                    />
+                    <input
+                      type="text"
+                      className="w-full p-2 border rounded-md"
+                      placeholder="City/State"
+                      name={`addressHistory.${index}.cityState`}
+                      value={formData.addressHistory[index]?.cityState || ""}
+                      onChange={handleInputChange}
+                    />
+                    <input
+                      type="text"
+                      className="w-full p-2 border rounded-md"
+                      placeholder="Country"
+                      name={`addressHistory.${index}.country`}
+                      value={formData.addressHistory[index]?.country || ""}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div>
+                    <select
+                      className="w-full p-2 border rounded-md"
+                      name={`addressHistory.${index}.currentStatus`}
+                      value={formData.addressHistory[index]?.currentStatus || ""}
+                      onChange={handleInputChange}
+                    >
+                      <option value="">Select Status</option>
+                      <option value="Studying">Studying</option>
+                      <option value="Working">Working</option>
+                      <option value="Not Employed">Not Employed</option>
+                    </select>
+                  </div>
+                </div>
+              ))}
+              <button onClick={addAddressRow} className="mt-2 flex items-center text-[#155da9]">
+                <Plus className="w-5 h-5 mr-1" /> Add Address
+              </button>
+            </div>
+            <div className="mb-10">
+              <h3 className="sm:text-2xl text-lg mb-4">
+                Travel History - Details of Travel Outside Country of Residence & Origin
+              </h3>
+              {travelRows.map((row, index) => (
+                <div key={row.id} className="mb-6 sm:p-4 border-b border-gray-300 space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input
+                      type="date"
+                      className="w-full p-2 border rounded-md"
+                      placeholder="From (dd/mm/yy)"
+                      name={`travelHistory.${index}.fromDate`}
+                      value={formData.travelHistory[index]?.fromDate || ""}
+                      onChange={handleInputChange}
+                    />
+                    <input
+                      type="date"
+                      className="w-full p-2 border rounded-md"
+                      placeholder="To (dd/mm/yy)"
+                      name={`travelHistory.${index}.toDate`}
+                      value={formData.travelHistory[index]?.toDate || ""}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input
+                      type="text"
+                      className="w-full p-2 border rounded-md"
+                      placeholder="Place (City, Country)"
+                      name={`travelHistory.${index}.place`}
+                      value={formData.travelHistory[index]?.place || ""}
+                      onChange={handleInputChange}
+                    />
+                    <input
+                      type="text"
+                      className="w-full p-2 border rounded-md"
+                      placeholder="Purpose of Travel"
+                      name={`travelHistory.${index}.purpose`}
+                      value={formData.travelHistory[index]?.purpose || ""}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+              ))}
+              <button onClick={addTravelRow} className="mt-2 flex items-center text-[#155da9]">
+                <Plus className="w-5 h-5 mr-1" /> Add Travel Record
+              </button>
+            </div>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">To Date:</label>
-            <input
-              type="date"
-              name={`workHistory.${index}.toDate`}
-              className="w-full p-2 border rounded-md"
-              value={work.toDate}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Company Name:</label>
-            <input
-              type="text"
-              name={`workHistory.${index}.companyName`}
-              className="w-full p-2 border rounded-md"
-              value={work.companyName}
-              onChange={handleInputChange}
-              placeholder="Enter company name"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Designation:</label>
-            <input
-              type="text"
-              name={`workHistory.${index}.designation`}
-              className="w-full p-2 border rounded-md"
-              value={work.designation}
-              onChange={handleInputChange}
-              placeholder="Enter designation"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Job Duties:</label>
-            <input
-              type="text"
-              name={`workHistory.${index}.jobDuties`}
-              className="w-full p-2 border rounded-md"
-              value={work.jobDuties}
-              onChange={handleInputChange}
-              placeholder="Enter job duties"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">City:</label>
-            <input
-              type="text"
-              name={`workHistory.${index}.city`}
-              className="w-full p-2 border rounded-md"
-              value={work.city}
-              onChange={handleInputChange}
-              placeholder="Enter city"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Country:</label>
-            <input
-              type="text"
-              name={`workHistory.${index}.country`}
-              className="w-full p-2 border rounded-md"
-              value={work.country}
-              onChange={handleInputChange}
-              placeholder="Enter country"
-            />
-          </div>
-        </div>
-      </div>
-    ))}
-
-    <button
-      type="button"
-      onClick={addWorkRow}
-      className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-    >
-      Add More Work History
-    </button>
-  </div>  
-
 
 
   {/* Page 8 */}
 
-  <div id="page8" className="page8 mb-10 sm:px-10">
-    {formData.children.map((child, index) => (
-      <div key={index} className="mb-6 border border-gray-200 p-4 rounded-md">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <input
-            type="text"
-            name={`children.${index}.firstName`}
-            className="w-full p-2 border rounded-md"
-            placeholder="First Name"
-            value={child.firstName}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name={`children.${index}.lastName`}
-            className="w-full p-2 border rounded-md"
-            placeholder="Last Name"
-            value={child.lastName}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name={`children.${index}.relation`}
-            className="w-full p-2 border rounded-md"
-            placeholder="Relation"
-            value={child.relation}
-            onChange={handleInputChange}
-          />
-          <input
-            type="date"
-            name={`children.${index}.dob`}
-            className="w-full p-2 border rounded-md"
-            value={child.dob}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name={`children.${index}.placeOfBirth`}
-            className="w-full p-2 border rounded-md"
-            placeholder="Place of Birth"
-            value={child.placeOfBirth}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name={`children.${index}.maritalStatus`}
-            className="w-full p-2 border rounded-md"
-            placeholder="Marital Status"
-            value={child.maritalStatus}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name={`children.${index}.occupation`}
-            className="w-full p-2 border rounded-md"
-            placeholder="Occupation"
-            value={child.occupation}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name={`children.${index}.currentAddress`}
-            className="w-full p-2 border rounded-md"
-            placeholder="Current Address"
-            value={child.currentAddress}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name={`children.${index}.eyeColour`}
-            className="w-full p-2 border rounded-md"
-            placeholder="Eye Colour"
-            value={child.eyeColour}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name={`children.${index}.heightFeet`}
-            className="w-full p-2 border rounded-md"
-            placeholder="Height (Feet)"
-            value={child.heightFeet}
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name={`children.${index}.heightInches`}
-            className="w-full p-2 border rounded-md"
-            placeholder="Height (Inches)"
-            value={child.heightInches}
-            onChange={handleInputChange}
-          />
-        </div>
-      </div>
-    ))}
+  <div id="page8" className="page8 mb-10 px-4 sm:px-10">
+        <h2 className="sm:text-4xl text-2xl sm:text-left text-center mb-10">Additional Information</h2>
 
-    <button
-      type="button"
-      onClick={addChildrenRow}
-      className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-    >
-      Add Child
-    </button>
-  </div> 
+        {/* Relatives in Canada */}
+        <div className="mb-10">
+            <h3 className="text-lg sm:text-2xl mb-4">Relatives in Canada (If any)</h3>
+
+            {relativesRows.map((row, index) => (
+                <div key={row.id} className="mb-6 sm:p-4 border-b border-gray-300 space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-3">
+                        <input 
+                            type="text" 
+                            className="w-full p-2 border rounded-md"
+                            placeholder="First Name"
+                            name={`relativesInCanada.${index}.firstName`}
+                            value={formData.relativesInCanada[index]?.firstName || ''}
+                            onChange={handleInputChange}
+                        />
+                        <input 
+                            type="text" 
+                            className="w-full p-2 border rounded-md"
+                            placeholder="Last Name"
+                            name={`relativesInCanada.${index}.lastName`}
+                            value={formData.relativesInCanada[index]?.lastName || ''}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-3">
+                        <input 
+                            type="text" 
+                            className="w-full p-2 border rounded-md"
+                            placeholder="Address"
+                            name={`relativesInCanada.${index}.address`}
+                            value={formData.relativesInCanada[index]?.address || ''}
+                            onChange={handleInputChange}
+                        />
+                        <input 
+                            type="text" 
+                            className="w-full p-2 border rounded-md"
+                            placeholder="Relation with Applicant"
+                            name={`relativesInCanada.${index}.relation`}
+                            value={formData.relativesInCanada[index]?.relation || ''}
+                            onChange={handleInputChange}
+                        />
+                        <input 
+                            type="text" 
+                            className="w-full p-2 border rounded-md"
+                            placeholder="Status in Canada"
+                            name={`relativesInCanada.${index}.status`}
+                            value={formData.relativesInCanada[index]?.status || ''}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <input 
+                        type="text" 
+                        className="w-full p-2 border rounded-md"
+                        placeholder="How many years in Canada?"
+                        name={`relativesInCanada.${index}.yearsInCanada`}
+                        value={formData.relativesInCanada[index]?.yearsInCanada || ''}
+                        onChange={handleInputChange}
+                    />
+                </div>
+            ))}
+
+            <button onClick={addRelativeRow} className="mt-2 flex items-center text-[#155da9]">
+                <Plus className="w-5 h-5 mr-1" /> Add Relative
+            </button>
+        </div>
+
+        {/* IELTS Scores */}
+        <div className="mb-10">
+            <h3 className="text-lg sm:text-2xl mb-4">IELTS Score for Each Module</h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-3">
+                <input 
+                    type="text" 
+                    className="w-full p-2 border rounded-md"
+                    name="ieltsScores.listening"
+                    value={formData.ieltsScores.listening || ''}
+                    onChange={handleInputChange}
+                    placeholder="Listening Score"
+                />
+                <input 
+                    type="text" 
+                    className="w-full p-2 border rounded-md"
+                    name="ieltsScores.reading"
+                    value={formData.ieltsScores.reading || ''}
+                    onChange={handleInputChange}
+                    placeholder="Reading Score"
+                />
+                <input 
+                    type="text" 
+                    className="w-full p-2 border rounded-md"
+                    name="ieltsScores.writing"
+                    value={formData.ieltsScores.writing || ''}
+                    onChange={handleInputChange}
+                    placeholder="Writing Score"
+                />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input 
+                    type="text" 
+                    className="w-full p-2 border rounded-md"
+                    name="ieltsScores.speaking"
+                    value={formData.ieltsScores.speaking || ''}
+                    onChange={handleInputChange}
+                    placeholder="Speaking Score"
+                />
+                <input 
+                    type="text" 
+                    className="w-full p-2 border rounded-md"
+                    name="ieltsScores.overall"
+                    value={formData.ieltsScores.overall || ''}
+                    onChange={handleInputChange}
+                    placeholder="Overall Score"
+                />
+            </div>
+        </div>
+
+        {/* Important Questions */}
+        <div className="mb-10">
+            <h3 className="text-lg sm:text-2xl mb-4">Please Read the Following and Answer Carefully</h3>
+            <p className="text-sm text-gray-500 mb-4">(Applicable to all family members in the application)</p>
+
+            {/* Question 1 */}
+            <div className="mb-6">
+                <p className="font-semibold">a) Have you ever been convicted of, currently charged with, on trial for, or party to any crime/offence in any country?</p>
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-2">
+                    <label className="flex items-center">
+                        <input 
+                            type="radio" 
+                            name="questions.crime.answer" 
+                            value="yes" 
+                            className="mr-2"
+                            checked={formData.questions.crime.answer === 'yes'}
+                            onChange={handleInputChange}
+                        /> YES
+                    </label>
+                    <label className="flex items-center">
+                        <input 
+                            type="radio" 
+                            name="questions.crime.answer" 
+                            value="no" 
+                            className="mr-2"
+                            checked={formData.questions.crime.answer === 'no'}
+                            onChange={handleInputChange}
+                        /> NO
+                    </label>
+                </div>
+                <textarea 
+                    className="w-full p-2 mt-2 border rounded-md"
+                    name="questions.crime.details"
+                    value={formData.questions.crime.details || ''}
+                    onChange={handleInputChange}
+                    placeholder="If yes, provide details"
+                ></textarea>
+            </div>
+
+            {/* Question 2 */}
+            <div className="mb-6">
+                <p className="font-semibold">b) Have you ever applied to Canada for any Visa/Permit/PR, or been approved/refused a visa/refugee application to Canada before?</p>
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-2">
+                    <label className="flex items-center">
+                        <input 
+                            type="radio" 
+                            name="questions.visa.answer" 
+                            value="yes" 
+                            className="mr-2"
+                            checked={formData.questions.visa.answer === 'yes'}
+                            onChange={handleInputChange}
+                        /> YES
+                    </label>
+                    <label className="flex items-center">
+                        <input 
+                            type="radio" 
+                            name="questions.visa.answer" 
+                            value="no" 
+                            className="mr-2"
+                            checked={formData.questions.visa.answer === 'no'}
+                            onChange={handleInputChange}
+                        /> NO
+                    </label>
+                </div>
+                <textarea 
+                    className="w-full p-2 mt-2 border rounded-md"
+                    name="questions.visa.details"
+                    value={formData.questions.visa.details || ''}
+                    onChange={handleInputChange}
+                    placeholder="If yes, provide details"
+                ></textarea>
+            </div>
+
+            {/* Question 3 */}
+            <div className="mb-6">
+                <p className="font-semibold">c) Have you ever had any disease or physical or mental disorder?</p>
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-2">
+                    <label className="flex items-center">
+                        <input 
+                            type="radio" 
+                            name="questions.health.answer" 
+                            value="yes" 
+                            className="mr-2"
+                            checked={formData.questions.health.answer === 'yes'}
+                            onChange={handleInputChange}
+                        /> YES
+                    </label>
+                    <label className="flex items-center">
+                        <input 
+                            type="radio" 
+                            name="questions.health.answer" 
+                            value="no" 
+                            className="mr-2"
+                            checked={formData.questions.health.answer === 'no'}
+                            onChange={handleInputChange}
+                        /> NO
+                    </label>
+                </div>
+                <textarea 
+                    className="w-full p-2 mt-2 border rounded-md"
+                    name="questions.health.details"
+                    value={formData.questions.health.details || ''}
+                    onChange={handleInputChange}
+                    placeholder="If yes, provide details"
+                ></textarea>
+            </div>
+        </div>
+
+        {/* Important Note */}
+        
+        
+    </div>
 
         </div>
       </div>
