@@ -298,22 +298,25 @@
 //     </div>
 //   );
 // }
-
-<<<<<<< HEAD
-
-
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { Raleway } from "next/font/google";
+import { useSelector } from "react-redux";
+import { selectUser } from "@/store/authSlice";
+import { MdClose, MdEmail } from "react-icons/md";
+import { FaFlag, FaCommentAlt, FaFileUpload, FaStar } from "react-icons/fa";
+import Image from "next/image";
+import Link from "next/link";
 
 const raleway = Raleway({
   weight: ["400", "600", "800"],
   subsets: ["latin"],
 });
 
-export default function Pr() {
+export default function VisaPredictionPage() {
+  // Visa prediction state
   const [formData, setFormData] = useState({
     reading: "",
     writing: "",
@@ -330,6 +333,17 @@ export default function Pr() {
   const needleRef = useRef<SVGLineElement>(null);
   const [showConfetti, setShowConfetti] = useState(false);
 
+  // Feedback state
+  const user = useSelector(selectUser);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [testimonial, setTestimonial] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const maxWords = 100;
+
   useEffect(() => {
     gsap.set(needleRef.current, {
       rotate: -90,
@@ -344,37 +358,14 @@ export default function Pr() {
   const calculateScore = () => {
     const total =
       (parseFloat(formData.reading) +
-        parseFloat(formData.writing) +
-        parseFloat(formData.speaking) +
-        parseFloat(formData.listening)) *
-        10 -
+      parseFloat(formData.writing) +
+      parseFloat(formData.speaking) +
+      parseFloat(formData.listening)) *
+      10 -
       parseFloat(formData.gap || "0") * 2;
-=======
-"use client";
-import { useState } from "react";
-import Link from "next/link";
-import { MdClose, MdEmail } from "react-icons/md";
-import { FaFlag, FaCommentAlt, FaFileUpload, FaStar } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import Image from "next/image";
-import ThankYouMessage from "./ThankYouMessage";
-import { selectUser } from "@/store/authSlice";
-
-export default function Username() {
-  const user = useSelector(selectUser);
-  const [showFeedback, setShowFeedback] = useState(false);
-  const [rating, setRating] = useState(0);
-  const [hoverRating, setHoverRating] = useState(0);
-  const [testimonial, setTestimonial] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState("");
->>>>>>> 9c661b8d21cf4bb2757e39ffcc6c24062e776103
-
     return Math.min(Math.max(total, 0), 100);
   };
 
-<<<<<<< HEAD
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const score = calculateScore();
@@ -398,7 +389,7 @@ export default function Username() {
       setBgState("fail");
     }
   };
-=======
+
   const handleSubmitFeedback = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -438,7 +429,6 @@ export default function Username() {
   };
 
   const wordCount = testimonial.trim().split(/\s+/).filter(Boolean).length;
->>>>>>> 9c661b8d21cf4bb2757e39ffcc6c24062e776103
 
   return (
     <div
@@ -500,8 +490,6 @@ export default function Username() {
         )}
       </div>
 
-<<<<<<< HEAD
-      {/* Celebration Confetti */}
       {showConfetti && (
         <div className="absolute inset-0 z-50 pointer-events-none overflow-hidden">
           {[...Array(30)].map((_, i) => (
@@ -581,26 +569,8 @@ export default function Username() {
                 <option value="student">Student</option>
                 <option value="work">Work</option>
               </select>
-=======
-      {/* Profile Card */}
-      <div className={`relative z-10 w-full max-w-md p-6 bg-white rounded-2xl shadow-xl backdrop-blur-md ${showFeedback ? "blur-sm" : ""}`}>
-        <div className="flex flex-col items-center text-center gap-4">
-          <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-100 shadow-inner">
-            <Image src="/signinicon.png" alt="User" width={96} height={96} className="object-cover" />
-          </div>
-          <h2 className="text-2xl font-bold text-gray-800">{user?.name || "Guest User"}</h2>
-          <div className="text-gray-600 text-sm space-y-1">
-            <div className="flex items-center justify-center gap-2">
-              <MdEmail className="text-lg" />
-              <span>{user?.email || "No email provided"}</span>
-            </div>
-            <div className="flex items-center justify-center gap-2">
-              <FaFlag className="text-lg" />
-              <span>{user?.nationality || "Nationality not specified"}</span>
->>>>>>> 9c661b8d21cf4bb2757e39ffcc6c24062e776103
             </div>
 
-<<<<<<< HEAD
             <div>
               <label className="block mb-1 font-medium">IELTS Type:</label>
               <select
@@ -615,9 +585,6 @@ export default function Username() {
                 <option value="academic">Academic</option>
               </select>
             </div>
-=======
-        <hr className="my-6 border-gray-200" />
->>>>>>> 9c661b8d21cf4bb2757e39ffcc6c24062e776103
 
             <button
               type="submit"
@@ -627,7 +594,6 @@ export default function Username() {
             </button>
           </form>
 
-<<<<<<< HEAD
           {/* Speedometer */}
           <div className="w-full max-w-md flex flex-col items-center justify-center p-6 min-h-[300px]">
             <h2 className="text-xl font-semibold mb-4 text-gray-700">Prediction Meter</h2>
@@ -677,57 +643,100 @@ export default function Username() {
               }`}>
                 Acceptance Chance: {Math.round(prediction)}%
               </p>
-=======
-            {!submitted ? (
-              <form onSubmit={handleSubmitFeedback}>
-                <h2 className="text-2xl font-bold text-center mb-6">Share Your Feedback</h2>
-                {error && <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-md text-sm">{error}</div>}
-
-                <div className="flex justify-center mb-6">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <button
-                      key={star}
-                      type="button"
-                      className="text-3xl mx-1 focus:outline-none"
-                      onClick={() => setRating(star)}
-                      onMouseEnter={() => setHoverRating(star)}
-                      onMouseLeave={() => setHoverRating(0)}
-                    >
-                      <FaStar className={star <= (hoverRating || rating) ? "text-yellow-400" : "text-gray-300"} />
-                    </button>
-                  ))}
-                </div>
-
-                <div className="mb-4">
-                  <label htmlFor="testimonial" className="block text-sm font-medium text-gray-700 mb-2">
-                    Your Testimonial {wordCount > maxWords && (<span className="text-red-500">({wordCount - maxWords} over limit)</span>)}
-                  </label>
-                  <textarea
-                    id="testimonial"
-                    rows={5}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#155da9]"
-                    placeholder="Share your experience (max 100 words)"
-                    value={testimonial}
-                    onChange={(e) => setTestimonial(e.target.value)}
-                    maxLength={500}
-                  />
-                  <p className="text-xs text-gray-500 mt-1">{wordCount} / {maxWords} words</p>
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={rating === 0 || wordCount > maxWords || isSubmitting}
-                  className={`w-full py-3 px-4 rounded-full font-medium text-white transition duration-300 ${rating === 0 || wordCount > maxWords || isSubmitting ? "bg-gray-400 cursor-not-allowed" : "bg-[#155da9] hover:bg-[#124b8a]"}`}
-                >
-                  {isSubmitting ? "Submitting..." : "Submit Feedback"}
-                </button>
-              </form>
-            ) : (
-              <ThankYouMessage rating={rating} onClose={handleCloseFeedback} userId={user?._id || ""} />
->>>>>>> 9c661b8d21cf4bb2757e39ffcc6c24062e776103
             )}
           </div>
         </div>
+
+        {/* Feedback Section */}
+        {user && (
+          <div className="mt-16 text-center">
+            <button
+              onClick={() => setShowFeedback(true)}
+              className="bg-[#155da9] text-white px-6 py-3 rounded-full shadow-lg hover:bg-[#124b8a] transition-colors"
+            >
+              <FaCommentAlt className="inline mr-2" />
+              Share Your Feedback
+            </button>
+          </div>
+        )}
+
+        {/* Feedback Modal */}
+        {showFeedback && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-xl p-6 max-w-md w-full relative">
+              <button
+                onClick={handleCloseFeedback}
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+              >
+                <MdClose size={24} />
+              </button>
+
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                  <FaStar className="text-blue-500 text-2xl" />
+                </div>
+
+                {!submitted ? (
+                  <form onSubmit={handleSubmitFeedback} className="w-full">
+                    <h2 className="text-2xl font-bold text-center mb-4">How was your experience?</h2>
+                    <div className="flex justify-center mb-6">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                          key={star}
+                          type="button"
+                          className="text-3xl mx-1 focus:outline-none"
+                          onClick={() => setRating(star)}
+                          onMouseEnter={() => setHoverRating(star)}
+                          onMouseLeave={() => setHoverRating(0)}
+                        >
+                          <FaStar className={star <= (hoverRating || rating) ? "text-yellow-400" : "text-gray-300"} />
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="mb-4">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Your feedback (optional)
+                      </label>
+                      <textarea
+                        rows={4}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Tell us about your experience..."
+                        value={testimonial}
+                        onChange={(e) => setTestimonial(e.target.value)}
+                      />
+                      <p className="text-xs text-gray-500 mt-1">{wordCount} words</p>
+                    </div>
+
+                    {error && (
+                      <div className="mb-4 text-red-500 text-sm">{error}</div>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors disabled:bg-gray-400"
+                    >
+                      {isSubmitting ? "Submitting..." : "Submit Feedback"}
+                    </button>
+                  </form>
+                ) : (
+                  <div className="text-center">
+                    <div className="text-green-500 text-5xl mb-4">✓</div>
+                    <h3 className="text-xl font-bold mb-2">Thank You!</h3>
+                    <p className="text-gray-600 mb-6">Your feedback has been submitted successfully.</p>
+                    <button
+                      onClick={handleCloseFeedback}
+                      className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                    >
+                      Close
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Animation Keyframes */}
