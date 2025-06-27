@@ -57,10 +57,33 @@ const userSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["pending","done"],
+      enum: ["pending", "done"],
       default: "pending",
     },
-
+    // Tracking fields for each step
+    tracker: {
+      signUp: {
+        type: Boolean,
+        default: false,
+        required: true
+      },
+      submitForm: {
+        type: Boolean,
+        default: false,
+        required: true
+      },
+      fillingAndSubmission: {
+        type: Boolean,
+        default: false,
+        required: true
+      },
+      result: {
+        type: Boolean,
+        default: false,
+        required: true
+      },
+     
+    },
     createdAt: {
       type: Date,
       default: Date.now,
@@ -68,8 +91,6 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
-
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);
 

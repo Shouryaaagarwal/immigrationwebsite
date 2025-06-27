@@ -5,35 +5,61 @@ import Navbar from '@/app/components/Navbar';
 import React, { useState, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight, FiEye } from 'react-icons/fi';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
+import { selectUser } from '@/store/authSlice';
+import { useSelector } from 'react-redux';
 
 interface User {
-  [x: string]: any;
-  id: string;
+  _id: string;
   name: string;
   email: string;
-  status: 'pending' | 'done';
   nationality: string;
+  status?: 'pending' | 'done'; // Optional because we'll fetch it separately
+}
+
+interface TrackerData {
+  result: boolean;
 }
 
 const AdminDashboard = () => {
-  
   const router = useRouter();
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
+  const currentUser = useSelector(selectUser);
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchUsersWithStatus = async () => {
       try {
-        const response = await fetch("/api/users/all-users"); // Call your Next.js API route
-        if (!response.ok) {
-          throw new Error("Failed to fetch users");
-        }
+        setIsLoading(true);
         
-        const data: User[] = await response.json(); // Parse JSON response
-        setUsers(data);
+        // First fetch all users
+        const usersResponse = await fetch("/api/users/all-users");
+        if (!usersResponse.ok) throw new Error("Failed to fetch users");
+        const usersData: User[] = await usersResponse.json();
+
+        // Then fetch tracker status for each user
+        const usersWithStatus = await Promise.all(
+          usersData.map(async (user) => {
+            try {
+              const trackerResponse = await axios.get(`/api/tracker/${user._id}`);
+              return {
+                ...user,
+                status: trackerResponse.data.tracker?.result ? 'done' : 'pending'
+              };
+            } catch (error) {
+              console.error(`Error fetching tracker for user ${user._id}:`, error);
+              return {
+                ...user,
+                status: 'pending' // Default to pending if tracker fetch fails
+              };
+            }
+          })
+        );
+
+        setUsers(usersWithStatus);
       } catch (err) {
         setError("Failed to fetch users. Please try again later.");
         console.error("Error fetching users:", err);
@@ -42,12 +68,8 @@ const AdminDashboard = () => {
       }
     };
 
-    fetchUsers();
+    fetchUsersWithStatus();
   }, []);
-
-  const handleViewDetails = (userId: string) => {
-    router.push(`/admin/user/${userId}`); 
-  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -55,6 +77,10 @@ const AdminDashboard = () => {
       case 'pending': return 'bg-yellow-100 text-yellow-800';
       default: return 'bg-gray-100 text-gray-800';
     }
+  };
+
+  const handleViewDetails = (userId: string) => {
+    router.push(`/admin/user/${userId}`); 
   };
 
   // Pagination logic
@@ -122,8 +148,7 @@ const AdminDashboard = () => {
               <tbody className="bg-white divide-y divide-gray-200">
                 {paginatedUsers.length > 0 ? (
                   paginatedUsers.map((user) => (
-              <tr key={user.id || user._id?.$oid || user._id} className="hover:bg-gray-50">
-
+                    <tr key={user._id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10 rounded-full bg-[#155da9] flex items-center justify-center text-white font-medium">
@@ -141,11 +166,12 @@ const AdminDashboard = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <span
-                          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(
-                            user.status
-                          )}`}
+                          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                            getStatusColor(user.status || 'pending')
+                          }`}
                         >
-                          {user.status.charAt(0).toUpperCase() + user.status.slice(1)}
+                          {(user.status || 'pending').charAt(0).toUpperCase() + 
+                           (user.status || 'pending').slice(1)}
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
