@@ -46,7 +46,18 @@ export default function About() {
       aboutRef.current,
       { opacity: 1, scale: 0.6 },
       { opacity: 1, scale: 1.5, ease: "power2.out" }
-    );
+    );   
+
+     gsap.fromTo(
+            aboutRef.current,
+            { opacity: 0, y: 50 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: "power2.out",
+            }
+          );
 
     // Fade in for cards — on scroll down and up
     cardRefs.current.forEach((card) => {
@@ -125,7 +136,7 @@ export default function About() {
       <div
         data-scroll-section
         data-scroll
-        data-scroll-speed="0.5"
+        data-scroll-speed="0.2"
         className="h-[55vh] md:h-[70vh] bg-white flex flex-col gap-2 items-center justify-center w-full bg-cover bg-center relative z-10"
         style={{
           backgroundImage: "url('/about1.jpg')",
