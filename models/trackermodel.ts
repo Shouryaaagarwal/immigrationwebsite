@@ -10,7 +10,7 @@ const trackerSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
     required: true
-  },
+  }, 
   formFilling: {
     type: Boolean,
     default: false,
@@ -25,7 +25,8 @@ const trackerSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
     required: true
-  }
+  }  
+  
 });
 
 const Tracker = mongoose.models.Tracker || mongoose.model('Tracker', trackerSchema);

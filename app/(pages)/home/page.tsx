@@ -2,23 +2,20 @@
 import React, { useLayoutEffect, useEffect, useRef, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import "@/app/styles/styles.css";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import Swiper2 from "@/app/components/Swiper2";
-import Swiper1 from "@/app/components/Swiper1";
-import Footer from "@/app/components/Footer";
 import { TimelineDemo } from "@/app/components/ETimeline";
 import { LampDemo } from "@/components/ui/lamp";
 import { SparklesPreview } from "@/app/components/Esparkles";
-import { IoMdAirplane } from "react-icons/io";
 import WhyChoose from "@/app/components/Whychoose";
 import { StaticCardsDemo } from "@/app/components/EScroll";
-import { HorizontalTimelineDemo } from "@/app/components/EScroll2";
 import Link from "next/link";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollTrigger } from "gsap/ScrollTrigger";   
+import ChatbotButton from "@/app/components/Chatbot"
+
 
 interface CounterProps {
   targetValue: number;
@@ -97,7 +94,6 @@ export default function Home() {
             start: "top center",
             end: "bottom top",
             scrub: true,
-            markers: true,
           },
         })
         .fromTo(
@@ -120,7 +116,6 @@ export default function Home() {
             start: "top 80%",
             end: "bottom 20%",
             scrub: true,
-            markers: true,
           },
         }
       );
@@ -352,6 +347,7 @@ export default function Home() {
       </div>
 
       <TimelineDemo />
+                {/* <ChatbotButton /> */}
 
       {/* Show on large screens only (lg and up) */}
     </div>

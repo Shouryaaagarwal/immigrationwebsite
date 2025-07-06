@@ -7,14 +7,16 @@ body {
 }
    .logo-white {
   filter: brightness(0) invert(1);
+}   
+html {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 /* ------------------ CUSTOM SCROLLBAR ------------------ */
 
 /* Webkit browsers: Chrome, Edge, Safari */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
-  background: transparent; /* ✅ Make the scrollbar track transparent */
+  display: none;/* ✅ Make the scrollbar track transparent */
 }
 
 ::-webkit-scrollbar-track {
@@ -34,7 +36,17 @@ body {
 * {
   scrollbar-width: thin;
   scrollbar-color: #181819 transparent; /* ✅ Track is transparent */
+}  
+
+/* styles.css or in a <style> block */
+.rotate-on-hover {
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
 }
+.rotate-on-hover:hover {
+  transform: rotate(90deg);
+}
+
 
 
 /* For the container */
