@@ -32,7 +32,6 @@ const Page = () => {
     email: "",
     password: "",
     passwordConfirm: "",
-    nationality: "",
   });
 
   useEffect(() => {
@@ -40,25 +39,6 @@ const Page = () => {
   }, []);
 
   if (!isMounted) return null;
-
-  const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const countryCode = e.target.value;
-    setSelectedCountry(countryCode);
-    setUser({ ...user, nationality: countryCode });
-  };
-
-  const countries = [
-    { code: "US", name: "United States" },
-    { code: "IN", name: "India" },
-    { code: "CA", name: "Canada" },
-    { code: "GB", name: "United Kingdom" },
-    { code: "AU", name: "Australia" },
-    { code: "FR", name: "France" },
-    { code: "DE", name: "Germany" },
-    { code: "JP", name: "Japan" },
-    { code: "BR", name: "Brazil" },
-    { code: "ZA", name: "South Africa" },
-  ];
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -218,33 +198,7 @@ const Page = () => {
                   </div>
                 </div>
 
-                <div className="mb-4">
-                  <label htmlFor="nationality" className="block text-xl font-semibold mb-2">
-                    Nationality
-                  </label>
-                  <div className="flex items-center">
-                    <select
-                      id="nationality"
-                      name="nationality"
-                      value={user.nationality}
-                      onChange={handleCountryChange}
-                      className="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2"
-                    >
-                      <option value="">Select your nationality</option>
-                      {countries.map((country) => (
-                        <option key={country.code} value={country.code}>
-                          {country.name}
-                        </option>
-                      ))}
-                    </select>
-                    {selectedCountry && (
-                      <div className="ml-3">
-                        <Flag code={selectedCountry.toLowerCase()} className="w-8 h-5" />
-                      </div>
-                    )}
-                  </div>
-                </div>
-
+                
                 {loading ? (
                   <button
                     type="submit"
