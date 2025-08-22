@@ -347,7 +347,7 @@ export default function Home() {
       </div>
 
       <TimelineDemo />
-                {/* <ChatbotButton /> */}
+                <ChatbotButton />
 
       {/* Show on large screens only (lg and up) */}
     </div>

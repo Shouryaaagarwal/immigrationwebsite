@@ -40,7 +40,7 @@ export default function About() {
         start: "top center",
         end: "bottom top",
         scrub: true,
-        markers: true,
+        // markers: true,
       },
     }).fromTo(
       aboutRef.current,
@@ -74,7 +74,7 @@ export default function About() {
             start: "top 80%",
             end: "bottom 20%",
             toggleActions: "play reverse play reverse",
-            markers: true,
+            // markers: true,
           },
         }
       );
@@ -94,7 +94,7 @@ export default function About() {
           start: "top 80%",
           end: "bottom 20%",
           toggleActions: "play reverse play reverse",
-          markers: true,
+          // markers: true,
         },
       }
     );
@@ -113,7 +113,7 @@ export default function About() {
           start: "top 85%",
           end: "bottom 20%",
           toggleActions: "play reverse play reverse",
-          markers: true,
+          // markers: true,
         },
       }
     );
@@ -273,7 +273,7 @@ export default function About() {
       >
         <div
           data-scroll
-          data-scroll-speed="0.2"
+          data-scroll-speed="0.1"
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         >
           <div className="w-full max-w-3xl mx-auto flex flex-col items-center text-center gap-6 p-6 md:p-8 lg:p-10">
@@ -312,7 +312,7 @@ export default function About() {
 
           <div
             data-scroll
-            data-scroll-speed="0.2"
+            data-scroll-speed="0.1"
             className="w-full lg:w-1/2 flex flex-col gap-6 p-4 sm:p-6"
           >
             <h2 className="text-3xl font-normal sm:text-4xl lg:text-5xl text-gray-500">

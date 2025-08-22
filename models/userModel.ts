@@ -61,29 +61,29 @@ const userSchema = new mongoose.Schema(
       default: "pending",
     },
     // Tracking fields for each step
-    tracker: {
-      signUp: {
-        type: Boolean,
-        default: false,
-        required: true
-      },
-      submitForm: {
-        type: Boolean,
-        default: false,
-        required: true
-      },
-      fillingAndSubmission: {
-        type: Boolean,
-        default: false,
-        required: true
-      },
-      result: {
-        type: Boolean,
-        default: false,
-        required: true
-      },
+    // tracker: {
+    //   signUp: {
+    //     type: Boolean,
+    //     default: false,
+    //     required: true
+    //   },
+    //   submitForm: {
+    //     type: Boolean,
+    //     default: false,
+    //     required: true
+    //   },
+    //   fillingAndSubmission: {
+    //     type: Boolean,
+    //     default: false,
+    //     required: true
+    //   },
+    //   result: {
+    //     type: Boolean,
+    //     default: false,
+    //     required: true
+    //   },
      
-    },
+    // }, 
     createdAt: {
       type: Date,
       default: Date.now,

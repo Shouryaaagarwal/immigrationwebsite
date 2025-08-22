@@ -77,7 +77,7 @@ const Page = () => {
       // 2. Then update the tracker
       try {
         await axios.patch(`/api/tracker/${userdata._id}`, {
-          field: "signUp",
+          field: "signUp",  
           value: true
         }, {
           headers: {

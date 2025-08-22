@@ -14,12 +14,11 @@ import {
 } from "@/components/ui/pagination";
 import { Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
-import Navbar2 from "@/app/components/Navbar2";
 
 const raleway = Raleway({
   weight: ["400", "600", "800"],
   subsets: ["latin"],
-});
+}); 
 
 interface FormData {
   applicationDetails: string;
@@ -253,7 +252,9 @@ export default function Form() {
   const [relativesRows, setRelativesRows] = useState([{ id: 1 }]);
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value, type } = e.target;
     const target = e.target as HTMLInputElement;
@@ -623,9 +624,7 @@ export default function Form() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
     try {
-      // 1. Submit the form data
       const res = await axios.post(
         "http://localhost:3000/api/applicant-form",
         { ...formData, userId },
@@ -633,35 +632,7 @@ export default function Form() {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
         }
-      );     
-      console.log(res.data) ;
-       const { applicationId } = res.data.applicant; 
-       console.log(applicationId) ; 
-
-  if (!applicationId) {
-    throw new Error("No applicationId returned from backend");
-  }
-
-  
-      // 2. Update the tracker to mark form as submitted
-      try {
-        await axios.patch(
-  `/api/tracker/${userId}/${applicationId}`, // <--- fix here
-          {
-            field: "formFilling",
-            value: true
-          },
-          {
-            headers: { "Content-Type": "application/json" },
-            withCredentials: true,
-          }
-        );
-      } catch (trackerError) {
-        console.error("Failed to update tracker:", trackerError);
-        // You might want to handle this error differently
-      }
-  
-      // 3. Redirect after successful submission
+      );
       router.push("/home");
     } catch (error: any) {
       console.error("Submission error:", error);
@@ -671,12 +642,14 @@ export default function Form() {
   };
 
   return (
-    <div style={{ fontFamily: raleway.style.fontFamily }} className="w-full text-gray-500">
-      <Navbar2 />
+    <div
+      style={{ fontFamily: raleway.style.fontFamily }}
+      className="w-full text-gray-500"
+    >
       <div className="page-container pt-[140px] pb-10 pl-4 pr-4 sm:pl-10 sm:pr-10">
-        {/* Page 1 */}
-        {page === 1 && (
-          <div className="page1 mb-10 sm:px-6 lg:px-8">
+        <div className="form-pages-wrapper">
+          {/* Page 1 */}
+         <div className="page1 mb-10 sm:px-6 lg:px-8">
             <h2 className="sm:text-4xl text-2xl mb-10 text-center sm:text-left">
               PERSONAL INFORMATION SHEET
             </h2>
@@ -741,11 +714,10 @@ export default function Form() {
               </div>
             </div>
           </div>
-        )}
 
-        {/* Page 2 */}
-        {page === 2 && (
-          <div id="page2" className="page2 pb-10 sm:px-10">
+          {/* Page 2 */}
+
+           <div id="page2" className="page2 pb-10 sm:px-10">
             <h2 className="sm:text-4xl text-2xl sm:text-left text-center mb-10">
               Applicant Information
             </h2>
@@ -958,12 +930,11 @@ export default function Form() {
                 </select>
               </div>
             </form>
-          </div>
-        )}
+          </div>   
 
-        {/* Page 3 */}
-        {page === 3 && (
-          <div id="page3" className="page3 pb-10 sm:px-10">
+          {/* Page 3 */}
+
+           <div id="page3" className="page3 pb-10 sm:px-10">
             <h3 className="text-2xl sm:text-left text-center sm:text-4xl mb-4">
               Spouse/Common Law Partner Information
             </h3>
@@ -1114,11 +1085,10 @@ export default function Form() {
               </div>
             </div>
           </div>
-        )}
 
-        {/* Page 4 */}
-        {page === 4 && (
-          <div id="page4" className="page4 mb-10 sm:px-10">
+  {/* Page 4 */}
+
+               <div id="page4" className="page4 mb-10 sm:px-10">
             <h2 className="sm:text-4xl text-2xl sm:text-left text-center mb-10">
               Parental Information
             </h2>
@@ -1309,11 +1279,11 @@ export default function Form() {
               </div>
             </div>
           </div>
-        )}
 
-        {/* Page 5 */}
-        {page === 5 && (
-          <div id="page5" className="page5 mb-10 sm:px-10 overflow-x-auto">
+
+{/* Page 5 */}
+
+        <div id="page5" className="page5 mb-10 sm:px-10 overflow-x-auto">
             <h2 className="sm:text-4xl text-2xl sm:text-left text-center mb-10">
               Education and Work History
             </h2>
@@ -1485,12 +1455,12 @@ export default function Form() {
                 <Plus className="w-5 h-5 mr-1" /> Add Work Row
               </button>
             </div>
-          </div>
-        )}
+          </div>   
 
-        {/* Page 6 */}
-        {page === 6 && (
-          <div id="page6" className="page6 mb-10 sm:px-10">
+
+  {/* Page 6 */}
+
+    <div id="page6" className="page6 mb-10 sm:px-10">
             <h2 className="sm:text-4xl text-2xl sm:text-left text-center mb-10">
               Additional Information
             </h2>
@@ -1685,11 +1655,11 @@ export default function Form() {
               </button>
             </div>
           </div>
-        )}
 
-        {/* Page 7 */}
-        {page === 7 && (
-          <div id="page7" className="page7 mb-10 px-4 sm:px-10">
+
+
+  {/* Page 7 */}
+  <div id="page7" className="page7 mb-10 px-4 sm:px-10">
             <h2 className="sm:text-4xl text-2xl sm:text-left text-center mb-10">
               Additional Information
             </h2>
@@ -1814,11 +1784,11 @@ export default function Form() {
               </button>
             </div>
           </div>
-        )}
 
-        {/* Page 8 */}
-      {page === 8 && (
-    <div id="page8" className="page8 mb-10 px-4 sm:px-10">
+
+  {/* Page 8 */}
+
+  <div id="page8" className="page8 mb-10 px-4 sm:px-10">
         <h2 className="sm:text-4xl text-2xl sm:text-left text-center mb-10">Additional Information</h2>
 
         {/* Relatives in Canada */}
@@ -2047,74 +2017,14 @@ export default function Form() {
         </div>
 
         {/* Important Note */}
-        <div className="p-4 bg-gray-100 border-l-4 border-[#155da9]">
-            <h3 className="text-lg font-semibold">Important Note:</h3>
-            <ul className="list-disc list-inside text-gray-700 mt-2">
-                <li>We use the information mentioned in this form for assessing and filling the information required for your application.</li>
-                <li>By signing the application, you declare that all the information stated by you in this application is up-to-date and accurate.</li>
-                <li>In the event of any changes in your personal circumstances, please inform us at the earliest.</li>
-                <li>Please fill a separate form for your spouse and for dependent child above age of 19 if any, with their information in it.</li>
-            </ul>
-        </div>   
-        <div className="w-full flex mt-10 items-center justify-center">
-            <button 
-                onClick={handleSubmit}
-                type="button"
-                className="border-[#155da9] border-2 mt-8 text-[#155da9] px-10 py-4 tracking-wide hover:bg-[#155da9] hover:text-white transition-transform duration-500 hover:-translate-y-3 rounded-full"
-            >
-                Submit
-            </button>
-        </div>
+        
+        
     </div>
-)}
 
-<div className="pb-10">
-    <Pagination className="flex flex-wrap justify-center gap-2 sm:gap-4">
-        <PaginationContent className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-            <PaginationItem>
-                {page > 1 && (
-                    <PaginationPrevious
-                        onClick={(e) => {
-                            e.preventDefault();
-                            setPage(page - 1);
-                        }}
-                        className="px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md hover:bg-gray-100"
-                    />
-                )}
-            </PaginationItem>
+        </div>
+      </div>
+    </div>
+  );
+} 
 
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((pageNum) => (
-                <PaginationItem key={pageNum}>
-                    <PaginationLink
-                        onClick={(e) => {
-                            e.preventDefault();
-                            setPage(pageNum);
-                        }}
-                        className={`px-3 py-2 text-sm sm:text-base border rounded-md ${
-                            page === pageNum
-                                ? 'bg-[#155da9] text-white border-[#155da9]'
-                                : 'text-black border-gray-300 hover:bg-gray-100'
-                        }`}
-                    >
-                        {pageNum}
-                    </PaginationLink>
-                </PaginationItem>
-            ))}
 
-            <PaginationItem>
-                {page < 8 && (
-                    <PaginationNext
-                        onClick={(e) => {
-                            e.preventDefault();
-                            setPage(page + 1);
-                        }}
-                        className="px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-md hover:bg-gray-100"
-                    />
-                )}
-            </PaginationItem>
-        </PaginationContent>
-    </Pagination>
-</div>  
-</div>   
-</div>
-  ) }

@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { selectUser } from '@/store/authSlice';
 import { useSelector } from 'react-redux';
+import Navbar2 from '@/app/components/Navbar2';
 
 interface User {
   _id: string;
@@ -117,7 +118,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-8">  
-      <Navbar/>
+      <Navbar2/>
       <div className="max-w-7xl pt-[110px] mx-auto">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
           <h1 className="text-4xl font-normal text-gray-500">User Management</h1>
