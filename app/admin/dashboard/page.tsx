@@ -14,8 +14,7 @@ interface User {
   _id: string;
   name: string;
   email: string;
-  nationality: string;
-  status?: 'pending' | 'done'; // Optional because we'll fetch it separately
+  status?: 'pending' | 'done'; 
 }
 
 interface TrackerData {
@@ -48,13 +47,13 @@ const AdminDashboard = () => {
               const trackerResponse = await axios.get(`/api/tracker/${user._id}`);
               return {
                 ...user,
-                status: trackerResponse.data.tracker?.result ? 'done' : 'pending'
+                status: trackerResponse.data.tracker?.result ? 'done' as 'done' : 'pending' as 'pending'
               };
             } catch (error) {
               console.error(`Error fetching tracker for user ${user._id}:`, error);
               return {
                 ...user,
-                status: 'pending' // Default to pending if tracker fetch fails
+                status: 'pending' as 'pending' // Default to pending if tracker fetch fails
               };
             }
           })
@@ -138,9 +137,7 @@ const AdminDashboard = () => {
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Nationality
-                  </th>
+
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Actions
                   </th>
@@ -175,9 +172,7 @@ const AdminDashboard = () => {
                            (user.status || 'pending').slice(1)}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {user.nationality}
-                      </td>
+                     
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <button
                           onClick={() => handleViewDetails(user._id)}

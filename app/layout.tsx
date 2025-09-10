@@ -173,8 +173,7 @@ import ClientProvider from "@/hoc/ClientProvider";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "@/app/api/uploadthing/core";
-import SmoothScroll from "@/components/smoothscroll";
-import LayoutClientWrapper from "../app/components/LayoutClientWrapper"; // ✅ new
+import SmoothScroll from "@/components/smoothscroll"; // ✅ Import SmoothScroll
 
 const font = Raleway({ subsets: ["latin"] });
 
@@ -192,6 +191,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+  
     <html lang="en">
       <body className={font.className}>
         <ClientProvider>
@@ -205,5 +205,6 @@ export default function RootLayout({
         </ClientProvider>
       </body>
     </html>
+  
   );
 }
