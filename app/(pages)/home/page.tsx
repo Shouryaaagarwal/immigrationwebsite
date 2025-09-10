@@ -363,7 +363,7 @@ export default function Home() {
         
         className="border-[#155da9] border-2 text-[#155da9] px-10 py-4 tracking-wide hover:bg-[#155da9] hover:text-white transition-transform duration-500 hover:-translate-y-3 rounded-full"
       >
-        {/* Check Your Chances */} Coming Soon...
+        {/* Check Your Chances */} Coming Soon...... 
       </div>
     </div>
   </div>
