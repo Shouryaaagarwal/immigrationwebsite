@@ -344,10 +344,35 @@ export default function Home() {
             </Link>
           </div>
         </div>
+      </div>   
+
+
+
+
+{/* New section added here */}
+<div className="w-full mx-auto py-10 px-6 bg-white rounded-lg text-center">
+  <div className="w-full mt-12">
+    <h2 className="text-3xl font-normal text-gray-500 mb-4">
+      Want to know about your <span className="text-[#c30e16]">chances</span> of the <span className="text-[#155da9]">visa</span>?
+    </h2>
+    <p className="text-gray-600 mb-6 max-w-xl mx-auto">
+      Find out your eligibility and chances with our quick assessment tool.
+    </p>
+    <div className="flex items-center justify-center mt-10">
+      <div
+        
+        className="border-[#155da9] border-2 text-[#155da9] px-10 py-4 tracking-wide hover:bg-[#155da9] hover:text-white transition-transform duration-500 hover:-translate-y-3 rounded-full"
+      >
+        {/* Check Your Chances */} Coming Soon...
       </div>
+    </div>
+  </div>
+</div>
+
+
 
       <TimelineDemo />
-                <ChatbotButton />
+                {/* <ChatbotButton /> */}
 
       {/* Show on large screens only (lg and up) */}
     </div>

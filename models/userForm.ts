@@ -603,7 +603,12 @@ const applicantSchema = new mongoose.Schema(
     declaration: {
       signedDate: { type: String },
       signature: { type: String }
-    }
+    } ,  
+    status: {
+      type: String,
+      enum: ["pending", "done"],
+      default: "pending",
+    },
   },
   {
     timestamps: true

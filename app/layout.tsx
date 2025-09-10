@@ -108,19 +108,75 @@
 
 
 
+// import type { Metadata } from "next";
+// import localFont from "next/font/local";
+// import "./globals.css";
+// import ClientProvider from "@/hoc/ClientProvider";
+// import { ToastContainer } from "react-toastify";
+// import 'react-toastify/dist/ReactToastify.css';
+// import { Raleway } from "next/font/google";
+// import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+// import { extractRouterConfig } from "uploadthing/server";
+// import { ourFileRouter } from "@/app/api/uploadthing/core";
+// import SmoothScroll from "@/components/smoothscroll"; // ✅ Import SmoothScroll
+
+// const font = Raleway({ subsets: ['latin'] });
+
+// export const metadata: Metadata = {
+//   title: "SeaView Immigration Services Ltd.",
+//   description: "Your trusted partner for immigration solutions",
+//   icons: {
+//     icon: [{ url: "/favicon1.png" }],
+//   },
+// };
+
+// export default function RootLayout({
+//   children,
+// }: Readonly<{
+//   children: React.ReactNode;
+// }>) {
+//   return (
+//     <html lang="en">
+//       <body className={font.className}>
+//         <ClientProvider>
+//           <NextSSRPlugin
+//             routerConfig={extractRouterConfig(ourFileRouter)}
+//           />
+//           <SmoothScroll> {/* ✅ Wrap children */}
+//             {children}
+//           </SmoothScroll>
+//           <ToastContainer
+//             position="top-right"
+//             autoClose={5000}
+//             hideProgressBar
+//             closeOnClick
+//             pauseOnHover
+//             draggable
+//             toastClassName="custom-toast"
+//             className="custom-toast-body"
+//             style={{ textAlign: 'center' }}
+//           /> 
+          
+//         </ClientProvider>
+//       </body>
+//     </html>
+//   );
+// }
+
+
+
+
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Raleway } from "next/font/google";
 import "./globals.css";
 import ClientProvider from "@/hoc/ClientProvider";
-import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import { Raleway } from "next/font/google";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "@/app/api/uploadthing/core";
-import SmoothScroll from "@/components/smoothscroll"; // ✅ Import SmoothScroll
+import SmoothScroll from "@/components/smoothscroll";
+import LayoutClientWrapper from "../app/components/LayoutClientWrapper"; // ✅ new
 
-const font = Raleway({ subsets: ['latin'] });
+const font = Raleway({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "SeaView Immigration Services Ltd.",
@@ -132,37 +188,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body className={font.className}>
         <ClientProvider>
-          <NextSSRPlugin
-            routerConfig={extractRouterConfig(ourFileRouter)}
-          />
-          <SmoothScroll> {/* ✅ Wrap children */}
-            {children}
+          <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+          <SmoothScroll>
+            {/* ✅ only client code goes here */}
+            {/* <LayoutClientWrapper>   */}
+              {children}   
+              {/* </LayoutClientWrapper> */}
           </SmoothScroll>
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar
-            closeOnClick
-            pauseOnHover
-            draggable
-            toastClassName="custom-toast"
-            className="custom-toast-body"
-            style={{ textAlign: 'center' }}
-          /> 
-          
         </ClientProvider>
       </body>
     </html>
   );
 }
-
-
-
-

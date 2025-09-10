@@ -1,6 +1,9 @@
+
+
 "use client"
-import Navbar from '@/app/components/Navbar';
-import { useState } from 'react';
+import Navbar2 from '@/app/components/Navbar2';
+import { useState } from 'react';  
+import { useParams } from 'next/navigation';
 import { FiUpload, FiTrash2, FiPlus, FiCheck } from 'react-icons/fi';
 import { UploadButton } from '@/src/utils/uploadthing';
 import { OurFileRouter } from "@/app/api/uploadthing/core";
@@ -10,9 +13,12 @@ import axios from 'axios';
 
 const DocumentUploadPage = () => {
    const user = useSelector((state:any) => state.auth.user);
-    const userId = user?._id;
+    const userId = user?._id;   
 
-  const router = useRouter();
+  const router = useRouter();    
+   const params = useParams();
+  const applicationId = params.id; // This should work now    
+  console.log(applicationId) ; 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -66,7 +72,7 @@ const DocumentUploadPage = () => {
   
   console.log(userId)
   console.log(passport?.url)
-
+    
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -84,7 +90,8 @@ const DocumentUploadPage = () => {
   
       // Prepare data for API
       const documentData = {
-        userId: userId,
+        userId: userId,  
+        applicationId : applicationId,
         passport: {
           url: passport.url
         },
@@ -133,23 +140,22 @@ const DocumentUploadPage = () => {
   
       try {
         await axios.patch(
-          `/api/tracker/${userId}`,
+          `/api/tracker/${userId}/${applicationId}`,
           {
-            field: "fillingAndSubmission",
+            field: "formSubmission",
             value: true
           },
           {
             headers: { "Content-Type": "application/json" },
-            withCredentials: true,
-          }
+            }
         );
       } catch (trackerError) {
         console.error('Tracker update error:', trackerError);
         // You might want to handle this error differently or just log it
       }
   
-      // 3. Redirect after successful submission
-      router.push('/admin/user/' + userId); 
+      // 3. Redirect after successful submission 
+      router.push('/profile'); 
       alert('Documents submitted successfully!');
       
     } catch (err) {
@@ -162,7 +168,7 @@ const DocumentUploadPage = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6"> 
-      <Navbar/>
+      <Navbar2/>
       <div className="pt-[110px]">
         <h1 className="text-5xl text-[#155da9] font-normal mb-8">Upload Documents</h1>
         
@@ -394,7 +400,7 @@ const DocumentUploadPage = () => {
                   if (res && res[0]) {
                     setBirthCertificate({ 
                       name: res[0].name, 
-                      url: res[0].url,
+                      url: res[0].url,   
                       description: 'Birth Certificate' 
                     });
                   }
@@ -419,7 +425,8 @@ const DocumentUploadPage = () => {
                     onChange={(e) => setBirthCertificate(prev => 
                       prev ? { ...prev, description: e.target.value } : null
                     )}
-                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#155da9] focus:border-transparent"
+                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#155da9] focus:border-transparent"   
+                    readOnly
                     placeholder="Birth Certificate Description"
                     required
                   />
@@ -592,5 +599,6 @@ const DocumentUploadPage = () => {
 };
 
 export default DocumentUploadPage;
+
 
 
