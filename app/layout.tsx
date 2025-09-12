@@ -174,6 +174,7 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "@/app/api/uploadthing/core";
 import SmoothScroll from "@/components/smoothscroll"; // ✅ Import SmoothScroll
+import LayoutClientWrapper from "./components/LayoutClientWrapper";
 
 const font = Raleway({ subsets: ["latin"] });
 
@@ -198,9 +199,9 @@ export default function RootLayout({
           <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
           <SmoothScroll>
             {/* ✅ only client code goes here */}
-            {/* <LayoutClientWrapper>   */}
+            <LayoutClientWrapper>  
               {children}   
-              {/* </LayoutClientWrapper> */}
+              </LayoutClientWrapper>
           </SmoothScroll>
         </ClientProvider>
       </body>

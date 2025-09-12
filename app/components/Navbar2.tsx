@@ -249,7 +249,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/home">
           <img
-            src="https://seaviewimmigration.com/assets/img/logo.svg"
+            src="logo22.png"
             alt="Logo"
             className="md:h-14 h-10  w-auto"
           />

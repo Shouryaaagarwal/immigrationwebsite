@@ -1508,9 +1508,9 @@ const ViewDocumentsPage = () => {
   const [editing, setEditing] = useState<string | null>(null);
   const [editData, setEditData] = useState<any>({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
-  const [uploading, setUploading] = useState(false);
+  const [uploading, setUploading] = useState(false);   // state (optional rename if you want uniqueness)
 
-  useEffect(() => {
+ useEffect(() => {
     const fetchDocs = async () => {
       try {
         const res = await axios.get(`/api/documents/upload?applicationId=${applicationId}`);
@@ -1526,8 +1526,16 @@ const ViewDocumentsPage = () => {
       }
     };
     if (applicationId) fetchDocs();
-  }, [applicationId]);
+  }, [applicationId]);    
 
+  
+
+
+
+
+
+
+// handle file change
   const handleEdit = (field: string, data: any) => {
     setEditing(field);
     setEditData(data || {});
@@ -1545,7 +1553,7 @@ const ViewDocumentsPage = () => {
       formData.append("applicationId", applicationId);
       formData.append("documentId", docs?._id || "");
 
-      const res = await axios.post("/api/documents/upload", formData, {
+      const res = await axios.patch("/api/documents/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -1583,7 +1591,54 @@ const ViewDocumentsPage = () => {
       }
       handleFileUpload(file, field, index);
     }
-  };
+  };   
+
+  const [descriptionChanges, setDescriptionChanges] = useState<{[key: string]: string}>({});
+
+// Add this function to handle description changes
+const handleDescriptionChange = (field: string, value: string) => {
+  setDescriptionChanges(prev => ({
+    ...prev,
+    [field]: value
+  }));
+};
+
+// Add this function to save description changes
+// Add this function to save description changes using formData
+const handleSaveDescription = async (field: string, index?: number) => {
+  try {
+    const description = descriptionChanges[field];
+    if (!description) return;
+
+    const formData = new FormData();
+    formData.append("field", field);
+    if (index !== undefined) {
+      formData.append("index", index.toString());
+    }
+    formData.append("applicationId", applicationId);
+    formData.append("documentId", docs?._id || "");
+    formData.append("description", description);
+
+    const res = await axios.patch("/api/documents/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    if (res.status === 200) {
+      setDocs(res.data.updatedDocument);
+      setDescriptionChanges(prev => {
+        const newChanges = {...prev};
+        delete newChanges[field];
+        return newChanges;
+      });
+      setUpdateSuccess(true);
+      setTimeout(() => setUpdateSuccess(false), 3000);
+    }
+  } catch (err) {
+    setError("Failed to update description.");
+  }
+};
 
   if (loading) {
     return (
@@ -1859,7 +1914,7 @@ const ViewDocumentsPage = () => {
                         <p className="text-xs text-gray-500 mt-1">Only PDF files are accepted</p>
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                        {/* <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
                         <input
                           type="text"
                           name="description"
@@ -1867,7 +1922,7 @@ const ViewDocumentsPage = () => {
                           onChange={handleInputChange}
                           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                           placeholder="Enter document description"
-                        />
+                        /> */}
                       </div>
                       <div className="flex gap-2 mt-2">
                         <button 
@@ -1935,48 +1990,56 @@ const ViewDocumentsPage = () => {
                   ))}
                 </div>
                 
-                {editing && editing.startsWith('marksheets[') && (
-                  <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                    <h3 className="font-medium text-blue-800 mb-2">Replace Marksheet</h3>
-                    <div className="grid grid-cols-1 gap-3">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Upload new PDF file</label>
-                        <input
-                          type="file"
-                          accept=".pdf"
-                          onChange={(e) => handleFileChange(e, 'marksheets', parseInt(editing.match(/\[(\d+)\]/)?.[1] || '0'))}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                        <p className="text-xs text-gray-500 mt-1">Only PDF files are accepted</p>
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                        <input
-                          type="text"
-                          name="description"
-                          value={editData.description || ''}
-                          onChange={handleInputChange}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          placeholder="Enter document description"
-                        />
-                      </div>
-                      <div className="flex gap-2 mt-2">
-                        <button 
-                          onClick={handleCancel}
-                          className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                      {uploading && (
-                        <div className="mt-2 text-blue-600 flex items-center">
-                          <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-blue-600 mr-2"></div>
-                          Uploading...
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
+               {editing && editing.startsWith('marksheets[') && (
+  <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+    <h3 className="font-medium text-blue-800 mb-2">Replace Marksheet</h3>
+    <div className="grid grid-cols-1 gap-3">
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Upload new PDF file</label>
+        <input
+          type="file"
+          accept=".pdf"
+          onChange={(e) => handleFileChange(e, 'marksheets', parseInt(editing.match(/\[(\d+)\]/)?.[1] || '0'))}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <p className="text-xs text-gray-500 mt-1">Only PDF files are accepted</p>
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+        <input
+          type="text"
+          name="description"
+          value={descriptionChanges[editing] || editData.description || ''}
+          onChange={(e) => handleDescriptionChange(editing, e.target.value)}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter document description"
+        />
+      </div>
+      <div className="flex gap-2 mt-2">
+        <button 
+          onClick={() => handleSaveDescription(editing, parseInt(editing.match(/\[(\d+)\]/)?.[1] || '0'))}
+          disabled={!descriptionChanges[editing]}
+          className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors disabled:bg-gray-400"
+        >
+          Save Description
+        </button>
+        <button 
+          onClick={handleCancel}
+          className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
+        >
+          Cancel
+        </button>
+      </div>
+      {uploading && (
+        <div className="mt-2 text-blue-600 flex items-center">
+          <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-blue-600 mr-2"></div>
+          Uploading...
+        </div>
+      )}
+    </div>
+  </div>
+)}
+
               </div>
             )}
 
@@ -2153,11 +2216,12 @@ const ViewDocumentsPage = () => {
               </div>
             )} */}   
             {/* Work Experience */}
+{/* Work Experience */}
 <div className="bg-white rounded-2xl shadow-md p-6 border-l-4 border-[#155da9] hover:shadow-lg transition-all duration-300">
   <div className="flex items-center mb-4">
     <div className="p-3 rounded-xl bg-gradient-to-br from-blue-100 to-blue-50 mr-4">
       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#155da9]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 002 2h2a2 2 0 002-2V6m0 0v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-极4a2 2 0 00-2-2v2m8 0V6a2 2 0 002 2极h2a2 2 0 002-2V6m0 0v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6" />
       </svg>
     </div>
     <div>
@@ -2181,12 +2245,18 @@ const ViewDocumentsPage = () => {
               className="flex items-center px-3 py-2 bg-gradient-to-r from-[#155da9] to-blue-800 text-white rounded-lg hover:from-blue-800 hover:to-blue-900 transition-all shadow-sm hover:shadow-md text-sm"
             >
               <span className="mr-1">View</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
             </a>
             <button 
               onClick={() => handleEdit(`previousWork[${i}]`, w)}
-              className="flex items-center px-3 py-2 bg-gradient-to-r from-gray-600 to-gray-800 text-white rounded-lg hover:from-gray-700 hover:to-gray-900 transition-all shadow-sm hover:shadow-md text-sm"
+              className="flex items-center px-3 py-2 bg-gradient极-to-r from-gray-600 to-gray-800 text-white rounded-lg hover:from-gray-700 hover:to-gray-900 transition-all shadow-sm hover:shadow-md text-sm"
             >
               <span className="mr-1">Replace</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
             </button>
           </div>
         </div>
@@ -2224,11 +2294,46 @@ const ViewDocumentsPage = () => {
   {editing && editing.startsWith('previousWork[') && (
     <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
       <h3 className="font-medium text-blue-800 mb-2">Replace Work Experience Document</h3>
-      {/* same replace block as before */}
+      <div className="grid grid-cols-1 gap-3">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Upload new PDF file</label>
+          <input
+            type="file"
+            accept=".pdf"
+            onChange={(e) => handleFileChange(e, 'previousWork', parseInt(editing.match(/\[(\d+)\]/)?.[1] || '0'))}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <p className="text-xs text-gray-500 mt-1">Only PDF files are accepted</p>
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+          <input
+            type="text"
+            name="description"
+            value={editData.description || ''}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter document description"
+          />
+        </div>
+        <div className="flex gap-2 mt-2">
+          <button 
+            onClick={handleCancel}
+            className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
+          >
+            Cancel
+          </button>
+        </div>
+        {uploading && (
+          <div className="mt-2 text-blue-600 flex items-center">
+            <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-blue-600 mr-2"></div>
+            Uploading...
+          </div>
+        )}
+      </div>
     </div>
   )}
 </div>
-
 
 {/* Previous Refusals */}
 <div className="bg-white rounded-2xl shadow-md p-6 border-l-4 border-[#c30e16] hover:shadow-lg transition-all duration-300 mt-6">
@@ -2393,5 +2498,6 @@ const ViewDocumentsPage = () => {
 };
 
 export default ViewDocumentsPage;
+
 
 
