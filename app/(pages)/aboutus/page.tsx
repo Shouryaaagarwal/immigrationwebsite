@@ -8,7 +8,7 @@ import { HiUserGroup } from "react-icons/hi2";
 import { MdMiscellaneousServices } from "react-icons/md";
 import SwiperNavigation from "@/app/components/SwiperNavigation";
 import Footer from "@/app/components/Footer";
-import Script from "next/script";
+// import Script from "next/script";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
 
@@ -139,7 +139,7 @@ export default function About() {
         data-scroll-speed="0.2"
         className="h-[55vh] md:h-[70vh] bg-white flex flex-col gap-2 items-center justify-center w-full bg-cover bg-center relative z-10"
         style={{
-          backgroundImage: "url('/about1.jpg')",
+          backgroundImage: "url(&apos;/about1.jpg&apos;)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -153,7 +153,7 @@ export default function About() {
           About Us
         </h1>
         <h5 className="text-[#F1F1F1] mt-4 font-thin text-sm md:text-lg z-20 tracking-widest text-center px-4">
-          Connecting Dreams to Destinations Let's Build Your Path Together
+          Connecting Dreams to Destinations Let&apos;s Build Your Path Together
         </h5>
       </div>
 
@@ -257,7 +257,7 @@ export default function About() {
                 </span>
                 <span className="text-gray-500 text-sm mt-1">
                   We prioritize clear communication and transparency, ensuring
-                  you're informed and confident at every stage of your
+                  you&apos;re informed and confident at every stage of your
                   application process.
                 </span>
               </div>
@@ -285,7 +285,7 @@ export default function About() {
               understandable to all. By combining our personal immigration
               experiences with professional expertise, we aim to transform the
               complex journey of relocation into a smooth transition. Our vision
-              extends beyond paperwork - we're building a community where
+              extends beyond paperwork - we&apos;re building a community where
               newcomers feel supported from their first inquiry through
               successful settlement in Canada.
             </p>
@@ -325,7 +325,7 @@ export default function About() {
               <ul className="list-disc pl-5 mt-4 space-y-2">
                 <li>Deliver accurate, up-to-date immigration advice</li>
                 <li>
-                  Provide personalized strategies for each client's unique
+                  Provide personalized strategies for each client&apos;s unique
                   situation
                 </li>
                 <li>

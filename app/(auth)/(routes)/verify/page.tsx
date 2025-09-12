@@ -377,37 +377,86 @@ const VerificationCodeInput = () => {
     }
   };
 
-  const handleResend = async () => {
-    try {
-      await axios.post("/api/users/resend-otp");
-      toast.success("OTP has been resent successfully!");
-      setResendCooldown(30);
-      localStorage.setItem("lastResendTime", Date.now().toString());
-    } catch (error: any) {
-      toast.error(error?.response?.data?.message || "Failed to resend OTP. Please try again.");
+  // const handleResend = async () => {
+  //   try {
+  //     await axios.post("/api/users/resend-otp");
+  //     toast.success("OTP has been resent successfully!");
+  //     setResendCooldown(30);
+  //     localStorage.setItem("lastResendTime", Date.now().toString());
+  //   } catch (error: any) {
+  //     toast.error(error?.response?.data?.message || "Failed to resend OTP. Please try again.");
+  //   }
+  // };
+const handleResend = async () => {
+  try {
+    await axios.post("/api/users/resend-otp");
+    toast.success("OTP has been resent successfully!");
+    setResendCooldown(30);
+    localStorage.setItem("lastResendTime", Date.now().toString());
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      toast.error(
+        error.response?.data?.message ||
+          "Failed to resend OTP. Please try again."
+      );
+      console.error(error.response?.data);
+    } else {
+      toast.error("Something went wrong while resending OTP.");
+      console.error(error);
     }
-  };
+  }
+};
 
-  const handleSubmit = async () => {
-    setLoading(true);
+  // const handleSubmit = async () => {
+  //   setLoading(true);
 
-    try {
-      const verificationCode = code.join("");
-      const res = await axios.post("http://localhost:3000/api/users/verify", { otp: verificationCode }, {
-        withCredentials: true,
-      });
+  //   try {
+  //     const verificationCode = code.join("");
+  //     const res = await axios.post("http://localhost:3000/api/users/verify", { otp: verificationCode }, {
+  //       withCredentials: true,
+  //     });
 
-      const verifiedUser = res.data.data.user;
-      dispatch(setAuthUser(verifiedUser));
-      toast.success("Email verified successfully!");
-      router.push("/");
-    } catch (error: any) {
-      toast.error(error?.response?.data?.message || "Verification failed. Please try again.");
-    } finally {
-      setLoading(false);
+  //     const verifiedUser = res.data.data.user;
+  //     dispatch(setAuthUser(verifiedUser));
+  //     toast.success("Email verified successfully!");
+  //     router.push("/");
+  //   } catch (error: any) {
+  //     toast.error(error?.response?.data?.message || "Verification failed. Please try again.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+const handleSubmit = async () => {
+  setLoading(true);
+
+  try {
+    const verificationCode = code.join("");
+    const res = await axios.post(
+      "http://localhost:3000/api/users/verify",
+      { otp: verificationCode },
+      { withCredentials: true }
+    );
+
+    const verifiedUser = res.data.data.user;
+    dispatch(setAuthUser(verifiedUser));
+    toast.success("Email verified successfully!");
+    router.push("/");
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      toast.error(
+        error.response?.data?.message ||
+          "Verification failed. Please try again."
+      );
+      console.error(error.response?.data);
+    } else {
+      toast.error("Something went wrong. Please try again.");
+      console.error(error);
     }
-  };
-
+  } finally {
+    setLoading(false);
+  }
+};
 
   const goback = () => {
     router.back();

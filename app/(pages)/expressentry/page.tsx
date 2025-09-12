@@ -27,7 +27,11 @@ export default function ExpressEntry() {
   const serviceCardsRef = useRef<HTMLAnchorElement[]>([]);
 
   // Helper function to add items to ref array
-  const addToRefs = (el: HTMLElement | null, refArray: React.MutableRefObject<HTMLElement[]>, index: number) => {
+  const addToRefs = (
+    el: HTMLElement | null,
+    refArray: React.MutableRefObject<HTMLElement[]>,
+    index: number
+  ) => {
     if (el) refArray.current[index] = el;
   };
 
@@ -40,7 +44,7 @@ export default function ExpressEntry() {
         opacity: 0,
         y: 50,
         duration: 1,
-        ease: "power3.out"
+        ease: "power3.out",
       });
 
       gsap.from(heroSubtitleRef.current, {
@@ -48,7 +52,7 @@ export default function ExpressEntry() {
         y: 30,
         duration: 0.8,
         delay: 0.3,
-        ease: "power2.out"
+        ease: "power2.out",
       });
 
       // Intro text animation
@@ -59,8 +63,8 @@ export default function ExpressEntry() {
         scrollTrigger: {
           trigger: introTextRef.current,
           start: "top 80%",
-          toggleActions: "play none none none"
-        }
+          toggleActions: "play none none none",
+        },
       });
 
       // Programs section animations
@@ -71,8 +75,8 @@ export default function ExpressEntry() {
         scrollTrigger: {
           trigger: programsTitleRef.current,
           start: "top 80%",
-          toggleActions: "play none none none"
-        }
+          toggleActions: "play none none none",
+        },
       });
 
       programItemsRef.current.forEach((item, index) => {
@@ -84,8 +88,8 @@ export default function ExpressEntry() {
           scrollTrigger: {
             trigger: item,
             start: "top 80%",
-            toggleActions: "play none none none"
-          }
+            toggleActions: "play none none none",
+          },
         });
       });
 
@@ -97,8 +101,8 @@ export default function ExpressEntry() {
         scrollTrigger: {
           trigger: qualifyTitleRef.current,
           start: "top 80%",
-          toggleActions: "play none none none"
-        }
+          toggleActions: "play none none none",
+        },
       });
 
       qualifyItemsRef.current.forEach((item, index) => {
@@ -110,8 +114,8 @@ export default function ExpressEntry() {
           scrollTrigger: {
             trigger: item,
             start: "top 80%",
-            toggleActions: "play none none none"
-          }
+            toggleActions: "play none none none",
+          },
         });
       });
 
@@ -123,8 +127,8 @@ export default function ExpressEntry() {
         scrollTrigger: {
           trigger: servicesTitleRef.current,
           start: "top 80%",
-          toggleActions: "play none none none"
-        }
+          toggleActions: "play none none none",
+        },
       });
 
       serviceCardsRef.current.forEach((card, index) => {
@@ -136,8 +140,8 @@ export default function ExpressEntry() {
           scrollTrigger: {
             trigger: card,
             start: "top 80%",
-            toggleActions: "play none none none"
-          }
+            toggleActions: "play none none none",
+          },
         });
       });
     });
@@ -158,13 +162,13 @@ export default function ExpressEntry() {
         <div className="fixed top-0 left-0 w-full z-50">
           <Navbar />
         </div>
-        <h1 
+        <h1
           ref={heroTitleRef}
           className="font-semibold tracking-widest text-4xl sm:text-5xl md:text-6xl mt-10 z-20 text-white text-center px-4"
         >
           Express Entry
         </h1>
-        <h5 
+        <h5
           ref={heroSubtitleRef}
           className="text-white mt-4 font-normal text-base sm:text-lg z-20 tracking-widest text-center px-4"
         >
@@ -175,44 +179,55 @@ export default function ExpressEntry() {
       <div className="w-full bg-white">
         {/* Intro Section */}
         <div className="mt-10 px-4 sm:px-8 md:px-12 lg:px-20 pt-10 w-full">
-          <p 
-           
-            className="text-base sm:text-[17px] text-gray-500 text-center sm:text-left"
-          >
-            Canada's premier immigration pathway for skilled professionals seeking 
-            permanent residency. Candidates create an online profile that's ranked 
-            using the Comprehensive Ranking System (CRS), with top-scoring 
-            applicants receiving invitations to apply for Canadian permanent status.
+          <p className="text-base sm:text-[17px] text-gray-500 text-center sm:text-left">
+            Canada&apos;s premier immigration pathway for skilled professionals
+            seeking permanent residency. Candidates create an online profile
+            that&apos;s ranked using the Comprehensive Ranking System (CRS),
+            with top-scoring applicants receiving invitations to apply for
+            Canadian permanent status.
           </p>
 
           {/* Programs Section */}
           <div className="mt-6 sm:mt-8 lg:mt-10 pl-0 sm:pl-10 lg:pl-20 text-gray-600">
-            <h2 
-             
-              className="text-lg sm:text-xl font-semibold text-[#155da9] mb-4 text-center sm:text-left"
-            >
+            <h2 className="text-lg sm:text-xl font-semibold text-[#155da9] mb-4 text-center sm:text-left">
               Key Programs Under Express Entry:
             </h2>
             <ul className="list-disc pl-5 space-y-3">
-              <li ref={el => addToRefs(el, programItemsRef, 0)} className="pl-2">
-                <h1 className="font-medium text-base sm:text-lg">Federal Skilled Worker Program</h1>
+              <li
+                ref={(el) => addToRefs(el, programItemsRef, 0)}
+                className="pl-2"
+              >
+                <h1 className="font-medium text-base sm:text-lg">
+                  Federal Skilled Worker Program
+                </h1>
                 <p className="text-xs sm:text-sm pl-3 sm:pl-5 mt-1">
-                  Designed for professionals with foreign work experience who meet 
-                  Canada's skilled worker criteria based on education, experience, 
-                  and language proficiency.
+                  Designed for professionals with foreign work experience who
+                  meet Canada&apos;s skilled worker criteria based on education,
+                  experience, and language proficiency.
                 </p>
               </li>
-              <li ref={el => addToRefs(el, programItemsRef, 1)} className="pl-2">
-                <h1 className="font-medium text-base sm:text-lg">Federal Skilled Trades Program</h1>
+              <li
+                ref={(el) => addToRefs(el, programItemsRef, 1)}
+                className="pl-2"
+              >
+                <h1 className="font-medium text-base sm:text-lg">
+                  Federal Skilled Trades Program
+                </h1>
                 <p className="text-xs sm:text-sm pl-3 sm:pl-5 mt-1">
-                  For qualified tradespeople with experience in skilled trades 
-                  occupations, addressing Canada's demand for technical expertise.
+                  For qualified tradespeople with experience in skilled trades
+                  occupations, addressing Canada&apos;s demand for technical
+                  expertise.
                 </p>
               </li>
-              <li ref={el => addToRefs(el, programItemsRef, 2)} className="pl-2">
-                <h1 className="font-medium text-base sm:text-lg">Canadian Experience Class</h1>
+              <li
+                ref={(el) => addToRefs(el, programItemsRef, 2)}
+                className="pl-2"
+              >
+                <h1 className="font-medium text-base sm:text-lg">
+                  Canadian Experience Class
+                </h1>
                 <p className="text-xs sm:text-sm pl-3 sm:pl-5 mt-1">
-                  Pathway for temporary foreign workers with Canadian work 
+                  Pathway for temporary foreign workers with Canadian work
                   experience to transition to permanent residency.
                 </p>
               </li>
@@ -222,58 +237,58 @@ export default function ExpressEntry() {
 
         {/* Qualification Section */}
         <div className="text-gray-500 px-4 sm:px-8 md:px-12 lg:px-20 pt-10 w-full bg-[#f1f1f1] mt-10">
-          <h1 
+          <h1
             ref={qualifyTitleRef}
             className="font-semibold pt-6 text-gray-500 text-center sm:text-left"
           >
-            Who <span className="text-[#155da9]">qualifies</span> for 
+            Who <span className="text-[#155da9]">qualifies</span> for
             <span className="text-[#c30e16]"> Express Entry</span>?
           </h1>
-          
+
           <div className="mt-6 pb-10">
             <ul className="list-none space-y-3">
-              <li 
-                ref={el => addToRefs(el, qualifyItemsRef, 0)}
+              <li
+                ref={(el) => addToRefs(el, qualifyItemsRef, 0)}
                 className="flex items-start gap-3 px-2 sm:px-0"
               >
                 <span className="h-[6px] w-[6px] bg-[#155da9] rounded-full mt-2 flex-shrink-0"></span>
                 <span className="text-sm sm:text-base">
-                  Skilled professionals with at least 1 year of continuous work 
+                  Skilled professionals with at least 1 year of continuous work
                   experience in an eligible occupation
                 </span>
               </li>
-              <li 
-                ref={el => addToRefs(el, qualifyItemsRef, 1)}
+              <li
+                ref={(el) => addToRefs(el, qualifyItemsRef, 1)}
                 className="flex items-start gap-3 px-2 sm:px-0"
               >
                 <span className="h-[6px] w-[6px] bg-[#155da9] rounded-full mt-2 flex-shrink-0"></span>
                 <span className="text-sm sm:text-base">
-                  Language proficiency in English or French (CLB 7 or higher for 
+                  Language proficiency in English or French (CLB 7 or higher for
                   most programs)
                 </span>
               </li>
-              <li 
-                ref={el => addToRefs(el, qualifyItemsRef, 2)}
+              <li
+                ref={(el) => addToRefs(el, qualifyItemsRef, 2)}
                 className="flex items-start gap-3 px-2 sm:px-0"
               >
                 <span className="h-[6px] w-[6px] bg-[#155da9] rounded-full mt-2 flex-shrink-0"></span>
                 <span className="text-sm sm:text-base">
-                  Educational qualifications equivalent to Canadian standards 
+                  Educational qualifications equivalent to Canadian standards
                   (ECA required for foreign education)
                 </span>
               </li>
-              <li 
-                ref={el => addToRefs(el, qualifyItemsRef, 3)}
+              <li
+                ref={(el) => addToRefs(el, qualifyItemsRef, 3)}
                 className="flex items-start gap-3 px-2 sm:px-0"
               >
                 <span className="h-[6px] w-[6px] bg-[#155da9] rounded-full mt-2 flex-shrink-0"></span>
                 <span className="text-sm sm:text-base">
-                  Sufficient settlement funds (unless currently authorized to work 
-                  in Canada)
+                  Sufficient settlement funds (unless currently authorized to
+                  work in Canada)
                 </span>
               </li>
-              <li 
-                ref={el => addToRefs(el, qualifyItemsRef, 4)}
+              <li
+                ref={(el) => addToRefs(el, qualifyItemsRef, 4)}
                 className="flex items-start gap-3 px-2 sm:px-0"
               >
                 <span className="h-[6px] w-[6px] bg-[#155da9] rounded-full mt-2 flex-shrink-0"></span>
@@ -287,7 +302,7 @@ export default function ExpressEntry() {
 
         {/* Services Section */}
         <div className="flex w-full items-center justify-center mt-10 sm:mt-16">
-          <span 
+          <span
             ref={servicesTitleRef}
             className="text-2xl sm:text-3xl md:text-4xl text-[#155da9]"
           >
@@ -295,10 +310,10 @@ export default function ExpressEntry() {
           </span>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-5 flex-wrap h-auto mb-20 items-center justify-center px-4 sm:px-8 md:px-12 lg:px-20 py-8 sm:py-10"> 
-          <Link 
-            ref={el => addToRefs(el, serviceCardsRef, 0)}
-            href="/pr" 
+        <div className="flex flex-col sm:flex-row gap-5 flex-wrap h-auto mb-20 items-center justify-center px-4 sm:px-8 md:px-12 lg:px-20 py-8 sm:py-10">
+          <Link
+            ref={(el) => addToRefs(el, serviceCardsRef, 0)}
+            href="/pr"
             className="w-full sm:w-[calc(50%-20px)] md:w-[calc(33.333%-20px)] min-w-[250px] max-w-[400px] h-[250px] sm:h-[300px] shadow-xl rounded-lg border-2 hover:-translate-y-2 transition-transform duration-500 border-[#155da9]"
           >
             <div className="flex flex-col items-center justify-center h-full p-4 gap-3 sm:gap-4">
@@ -311,14 +326,15 @@ export default function ExpressEntry() {
                 </span>
               </div>
               <p className="text-xs sm:text-sm md:text-base text-gray-600 text-center">
-                Family sponsorship and pathways to obtain Canadian permanent resident status.
+                Family sponsorship and pathways to obtain Canadian permanent
+                resident status.
               </p>
             </div>
-          </Link> 
-          
-          <Link 
-            ref={el => addToRefs(el, serviceCardsRef, 1)}
-            href="/visitorvisa" 
+          </Link>
+
+          <Link
+            ref={(el) => addToRefs(el, serviceCardsRef, 1)}
+            href="/visitorvisa"
             className="w-full sm:w-[calc(50%-20px)] md:w-[calc(33.333%-20px)] min-w-[250px] max-w-[400px] h-[250px] sm:h-[300px] shadow-xl rounded-lg border-2 hover:-translate-y-2 transition-transform duration-500 border-[#155da9]"
           >
             <div className="flex flex-col items-center justify-center h-full p-4 gap-3 sm:gap-4">
@@ -331,14 +347,15 @@ export default function ExpressEntry() {
                 </span>
               </div>
               <p className="text-xs sm:text-sm md:text-base text-gray-600 text-center">
-                Temporary visas for tourism, business visits, and family visits to Canada.
+                Temporary visas for tourism, business visits, and family visits
+                to Canada.
               </p>
             </div>
           </Link>
-          
-          <Link 
-            ref={el => addToRefs(el, serviceCardsRef, 2)}
-            href="/workpermit" 
+
+          <Link
+            ref={(el) => addToRefs(el, serviceCardsRef, 2)}
+            href="/workpermit"
             className="w-full sm:w-[calc(50%-20px)] md:w-[calc(33.333%-20px)] min-w-[250px] max-w-[400px] h-[250px] sm:h-[300px] shadow-xl rounded-lg border-2 hover:-translate-y-2 transition-transform duration-500 border-[#155da9]"
           >
             <div className="flex flex-col items-center justify-center h-full p-4 gap-3 sm:gap-4">
@@ -351,7 +368,8 @@ export default function ExpressEntry() {
                 </span>
               </div>
               <p className="text-xs sm:text-sm md:text-base text-gray-600 text-center">
-                Legal authorization to work in Canada through employer-specific or open permits.
+                Legal authorization to work in Canada through employer-specific
+                or open permits.
               </p>
             </div>
           </Link>

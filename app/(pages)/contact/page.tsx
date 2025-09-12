@@ -577,7 +577,7 @@
 "use client";
 
 import React, { useState, useLayoutEffect, useRef } from "react";
-import Link from "next/link";
+// import Link from "next/link";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import { FaPhoneAlt, FaLinkedinIn } from "react-icons/fa";
@@ -703,7 +703,7 @@ export default function Contact() {
         data-scroll-speed="0.2"
         className="min-h-[55vh] md:min-h-[70vh] flex flex-col gap-2 items-center justify-center w-full bg-cover bg-center relative"
         style={{
-          backgroundImage: "url('/contact15.jpg')",
+          backgroundImage: "url(&apos;/contact15.jpg&apos;)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -722,7 +722,7 @@ export default function Contact() {
             ref={subtitleRef}
             className="text-[#F1F1F1] mt-4 font-thin text-sm md:text-lg tracking-widest"
           >
-            Connecting Dreams to Destinations Let's Build Your Path Together
+            Connecting Dreams to Destinations Let&apos;s Build Your Path Together
           </h5>
         </div>
       </div>
@@ -785,8 +785,8 @@ export default function Contact() {
           <div className="lg:w-1/2">
             <div className="flex flex-col h-full">
               <p className="text-gray-600 text-sm sm:text-base">
-                At Seaview Immigration, we're committed to providing personalized guidance for your journey. 
-                Whether you're seeking work permits, permanent residency, or family sponsorship, our team of 
+                At Seaview Immigration, we&apos;re committed to providing personalized guidance for your journey. 
+                Whether you&apos;re seeking work permits, permanent residency, or family sponsorship, our team of 
                 licensed consultants offers expert advice tailored to your unique situation. We understand the 
                 complexities of immigration processes and are here to help you navigate every step with confidence.
               </p>

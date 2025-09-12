@@ -170,33 +170,58 @@ const ForgotPassword = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // const handleSubmit = async (e: React.FormEvent) => {
 
 
-    e.preventDefault();
-    setLoading(true);
+  //   e.preventDefault();
+  //   setLoading(true);
 
-    try {
-      const res = await axios.post(
-        "/api/users/forget-password",
-        { email },
-        {
-          withCredentials: true,
-        }
-      );
+  //   try {
+  //     const res = await axios.post(
+  //       "/api/users/forget-password",
+  //       { email },
+  //       {
+  //         withCredentials: true,
+  //       }
+  //     );
 
-      toast.success("Reset password code sent to your email.");
-      router.push(`/reset-password?email=${encodeURIComponent(email)}`);
-    } catch (error: any) {
+  //     toast.success("Reset password code sent to your email.");
+  //     router.push(`/reset-password?email=${encodeURIComponent(email)}`);
+  //   } catch (error: any) {
+  //     toast.error(
+  //       error?.response?.data?.message ||
+  //         "Verification failed. Please try again."
+  //     );
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setLoading(true);
+
+  try {
+    await axios.post(
+      "/api/users/forget-password",
+      { email },
+      { withCredentials: true }
+    );
+
+    toast.success("Reset password code sent to your email.");
+    router.push(`/reset-password?email=${encodeURIComponent(email)}`);
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
       toast.error(
-        error?.response?.data?.message ||
+        error.response?.data?.message ||
           "Verification failed. Please try again."
       );
-    } finally {
-      setLoading(false);
+    } else {
+      toast.error("Something went wrong. Please try again.");
     }
-  };
-
+  } finally {
+    setLoading(false);
+  }
+};
   const goback = () => {
     router.back();
   };

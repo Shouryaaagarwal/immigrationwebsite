@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Flag from "react-world-flags";
+// import Flag from "react-world-flags";
 import "animate.css";
-import Image from "next/image";
+// import Image from "next/image";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Loader } from "lucide-react";
@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { setAuthUser } from "@/store/authSlice";
 import { toast } from "react-toastify";
 import { Raleway } from "next/font/google";
-import Navbar from "@/app/components/Navbar";
+// import Navbar from "@/app/components/Navbar";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import Link from "next/link";
 
@@ -21,7 +21,7 @@ const raleway = Raleway({
 });
 
 const Page = () => {
-  const [selectedCountry, setSelectedCountry] = useState("");
+  // const [selectedCountry, setSelectedCountry] = useState("");
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -40,45 +40,105 @@ const Page = () => {
 
   if (!isMounted) return null;
 
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      // 1. First make the signup request
-      const res = await axios.post("/api/users/signup", user, {
+  // const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   try {
+  //     // 1. First make the signup request
+  //     const res = await axios.post("/api/users/signup", user, {
+  //       withCredentials: true,
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("token")}`
+  //       }
+  //     });
+  
+  //     const userdata = res.data.data.user;
+      
+  //     // 2. Then update the tracker
+  //     try {
+  //       await axios.patch(`/api/tracker/${userdata._id}`, {
+  //         field: "signUp",  
+  //         value: true
+  //       }, {
+  //         headers: {
+  //           'Content-Type': 'application/json'
+  //         }
+  //       });
+  //     } catch (trackerError) {
+  //       console.error("Failed to update tracker:", trackerError);
+  //       // You might want to handle this error differently
+  //     }
+  
+  //     toast.success("SignUp Successful");
+  //     dispatch(setAuthUser(userdata));
+  //     router.push("/verify");
+  //   } catch (error: any) {
+  //     toast.error(error.response?.data?.message || "An error occurred");
+  //     console.log(error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setLoading(true);
+
+  try {
+    // 1. First make the signup request
+    const res = await axios.post(
+      "/api/users/signup",
+      user,
+      {
         withCredentials: true,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`
-        }
-      });
-  
-      const userdata = res.data.data.user;
-      
-      // 2. Then update the tracker
-      try {
-        await axios.patch(`/api/tracker/${userdata._id}`, {
-          field: "signUp",  
-          value: true
-        }, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-      } catch (trackerError) {
-        console.error("Failed to update tracker:", trackerError);
-        // You might want to handle this error differently
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       }
-  
-      toast.success("SignUp Successful");
-      dispatch(setAuthUser(userdata));
-      router.push("/verify");
-    } catch (error: any) {
-      toast.error(error.response?.data?.message || "An error occurred");
-      console.log(error);
-    } finally {
-      setLoading(false);
+    );
+
+    const userdata = res.data.data.user;
+
+    // 2. Then update the tracker
+    try {
+      await axios.patch(
+        `/api/tracker/${userdata._id}`,
+        {
+          field: "signUp",
+          value: true,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } catch (trackerError: unknown) {
+      if (axios.isAxiosError(trackerError)) {
+        console.error(
+          "Failed to update tracker:",
+          trackerError.response?.data || trackerError.message
+        );
+      } else {
+        console.error("Failed to update tracker:", trackerError);
+      }
+      // ⚠️ You could show a toast here if tracker update is critical
     }
-  };
+
+    toast.success("SignUp Successful");
+    dispatch(setAuthUser(userdata));
+    router.push("/verify");
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      toast.error(error.response?.data?.message || "An error occurred");
+      console.error(error.response?.data);
+    } else {
+      toast.error("Something went wrong. Please try again.");
+      console.error(error);
+    }
+  } finally {
+    setLoading(false);
+  }
+};
 
   const goback = () => {
     router.push("/home");

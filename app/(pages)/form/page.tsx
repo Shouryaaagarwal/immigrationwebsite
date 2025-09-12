@@ -2132,8 +2132,8 @@
 
 "use client";
 import { useState, useEffect } from "react";
-import axios from "axios";
-import Navbar from "@/app/components/Navbar";
+import axios, { AxiosError } from "axios";
+// import Navbar from "@/app/components/Navbar";
 import { Raleway } from "next/font/google";
 import { useSelector } from "react-redux";
 import {
@@ -2751,8 +2751,10 @@ export default function Form() {
     }));
   };
 
-  const user = useSelector((state: any) => state.auth.user);
-  const userId = user?._id;
+  const user = useSelector((state: any) => state.auth.user); 
+  // const user = useSelector((state: unknown) => (state as { auth: { user: UserType } }).auth.user);
+
+  const userId = user?._id;  
 
   // const handleSubmit = async (e: React.FormEvent) => {
   //   e.preventDefault();
@@ -2806,72 +2808,120 @@ export default function Form() {
 
 
 
-  const handleSubmit = async (e: React.FormEvent) => {
+//   const handleSubmit = async (e: React.FormEvent) => {
+//   e.preventDefault();
+//   setIsSubmitting(true);
+  
+//   try {
+//     let applicationId = formData.applicationId; // If you have this field in your formData
+//     let res;
+    
+//     if (applicationId) {
+//       // Update existing application using PATCH
+//       res = await axios.patch(
+//         `/api/applicant-form/${userId}`, // Your PATCH endpoint
+//         { 
+//           ...formData, 
+//           userId,
+//           applicationId // Include applicationId in the request body
+//         },
+//         {
+//           headers: { "Content-Type": "application/json" },
+//           withCredentials: true,
+//         }
+//       );
+//     } else {
+//       // Create new application using POST
+//       res = await axios.post(
+//         "/api/applicant-form",
+//         { ...formData, userId },
+//         {
+//           headers: { "Content-Type": "application/json" },
+//           withCredentials: true,
+//         }
+//       );
+      
+//       // Get the applicationId from the response for new applications
+//       applicationId = res.data.applicant.applicationId;
+//     }
+    
+//     console.log("Response data:", res.data);
+    
+//     // Update the tracker to mark form as submitted
+//     if (applicationId) {
+//       try {
+//         await axios.patch(
+//           `/api/tracker/${userId}/${applicationId}`,
+//           {
+//             applicationId: applicationId,
+//             field: "formFilling",
+//             value: true
+//           },
+//           {
+//             headers: { "Content-Type": "application/json" },
+//             withCredentials: true,
+//           }
+//         );
+//         console.log("Tracker updated successfully");
+//       } catch (trackerError) {
+//         console.error("Failed to update tracker:", trackerError);
+//         // Continue even if tracker update fails
+//       }
+//     }
+
+//     // Redirect after successful submission
+//     router.push("/home");
+//   } catch (error: any) {
+//     console.error("Submission error:", error);
+//     alert("Failed to submit form. Please try again.");
+//   } finally {
+//     setIsSubmitting(false);
+//   }
+// };   
+const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   setIsSubmitting(true);
-  
+
   try {
-    let applicationId = formData.applicationId; // If you have this field in your formData
+    let applicationId = formData.applicationId;
     let res;
-    
+
     if (applicationId) {
-      // Update existing application using PATCH
       res = await axios.patch(
-        `/api/applicant-form/${userId}`, // Your PATCH endpoint
-        { 
-          ...formData, 
-          userId,
-          applicationId // Include applicationId in the request body
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
+        `/api/applicant-form/${userId}`,
+        { ...formData, userId, applicationId },
+        { headers: { "Content-Type": "application/json" }, withCredentials: true }
       );
     } else {
-      // Create new application using POST
       res = await axios.post(
         "/api/applicant-form",
         { ...formData, userId },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
+        { headers: { "Content-Type": "application/json" }, withCredentials: true }
       );
-      
-      // Get the applicationId from the response for new applications
       applicationId = res.data.applicant.applicationId;
     }
-    
+
     console.log("Response data:", res.data);
-    
-    // Update the tracker to mark form as submitted
+
     if (applicationId) {
       try {
         await axios.patch(
           `/api/tracker/${userId}/${applicationId}`,
-          {
-            applicationId: applicationId,
-            field: "formFilling",
-            value: true
-          },
-          {
-            headers: { "Content-Type": "application/json" },
-            withCredentials: true,
-          }
+          { applicationId, field: "formFilling", value: true },
+          { headers: { "Content-Type": "application/json" }, withCredentials: true }
         );
         console.log("Tracker updated successfully");
       } catch (trackerError) {
         console.error("Failed to update tracker:", trackerError);
-        // Continue even if tracker update fails
       }
     }
 
-    // Redirect after successful submission
     router.push("/home");
-  } catch (error: any) {
-    console.error("Submission error:", error);
-    alert("Failed to submit form. Please try again.");
+  } catch (error: unknown) {
+    const err = error as AxiosError<{ message?: string }>;
+    console.error("Submission error:", err);
+
+    alert(err.response?.data?.message || "Failed to submit form. Please try again.");
   } finally {
     setIsSubmitting(false);
   }
@@ -4265,10 +4315,11 @@ export default function Form() {
         <div className="w-full flex mt-10 items-center justify-center">
             <button 
                 onClick={handleSubmit}
-                type="button"
+                type="button"   
+                disabled={isSubmitting}
                 className="border-[#155da9] border-2 mt-8 text-[#155da9] px-10 py-4 tracking-wide hover:bg-[#155da9] hover:text-white transition-transform duration-500 hover:-translate-y-3 rounded-full"
             >
-                Submit
+                {isSubmitting ? "Submitting..." : "Submit"}
             </button>
         </div>
     </div>

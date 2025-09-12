@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Flag from "react-world-flags";
+// import Flag from "react-world-flags";
 import "animate.css";
-import Image from "next/image";
+// import Image from "next/image";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Loader } from "lucide-react";
@@ -20,7 +20,7 @@ const raleway = Raleway({
 });
 
 const Page = () => {
-  const [selectedCountry, setSelectedCountry] = useState("");
+  // const [selectedCountry, setSelectedCountry] = useState("");
   const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
 
@@ -38,32 +38,62 @@ const Page = () => {
 
   if (!isMounted) return null;
   
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const res = await axios.post(
-        " http://localhost:3000/api/users/login",
-        user,
-        {
-          withCredentials: true,
-        }
-      );
+  // const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   try {
+  //     const res = await axios.post(
+  //       " http://localhost:3000/api/users/login",
+  //       user,
+  //       {
+  //         withCredentials: true,
+  //       }
+  //     );
 
-      const userdata = res.data.data.user;
-      toast.success("Login Successfull");
-      dispath(setAuthUser(userdata));
-      console.log(userdata);
-      router.push("/");
-      console.log(res);
-    } catch (error: any) {
-      toast.error(error.res?.data?.message || "An error occured");
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     const userdata = res.data.data.user;
+  //     toast.success("Login Successfull");
+  //     dispath(setAuthUser(userdata));
+  //     console.log(userdata);
+  //     router.push("/");
+  //     console.log(res);
+  //   } catch (error: unknown) {
+  //     toast.error(error.res?.data?.message || "An error occured");
+  //     console.log(error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   
+const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setLoading(true);
+
+  try {
+    const res = await axios.post(
+      "http://localhost:3000/api/users/login",
+      user,
+      { withCredentials: true }
+    );
+
+    const userdata = res.data.data.user;
+    toast.success("Login Successful");
+    dispath(setAuthUser(userdata));
+    console.log(userdata);
+    router.push("/");
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      toast.error(
+        error.response?.data?.message || "An error occurred"
+      );
+      console.error(error.response?.data);
+    } else {
+      toast.error("Something went wrong. Please try again.");
+      console.error(error);
+    }
+  } finally {
+    setLoading(false);
+  }
+};
 
   
   
