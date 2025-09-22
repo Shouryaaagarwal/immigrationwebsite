@@ -626,7 +626,7 @@ export default function Form() {
     setIsSubmitting(true);
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/applicant-form",
+        "/api/applicant-form",
         { ...formData, userId },
         {
           headers: { "Content-Type": "application/json" },

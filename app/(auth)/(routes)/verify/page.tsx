@@ -433,7 +433,7 @@ const handleSubmit = async () => {
   try {
     const verificationCode = code.join("");
     const res = await axios.post(
-      "http://localhost:3000/api/users/verify",
+      "/api/users/verify",
       { otp: verificationCode },
       { withCredentials: true }
     );

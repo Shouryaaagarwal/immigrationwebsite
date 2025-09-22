@@ -70,7 +70,7 @@ const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
 
   try {
     const res = await axios.post(
-      "http://localhost:3000/api/users/login",
+      "/api/users/login",
       user,
       { withCredentials: true }
     );
