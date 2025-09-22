@@ -243,7 +243,7 @@ useLayoutEffect(() => {
         data-scroll-speed= "0.2"
         className="h-[55vh] md:h-[70vh] bg-white flex flex-col gap-2 items-center justify-center w-full bg-cover bg-center z-10"
         style={{ 
-          backgroundImage: "url(`/service1.avif`)",
+          backgroundImage: "url('/service1.avif')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat"

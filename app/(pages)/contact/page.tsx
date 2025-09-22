@@ -703,7 +703,7 @@ export default function Contact() {
         data-scroll-speed="0.2"
         className="min-h-[55vh] md:min-h-[70vh] flex flex-col gap-2 items-center justify-center w-full bg-cover bg-center relative"
         style={{
-          backgroundImage: "url(&apos;/contact15.jpg&apos;)",
+          backgroundImage: "url('/contact15.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",

@@ -139,7 +139,7 @@ export default function About() {
         data-scroll-speed="0.2"
         className="h-[55vh] md:h-[70vh] bg-white flex flex-col gap-2 items-center justify-center w-full bg-cover bg-center relative z-10"
         style={{
-          backgroundImage: "url(&apos;/about1.jpg&apos;)",
+          backgroundImage: "url('/about1.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
