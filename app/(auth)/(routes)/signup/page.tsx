@@ -174,7 +174,7 @@ const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
 
             <div className="text-white flex flex-col gap-5 ml-10">
               <h1 className="text-4xl md:text-5xl lg:text-6xl">
-                Let's Get <br />
+                Let&apos;s Get <br />
                 <span className="text-5xl md:text-[60px] lg:text-[70px] font-thin tracking-wider">
                   Started !
                 </span>
