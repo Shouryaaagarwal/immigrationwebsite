@@ -243,7 +243,7 @@ useLayoutEffect(() => {
         data-scroll-speed= "0.2"
         className="h-[55vh] md:h-[70vh] bg-white flex flex-col gap-2 items-center justify-center w-full bg-cover bg-center z-10"
         style={{ 
-          backgroundImage: "url('/service1.avif')",
+          backgroundImage: "url(`/service1.avif`)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat"
@@ -261,7 +261,7 @@ useLayoutEffect(() => {
           ref={subtitleRef}
           className="text-[#F1F1F1] mt-4 font-thin text-sm md:text-lg z-20 tracking-widest text-center px-4"
         >
-          Connecting Dreams to Destinations Let's Build Your Path Together
+          Connecting Dreams to Destinations Let&apos;s Build Your Path Together
         </h5>
       </div>
 
@@ -280,7 +280,7 @@ useLayoutEffect(() => {
         <div    className="mt-4 text-center md:text-left">
           <p className="text-gray-600 text-sm md:text-base">
             Our comprehensive immigration services are designed to guide you through every step of your journey to Canada. 
-            Whether you're seeking temporary residency, permanent status, or family reunification, our team of experts 
+            Whether you&apos;re seeking temporary residency, permanent status, or family reunification, our team of experts 
             provides personalized solutions tailored to your unique circumstances. We combine legal expertise with 
             compassionate service to make your transition as smooth as possible.
           </p>
@@ -513,7 +513,7 @@ useLayoutEffect(() => {
                 <div
                   className={`flex items-center justify-between p-4 ${activeIndex === index ? 'bg-[#155da9] text-white' : 'bg-white text-[#155da9]'}`}
                 >
-                  <h3 className="text-sm font-light sm:text-base font-medium">
+                  <h3 className="text-sm font-light sm:text-base ">
                     {item.question}
                   </h3>
                   <MdKeyboardArrowDown 

@@ -143,7 +143,7 @@ export default function TemporaryResidence() {
       {/* Hero Section */}
       <div
         className="h-[70vh] flex flex-col gap-2 items-center justify-center w-full bg-cover bg-center relative"
-        style={{ backgroundImage: "url('/contact6.jpg')" }}
+        style={{ backgroundImage: "url(`/contact6.jpg`)" }}
       >
         <div className="fixed top-0 left-0 w-full z-50">
           <Navbar />
@@ -158,7 +158,7 @@ export default function TemporaryResidence() {
           ref={heroSubtitleRef}
           className="text-[#F1F1F1] mt-4 font-normal text-base sm:text-lg z-20 tracking-widest text-center px-4"
         >
-          Explore Canada's beauty with the right travel authorization
+          Explore Canada&apos;s beauty with the right travel authorization
         </h5>
       </div>
 
@@ -166,9 +166,9 @@ export default function TemporaryResidence() {
         {/* Intro Section - Static (no animation) */}
         <div className="mt-10 px-4 sm:px-8 md:px-12 lg:px-20 pt-10 w-full">
           <p className="text-base sm:text-[17px] text-gray-500 text-center sm:text-left">
-            Canada welcomes over 35 million temporary residents annually as one of the world's most 
-            breathtaking destinations. If you're from a visa-required country, proper advance 
-            application is essential. Our expertise enhances your application's accuracy and 
+            Canada welcomes over 35 million temporary residents annually as one of the world&apos;s most 
+            breathtaking destinations. If you&apos;re from a visa-required country, proper advance 
+            application is essential. Our expertise enhances your application&apos;s accuracy and 
             approval prospects.
           </p>
 

@@ -145,7 +145,7 @@ export default function Pr() {
       {/* Hero Section */}
       <div
         className="h-[70vh] flex flex-col gap-2 items-center justify-center w-full bg-cover bg-center relative"
-        style={{ backgroundImage: "url('/contact6.jpg')" }}
+        style={{ backgroundImage: "url(`/contact6.jpg`)" }}
       >
         <div className="fixed top-0 left-0 w-full z-50">
           <Navbar />
@@ -160,7 +160,7 @@ export default function Pr() {
           ref={heroSubtitleRef}
           className="text-[#F1F1F1] mt-4 font-normal text-base sm:text-lg z-20 tracking-widest text-center px-4"
         >
-          Connecting Dreams to Destinations Let's Build Your Path Together
+          Connecting Dreams to Destinations Let&apos;s Build Your Path Together
         </h5>
       </div>
 

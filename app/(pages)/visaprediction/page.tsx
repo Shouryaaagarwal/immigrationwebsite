@@ -357,7 +357,7 @@ export default function Pr() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-600">
             <div className="bg-white/90 p-4 rounded-lg shadow border border-gray-200">
               <h3 className="font-semibold text-[#155da9]">How accurate is this?</h3>
-              <p>Based on common factors but doesn't guarantee actual results</p>
+              <p>Based on common factors but doesn&apos;t guarantee actual results</p>
             </div>
             <div className="bg-white/90 p-4 rounded-lg shadow border border-gray-200">
               <h3 className="font-semibold text-[#155da9]">Most important factors?</h3>

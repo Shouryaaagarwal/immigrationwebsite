@@ -141,7 +141,7 @@ export default function TemporaryResidence() {
       {/* Hero Section */}
       <div
         className="h-[70vh] flex flex-col gap-2 items-center justify-center w-full bg-cover bg-center relative"
-        style={{ backgroundImage: "url('/contact6.jpg')" }}
+        style={{ backgroundImage: "url(`/contact6.jpg`)" }}
       >
         <div className="fixed top-0 left-0 w-full z-50">
           <Navbar />
@@ -164,7 +164,7 @@ export default function TemporaryResidence() {
         {/* Intro Section - Static (no animation) */}
         <div className="mt-10 px-4 sm:px-8 md:px-12 lg:px-20 pt-10 w-full">
           <p className="text-base sm:text-[17px] text-gray-500 text-center sm:text-left">
-            Canada's growing economy offers vast opportunities for skilled professionals, temporary workers, and international graduates.
+            Canada&apos;s growing economy offers vast opportunities for skilled professionals, temporary workers, and international graduates.
             A valid work permit is essential to legally work in Canada. We guide you through the application process to ensure compliance and maximize approval chances.
           </p>
 

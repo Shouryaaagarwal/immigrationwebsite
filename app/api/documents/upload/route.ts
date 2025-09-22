@@ -413,7 +413,7 @@ export async function PATCH(req: NextRequest) {
     }
 
     // Update the document based on field type
-    let updateData: any = {};
+const updateData: any = {};
 
     if (field === 'passport' || field === 'nationalId' || field === 'countryVisa' || field === 'birthCertificate') {
       updateData[field] = {

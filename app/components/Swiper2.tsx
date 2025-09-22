@@ -129,7 +129,7 @@ export default function App() {
               <img src="house.png" className='h-[80px] w-[80px]' alt="House Icon" />
             </div> 
             <h1 className='text-2xl text-[#155da9]'>Permanent Residence</h1>   
-            <span className='text-sm text-gray-500'>Let's make Canada your permanent home</span>
+            <span className='text-sm text-gray-500'>Let&apos;s make Canada your permanent home</span>
           </div>
         </SwiperSlide>
 
